@@ -1,0 +1,222 @@
+export const gamesList = [
+    {
+      id: 1,
+      name: "Minecraft",
+      genre: "Sandbox",
+      description: "A game about placing blocks and going on adventures.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2011-11-18",
+      imageUrl: "src/assets/mc.png",
+      price: 19.99,
+      link: "https://www.minecraft.net"
+    },
+    {
+      id: 2,
+      name: "Fortnite",
+      genre: "Battle Royale",
+      description: "A fast-paced, ever-changing battle royale game.",
+      platform: "PC, Xbox, PlayStation, Switch",
+      releaseDate: "2017-09-26",
+      imageUrl: "src/assets/ft.png",
+      price: 0.00,
+      link: "https://www.epicgames.com/fortnite"
+    },
+    {
+      id: 3,
+      name: "The Witcher 3: Wild Hunt",
+      genre: "RPG",
+      description: "An open-world action RPG with a rich story.",
+      platform: "PC, Xbox, PlayStation, Switch",
+      releaseDate: "2015-05-19",
+      imageUrl: "src/assets/w3.png",
+      price: 39.99,
+      link: "https://thewitcher.com/en/witcher3"
+    },
+    {
+      id: 4,
+      name: "Grand Theft Auto V",
+      genre: "Action-Adventure",
+      description: "An open-world action-adventure game in Los Santos.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2013-09-17",
+      imageUrl: "src/assets/gta5.jpg",
+      price: 29.99,
+      link: "https://www.rockstargames.com/V"
+    },
+    {
+      id: 5,
+      name: "Call of Duty: Modern Warfare",
+      genre: "Shooter",
+      description: "A tactical military shooter game with stunning graphics.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2019-10-25",
+      imageUrl: "src/assets/cod.png",
+      price: 59.99,
+      link: "https://www.callofduty.com/modernwarfare"
+    },
+    {
+      id: 6,
+      name: "Apex Legends",
+      genre: "Battle Royale",
+      description: "A free-to-play battle royale game with unique characters.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2019-02-04",
+      imageUrl: "src/assets/ap.png",
+      price: 0.00,
+      link: "https://www.ea.com/games/apex-legends"
+    },
+    {
+      id: 7,
+      name: "Red Dead Redemption 2",
+      genre: "Action-Adventure",
+      description: "A breathtaking open-world game set in the Wild West.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2018-10-26",
+      imageUrl: "src/assets/rdr2.png",
+      price: 59.99,
+      link: "https://www.rockstargames.com/reddeadredemption2"
+    },
+    {
+      id: 8,
+      name: "Valorant",
+      genre: "Tactical Shooter",
+      description: "A 5v5 tactical FPS with unique agents and abilities.",
+      platform: "PC",
+      releaseDate: "2020-06-02",
+      imageUrl: "src/assets/vl.png",
+      price: 0.00,
+      link: "https://playvalorant.com"
+    },
+    {
+      id: 9,
+      name: "Among Us",
+      genre: "Multiplayer Party",
+      description: "A multiplayer party game where you deceive and collaborate with others.",
+      platform: "PC, Mobile",
+      releaseDate: "2018-06-15",
+      imageUrl: "src/assets/amus.png",
+      price: 4.99,
+      link: "https://www.innersloth.com/gameAmongUs.php"
+    },
+    {
+      id: 10,
+      name: "League of Legends",
+      genre: "MOBA",
+      description: "A team-based battle game with strategic gameplay and champions.",
+      platform: "PC",
+      releaseDate: "2009-10-27",
+      imageUrl: "src/assets/lol.png",
+      price: 0.00,
+      link: "https://www.leagueoflegends.com"
+    },
+    {
+      id: 11,
+      name: "The Elder Scrolls V: Skyrim",
+      genre: "RPG",
+      description: "An epic open-world RPG set in a medieval fantasy world.",
+      platform: "PC, Xbox, PlayStation, Switch",
+      releaseDate: "2011-11-11",
+      imageUrl: "src/assets/elscr.png",
+      price: 39.99,
+      link: "https://elderscrolls.bethesda.net/en/skyrim"
+    },
+    {
+      id: 12,
+      name: "Cyberpunk 2077",
+      genre: "RPG",
+      description: "An open-world RPG set in a futuristic cyberpunk city.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2020-12-10",
+      imageUrl: "src/assets/cp.png",
+      price: 59.99,
+      link: "https://www.cyberpunk.net"
+    },
+    {
+      id: 13,
+      name: "Overwatch",
+      genre: "Shooter",
+      description: "A team-based multiplayer first-person shooter game.",
+      platform: "PC, Xbox, PlayStation, Switch",
+      releaseDate: "2016-05-24",
+      imageUrl: "src/assets/ovw.png",
+      price: 39.99,
+      link: "https://playoverwatch.com"
+    },
+    {
+      id: 14,
+      name: "Fall Guys",
+      genre: "Battle Royale",
+      description: "A hilarious and fun battle royale with jellybean-like characters.",
+      platform: "PC, PlayStation",
+      releaseDate: "2020-08-04",
+      imageUrl: "src/assets/fg.png",
+      price: 19.99,
+      link: "https://www.fallguys.com"
+    },
+    {
+      id: 15,
+      name: "Super Mario Odyssey",
+      genre: "Platformer",
+      description: "A 3D platformer adventure game featuring Mario in various worlds.",
+      platform: "Switch",
+      releaseDate: "2017-10-27",
+      imageUrl: "src/assets/smo.png",
+      price: 59.99,
+      link: "https://www.nintendo.com/games/detail/super-mario-odyssey-switch"
+    },
+    {
+      id: 16,
+      name: "Hades",
+      genre: "Roguelike",
+      description: "A fast-paced, action-packed roguelike where you escape the Underworld.",
+      platform: "PC, Switch, PlayStation",
+      releaseDate: "2020-09-17",
+      imageUrl: "src/assets/hades.png",
+      price: 24.99,
+      link: "https://supergiantgames.com/games/hades"
+    },
+    {
+      id: 17,
+      name: "Rocket League",
+      genre: "Sports",
+      description: "A car soccer game where you score goals by hitting the ball with your car.",
+      platform: "PC, Xbox, PlayStation, Switch",
+      releaseDate: "2015-07-07",
+      imageUrl: "src/assets/rl.png",
+      price: 19.99,
+      link: "https://www.rocketleague.com"
+    },
+    {
+      id: 18,
+      name: "Assassin's Creed Valhalla",
+      genre: "Action RPG",
+      description: "An open-world action RPG set in the Viking age.",
+      platform: "PC, Xbox, PlayStation",
+      releaseDate: "2020-11-10",
+      imageUrl: "src/assets/asv.png",
+      price: 59.99,
+      link: "https://www.ubisoft.com/game/assassins-creed/valhalla"
+    },
+    {
+      id: 19,
+      name: "Stardew Valley",
+      genre: "Simulation",
+      description: "A farming simulation where you grow crops and build a farm.",
+      platform: "PC, Xbox, PlayStation, Switch",
+      releaseDate: "2016-02-26",
+      imageUrl: "src/assets/sdv.png",
+      price: 14.99,
+      link: "https://www.stardewvalley.net"
+    },
+    {
+      id: 20,
+      name: "World of Warcraft",
+      genre: "MMORPG",
+      description: "A massive multiplayer online role-playing game set in the fantasy world of Azeroth.",
+      platform: "PC",
+      releaseDate: "2004-11-23",
+      imageUrl: "src/assets/wow.png",
+      price: 14.99,
+      link: "https://worldofwarcraft.com"
+    }
+  ];

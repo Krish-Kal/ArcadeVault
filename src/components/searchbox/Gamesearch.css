@@ -1,0 +1,34 @@
+.searchbox-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  position: relative;
+}
+
+.searchbox-input {
+  padding: 12px 20px;
+  width: 60%;
+  font-size: 18px;
+  border-radius: 30px;
+  border: 2px solid #04cef1;
+  background: linear-gradient(145deg, #1e2a47, #2a3b65); /* Darker gradient background */
+  color: white;
+  box-sizing: border-box;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease-in-out; /* Smooth transition for focus */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  box-shadow: 0 4px 12px rgba(4, 206, 241, 0.3); /* Glow effect */
+}
+
+.searchbox-input:focus {
+  border-color: #00c2ff;
+  background: linear-gradient(145deg, #3700ff, #00ffeac5); /* Bright futuristic gradient on focus */
+  box-shadow: 0 8px 20px rgba(0, 194, 255, 0.6); /* Intense glow effect */
+  color: #fff;
+}
+
+.searchbox-input::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Lighter placeholder for better contrast */
+  font-size: 16px;
+}

@@ -1,0 +1,74 @@
+.notfound-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: radial-gradient(ellipse at center, #0d0d0d 0%, #000000 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .stars {
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow: 
+      50px 80px white, 120px 160px white, 180px 90px white,
+      220px 140px white, 300px 100px white, 380px 120px white,
+      420px 180px white, 500px 80px white, 580px 160px white,
+      650px 90px white, 720px 140px white;
+    animation: twinkle 2s infinite ease-in-out alternate;
+  }
+  
+  @keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
+  
+  .glow-center {
+    text-align: center;
+    animation: fadeInUp 1.5s ease;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .notfound-title {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    color: #f80189;
+    text-shadow: 0 0 20px #f80189, 0 0 40px #40e0d0;
+  }
+  
+  .notfound-text {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #ccc;
+  }
+  
+  .notfound-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #40e0d0;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .notfound-button:hover {
+    background-color: #f80189;
+    transform: scale(1.05);
+  }
+  

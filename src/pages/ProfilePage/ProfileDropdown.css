@@ -1,0 +1,69 @@
+/* ProfileDropdown Styling */
+.profile-dropdown {
+    position: relative;
+  }
+  
+  .avatar-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    border: 2px solid #00ffe7;
+    box-shadow: 0 0 10px #00ffe7;
+  }
+  
+  .avatar-container:hover .avatar {
+    transform: scale(1.1);
+  }
+  
+  /* Dropdown Menu */
+  .dropdown-menu {
+    position: absolute;
+    top: 50px; /* Adjust depending on avatar size */
+    right: 0;
+    background: rgba(20, 20, 30, 0.95);
+    border: 1px solid #00ffe7;
+    border-radius: 10px;
+    padding: 0;
+    min-width: 160px;
+    box-shadow: 0 0 12px #00ffe7;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* Common Button Style */
+  .dropdown-item {
+    background: transparent;
+    color: #00ffe7;
+    border: none;
+    padding: 12px 20px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    display: block;
+    text-decoration: none; /* For anchor tags */
+  }
+  
+  /* Hover and Active States */
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background: rgba(0, 255, 231, 0.1);
+    color: #ffffff;
+    box-shadow: inset 0 0 5px rgba(0, 255, 231, 0.5);
+    outline: none;
+  }
+  

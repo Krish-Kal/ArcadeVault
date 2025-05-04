@@ -1,0 +1,194 @@
+/* Logging Out Message */
+.navbar-logout-message {
+  position: absolute;
+  top: 10px;  /* Adjust position */
+  right: 20px;
+  background: rgba(0, 255, 231, 0.9);  /* Neon blue background */
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  animation: fadeOut 2s forwards; /* Fades out after 2 seconds */
+}
+
+/* Animation for fade out */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+  padding: 0.6rem 2rem; /* Adjusted padding for a bit more space */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(64, 224, 208, 0.3);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out; /* Smooth hide and show */
+  position: relative; /* Not fixed, will scroll with page */
+  flex-wrap: nowrap; /* Ensure no wrapping of items */
+}
+
+/* Logo Styling */
+.logo {
+  width: 85px; /* Adjusted logo size */
+  height: auto;
+}
+
+.logo_link {
+  text-decoration: none;
+}
+
+/* Navbar List Styling */
+.navbar-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center; /* Centers the items */
+  padding: 0;
+  margin: 0;
+  gap: 45px; /* Adjusted gap between items */
+  flex-grow: 1; /* Ensures navbar items are centered even when space is available */
+  flex-wrap: nowrap; /* Prevents items from stacking */
+}
+
+/* Navbar Item Styling */
+.navbar-item {
+  padding: 12px 0; /* Padding */
+}
+
+/* Navbar Link Styling */
+.navbar-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.1rem; /* Increased font size */
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 1.2rem; /* Adjusted padding */
+  border-radius: 10px; /* Rounded corners for the links */
+}
+
+/* Navbar Hover Effect */
+.navbar-link:hover {
+  color: #40e0d0; /* Neon blue */
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(64, 224, 208, 0.6);
+  background: rgba(64, 224, 208, 0.2); /* Subtle hover background */
+}
+
+/* Avatar Button */
+.navbar-avatar-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #00ffe7;
+  box-shadow: 0 0 12px #00ffe7; /* Slightly larger shadow */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-avatar-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 255, 231, 0.5); /* Stronger glow on hover */
+}
+
+/* Dropdown Menu */
+.navbar-dropdown {
+  position: absolute;
+  top: 70px; /* Adjusted position for the dropdown */
+  right: 20px;
+  background: rgba(20, 20, 30, 0.95);
+  border: 1px solid #00ffe7;
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 180px;
+  box-shadow: 0 0 15px #00ffe7;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Items */
+.navbar-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 12px 25px;
+  color: #fff; /* Text color */
+  background: transparent;
+  border: none;
+  font-weight: 500;
+  font-size: 1rem; /* Font size */
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  text-decoration: none; /* No underline */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Hover and Active States */
+.navbar-dropdown-item:hover,
+.navbar-dropdown-item:focus {
+  background: rgba(0, 255, 231, 0.1);
+  color: #ffffff;
+  box-shadow: inset 0 0 6px rgba(0, 255, 231, 0.6);
+  outline: none;
+}
+
+/* Scroll Hide / Show */
+.navbar-hidden {
+  transform: translateY(-100%); /* Hide navbar */
+}
+
+.navbar-visible {
+  transform: translateY(0); /* Show navbar */
+}
+
+/* Mobile Layout Fix - Ensure horizontal navbar on all screen sizes */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row; /* Force horizontal layout even on smaller screens */
+    padding: 1rem;
+  }
+
+  .navbar-list {
+    flex-direction: row; /* Ensure items stay in a horizontal row */
+    gap: 1.5rem; /* Increased gap for mobile */
+  }
+
+  .navbar-item {
+    padding: 10px 0; /* Adjusted padding for mobile */
+  }
+
+  .navbar-dropdown {
+    right: 10px;
+    top: 55px; /* Adjusted dropdown position */
+  }
+
+  .navbar-avatar-img {
+    width: 40px; /* Smaller avatar for mobile */
+    height: 40px;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

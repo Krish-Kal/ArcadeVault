@@ -1,0 +1,170 @@
+.wishlist-wrapper {
+  padding: 6rem 2rem 4rem; /* More top padding to account for navbar */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  box-sizing: border-box;
+
+}
+
+.wishlist-title {
+  font-size: 3rem;
+  color: #40e0d0;
+  text-shadow: 0 0 20px #40e0d0;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.wishlist-empty {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(64, 224, 208, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.wishlist-empty h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ff99cc;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.wishlist-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 370px;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+.game-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.game-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.game-info h3 {
+  color: #7df9ff;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+.game-info p {
+  color: #f0f8ff;
+  margin-bottom: 0.5rem;
+}
+
+.game-info span {
+  font-weight: bold;
+  color: #adff2f;
+  text-shadow: 0 0 8px #7fff00;
+}
+
+/* Wishlist button styles */
+.wishlist-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  gap: 1rem;
+  margin-top: auto; /* Keeps the buttons at the bottom of the card */
+}
+
+.go-to-game,
+.remove-game {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* Go to Game button */
+.go-to-game {
+  background: #00c7d1;
+  border-radius: 12px 12px 0 0;
+}
+
+.go-to-game:hover {
+  background: #00e1c0;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 183, 194, 0.5);
+}
+
+/* Go to Game icon */
+.go-to-game:before {
+  content: "🎮";  /* Game controller emoji */
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+/* Remove Game button */
+.remove-game {
+  background: #ff0055;
+  border-radius: 0 0 12px 12px;
+  transition: background 0.3s ease;
+}
+
+.remove-game:hover {
+  background: #ff3366;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 51, 102, 0.5);
+}
+
+/* Button focus and active state */
+.wishlist-buttons button:focus {
+  outline: none;
+}
+
+.wishlist-buttons button:active {
+  transform: scale(0.95);
+}
+.wishlist-container {
+  margin-top: 100px; /* Match the height of your fixed navbar */
+  padding: 2rem;
+}

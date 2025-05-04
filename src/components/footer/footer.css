@@ -1,0 +1,72 @@
+.footer {
+  background: linear-gradient(135deg, #111111a9, #33333360); /* Dark gradient, tech-inspired */
+  color: #fff;
+  text-align: center;
+  padding: 40px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px); /* Modern blur effect */
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.footer-links {
+  margin-top: 20px;
+}
+
+.footer-link {
+  color: #fff;
+  font-size: 16px;
+  margin: 0 20px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #04cef1; /* Neon blue hover effect */
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 30px;
+  margin: 0 15px;
+  transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+}
+
+.social-links a:hover {
+  color: #04cef1; /* Neon blue hover effect */
+  transform: translateY(-5px); /* Slight lift */
+  text-shadow: 0 0 10px #04cef1, 0 0 20px #04cef1; /* Glowing effect */
+}
+
+.social-links a:focus {
+  outline: none;
+}
+
+.footer p a {
+  color: #04cef1;
+  text-decoration: none;
+}
+
+.footer p a:hover {
+  text-decoration: underline;
+}

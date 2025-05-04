@@ -1,0 +1,153 @@
+/* === Game Grid === */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* === Game Card === */
+.game-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  opacity: 1; /* Ensure cards are visible */
+  transform: none; /* No initial transform */
+  box-shadow: 0 0 15px rgba(0, 183, 255, 0.815);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* === Game Card Hover (Zoom Effect) === */
+.game-card:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+  box-shadow: 0 0 15px rgba(212, 0, 255, 0.397);
+  transition: transform 0.3s ease; /* Smooth zoom transition */
+}
+
+/* === Game Card Image === */
+.game-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* === Game Card Title === */
+.game-card h2 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #40e0d0;
+  text-shadow: 0 0 8px rgba(64, 224, 208, 0.8);
+}
+
+/* === Game Genre (Centered) === */
+.genre {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #ff73fa;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* === Game Card Description === */
+.description {
+  font-size: 1rem;
+  color: #e9f0ef;
+  margin-bottom: 15px;
+}
+
+/* === Price (Glowing Dollar Amount) === */
+.price {
+  font-size: 1.2rem;
+  color: #e9f0ef;
+  margin: 10px 0;
+}
+
+.price span {
+  font-weight: bold;
+  color: #adff2f;
+  text-shadow: 0 0 8px #7fff00;
+}
+
+/* === Button Container (Go to Game & Wishlist Button Adjacent) === */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* === Go to Game Button === */
+.go-to-game-btn {
+  background-color: #40e0d0;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  flex-grow: 1;
+}
+
+.go-to-game-btn:hover {
+  background-color: #f80189;
+}
+
+/* === Add to Wishlist Button === */
+.wishlist-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s ease;
+  flex-grow: 1;
+}
+
+.wishlist-btn:hover {
+  background-color: #f80189;
+}
+
+.wishlist-btn:active {
+  transform: translateY(0);
+}
+
+.wishlist-btn:focus {
+  outline: none;
+}
+
+.wishlist-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+  }
+
+  .game-card {
+    padding: 15px;
+  }
+
+  .game-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .game-image {
+    width: 80%;
+  }
+}

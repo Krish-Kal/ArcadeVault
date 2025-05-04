@@ -1,0 +1,4 @@
+/* === Wishlist Adjustment === */
+.wishlist-active {
+  margin-top: 60px; /* Adjust the margin to be directly below the navbar */
+}

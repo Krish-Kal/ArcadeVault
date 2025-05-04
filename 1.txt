@@ -1,0 +1,102 @@
+with wishlist
+import React, { useState } from 'react';
+import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import Searchbox from './components/searchbox/Gamesearch';
+import GamesList from './components/Games/Gameslist';
+import Footer from './components/footer/footer';
+import WishlistPage from './components/wishlist/WishlistPage';
+
+function App() {
+  const [wishlist, setWishlist] = useState([]); // Wishlist state to store added games
+  const [showWishlist, setShowWishlist] = useState(false); // State to toggle between views
+
+  // Add a game to the wishlist
+  const addToWishlist = (game) => {
+    setWishlist((prevWishlist) => [...prevWishlist, game]);
+  };
+
+  // Remove a game from the wishlist
+  const removeFromWishlist = (id) => {
+    const updatedWishlist = wishlist.filter((game) => game.id !== id);
+    setWishlist(updatedWishlist);
+  };
+
+  // Toggle between showing games list and wishlist
+  const toggleWishlist = () => {
+    setShowWishlist((prev) => !prev); // Toggle between true and false
+  };
+
+  return (
+    <div className="app-container">
+      <Navbar wishlistCount={wishlist.length} toggleWishlist={toggleWishlist} />
+      
+      <div className="background">
+        <div className="overlay" />
+        <div className="content">
+          <div className="welcome-box">
+            <h1 className="title">Welcome to ArcadeVault 🎮</h1>
+            <p className="info-text">
+              Step into ArcadeVault, your ultimate online destination for everything gaming. 
+              From the hottest new releases to timeless classics, we've got games for every 
+              player and with every genre. ArcadeVault isn't just a store — it's your next-level 
+              gaming hub. Power up your play. 🔥
+            </p>
+            <Searchbox />
+          </div>
+        </div>
+      </div>
+      
+      {/* Conditional Rendering of Wishlist or Game List */}
+      {showWishlist ? (
+        <WishlistPage wishlist={wishlist} removeFromWishlist={removeFromWishlist} />
+      ) : (
+        <>
+          <h2 className="section-heading">Checkout the Top 20 Collection</h2>
+          <GamesList addToWishlist={addToWishlist} />
+        </>
+      )}
+
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+
+original simple
+import React from 'react';
+import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import Searchbox from './components/searchbox/Gamesearch';
+import GamesList from './components/Games/Gameslist';
+import Footer from './components/footer/footer';
+
+function App() {
+  return (
+    
+    <div className="app-container">
+      <Navbar />
+      <div className="background">
+        <div className="overlay" />
+        <div className="content">
+          <div className="welcome-box">
+            <h1 className="title">Welcome to ArcadeVault 🎮</h1>
+            <p className="info-text">
+              Step into ArcadeVault, your ultimate online destination for everything gaming. 
+              From the hottest new releases to timeless classics, we've got games for every 
+              player and with every genre. ArcadeVault isn't just a store — it's your next-level 
+              gaming hub. Power up your play. 🔥
+            </p>
+            <Searchbox />
+          </div>
+        </div>
+      </div>
+      <h2 className="section-heading">Checkout the Top 20 Collection</h2>
+        <GamesList />
+        <Footer/>
+    </div>
+  );
+}
+
+export default App; 

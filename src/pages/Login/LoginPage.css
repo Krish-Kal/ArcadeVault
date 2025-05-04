@@ -1,0 +1,189 @@
+/* === Login Page Styles === */
+.login-page {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: #0e0e1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* === Login Box === */
+.login-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(20, 20, 30, 0.85);
+    border: 2px solid #00b5cc;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    width: 350px;
+    backdrop-filter: blur(15px);
+    text-align: center;
+    margin-top: 120px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out;
+}
+
+.login-box:hover {
+    box-shadow: 0 0 60px rgba(0, 195, 255, 0.493);
+    transform: translateY(-10px);
+}
+
+/* === Title === */
+.login-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #00ffe7;
+    text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* === Subtitle === */
+.login-subtitle {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* === Form === */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+/* === Input Fields === */
+.login-form input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #1a1a2e;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.login-form input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px #00ffe7;
+    border: 2px solid #00ffe7;
+}
+
+/* === Login Button === */
+.login-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, #00ffe7, #00f0ff);
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #00f0ff, #00ffe7);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+/* === Signup Text === */
+.signup {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.signup a {
+    color: #00ffe7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+    color: #00f0ff;
+}
+
+/* === Login Message === */
+.login-message {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.login-message.success {
+    background-color: #00b5cc;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.login-message.error {
+    background-color: #ff4c4c;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.3);
+}
+
+/* === Fade In Animation === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    .login-box {
+        width: 90%;
+        padding: 2rem;
+        margin-top: 60px;
+    }
+
+    .login-title {
+        font-size: 1.8rem;
+    }
+
+    .login-form input {
+        font-size: 1rem;
+    }
+
+    .login-btn {
+        font-size: 1rem;
+    }
+}
