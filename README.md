@@ -1,12 +1,21 @@
-# Arcade Vaylt
+# ArcadeVault 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ArcadeVault is a modern, fully-featured online gaming store built with React and Node.js. Discover, explore, and manage your favorite games from major platforms like Epic Games, Steam, and Rockstar. ArcadeVault provides a seamless and responsive experience, allowing users to search, wishlist, and securely manage their account with ease.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Game Search**: Quickly find games across popular platforms like Epic Games, Steam, and Rockstar.
+- **Wishlist**: Keep track of your favorite games and add them to your personal wishlist.
+- **Authentication**: Secure login and signup with email and password.
+- **Responsive**: Optimized for desktops, tablets, and mobile devices, ensuring a smooth experience across all platforms.
+- **Routing**: Seamless navigation between the homepage, wishlist, and other sections.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🛠️ Technologies Used
+
+- **Frontend**: React, JSX, CSS
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: JWT
+
