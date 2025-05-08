@@ -5,20 +5,13 @@ const ProfilePage = () => {
   const [lastLogin, setLastLogin] = useState(null);
   const [memberSince, setMemberSince] = useState(null);
   const [userEmail, setUserEmail] = useState('user@example.com');
-  const [avatar, setAvatar] = useState('https://placekitten.com/200/200'); // Default avatar
-
+  const [avatar, setAvatar] = useState('https://placekitten.com/200/200');
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    // Get last login date
-    const storedLastLogin = localStorage.getItem('lastLogin');
-    if (storedLastLogin) {
-      setLastLogin(storedLastLogin);
-    } else {
-      setLastLogin('First login');
-    }
+    const storedLastLogin = localStorage.getItem('lastLogin') || 'First login';
+    setLastLogin(storedLastLogin);
 
-    // Set the member since date (only on the first login)
     const storedMemberSince = localStorage.getItem('memberSince');
     if (!storedMemberSince) {
       const currentDate = new Date().toLocaleDateString();
@@ -28,15 +21,10 @@ const ProfilePage = () => {
       setMemberSince(storedMemberSince);
     }
 
-    // You can replace this email with the actual email from user data
-    const storedUserEmail = localStorage.getItem('userEmail') || 'user@example.com';
-    setUserEmail(storedUserEmail);
+    setUserEmail(localStorage.getItem('userEmail') || 'user@example.com');
+    setAvatar(localStorage.getItem('userAvatar') || 'public/user.png');
 
-    // Set avatar (replace with real avatar if available)
-    const storedAvatar = localStorage.getItem('userAvatar') || 'public/user.png';
-    setAvatar(storedAvatar);
-
-    // Particle effect based on mouse movement (Canvas Animation)
+    // Particle animation
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let width = (canvas.width = window.innerWidth);
@@ -52,7 +40,8 @@ const ProfilePage = () => {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      for (let p of particles) {
+
+      particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
 
@@ -63,7 +52,7 @@ const ProfilePage = () => {
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = '#00ffe7';
         ctx.fill();
-      }
+      });
 
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -91,10 +80,7 @@ const ProfilePage = () => {
     };
 
     window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -106,7 +92,6 @@ const ProfilePage = () => {
           <div className="avatar">
             <img src={avatar} alt="User Avatar" />
           </div>
-          <h2 className="user-name">Your Name</h2>
         </div>
         <div className="user-info">
           <p><strong>Email:</strong> {userEmail}</p>

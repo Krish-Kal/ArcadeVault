@@ -51,6 +51,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = 'public/
       <ul className="navbar-list">
         <li><Link to="/" className="navbar-link">Home</Link></li>
         <li><Link to="/about" className="navbar-link">About</Link></li>
+        <li><Link to="/games" className="navbar-link">Games</Link></li> {/* ✅ NEW GAMES LINK */}
         <li><Link to="/wishlist" className="navbar-link">Wishlist ({wishlistCount})</Link></li>
       </ul>
 

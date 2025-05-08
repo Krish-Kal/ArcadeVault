@@ -1,15 +1,15 @@
 /* Logging Out Message */
 .navbar-logout-message {
   position: absolute;
-  top: 10px;  /* Adjust position */
+  top: 10px;
   right: 20px;
-  background: rgba(0, 255, 231, 0.9);  /* Neon blue background */
+  background: rgba(0, 255, 231, 0.9);
   padding: 10px 20px;
   border-radius: 8px;
   color: #fff;
   font-weight: 600;
   font-size: 1.1rem;
-  animation: fadeOut 2s forwards; /* Fades out after 2 seconds */
+  animation: fadeOut 2s forwards;
 }
 
 /* Animation for fade out */
@@ -28,22 +28,22 @@
 
 /* Navbar Styling */
 .navbar {
-  background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background */
-  padding: 0.6rem 2rem; /* Adjusted padding for a bit more space */
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.6rem 2rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 10px rgba(64, 224, 208, 0.3);
   backdrop-filter: blur(10px);
-  transition: transform 0.3s ease-in-out; /* Smooth hide and show */
-  position: relative; /* Not fixed, will scroll with page */
-  flex-wrap: nowrap; /* Ensure no wrapping of items */
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  flex-wrap: nowrap;
 }
 
 /* Logo Styling */
 .logo {
-  width: 85px; /* Adjusted logo size */
+  width: 85px;
   height: auto;
 }
 
@@ -55,37 +55,37 @@
 .navbar-list {
   list-style-type: none;
   display: flex;
-  justify-content: center; /* Centers the items */
+  justify-content: center;
   padding: 0;
   margin: 0;
-  gap: 45px; /* Adjusted gap between items */
-  flex-grow: 1; /* Ensures navbar items are centered even when space is available */
-  flex-wrap: nowrap; /* Prevents items from stacking */
+  gap: 45px;
+  flex-grow: 1;
+  flex-wrap: nowrap;
 }
 
 /* Navbar Item Styling */
 .navbar-item {
-  padding: 12px 0; /* Padding */
+  padding: 12px 0;
 }
 
 /* Navbar Link Styling */
 .navbar-link {
   text-decoration: none;
   color: #fff;
-  font-size: 1.1rem; /* Increased font size */
+  font-size: 1.1rem;
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
-  padding: 0.5rem 1.2rem; /* Adjusted padding */
-  border-radius: 10px; /* Rounded corners for the links */
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
 }
 
 /* Navbar Hover Effect */
 .navbar-link:hover {
-  color: #40e0d0; /* Neon blue */
+  color: #40e0d0;
   transform: scale(1.1);
   box-shadow: 0 0 8px rgba(64, 224, 208, 0.6);
-  background: rgba(64, 224, 208, 0.2); /* Subtle hover background */
+  background: rgba(64, 224, 208, 0.2);
 }
 
 /* Avatar Button */
@@ -94,20 +94,20 @@
   height: 45px;
   border-radius: 50%;
   border: 2px solid #00ffe7;
-  box-shadow: 0 0 12px #00ffe7; /* Slightly larger shadow */
+  box-shadow: 0 0 12px #00ffe7;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar-avatar-img:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 255, 231, 0.5); /* Stronger glow on hover */
+  box-shadow: 0 0 20px rgba(0, 255, 231, 0.5);
 }
 
 /* Dropdown Menu */
 .navbar-dropdown {
   position: absolute;
-  top: 70px; /* Adjusted position for the dropdown */
+  top: 70px;
   right: 20px;
   background: rgba(20, 20, 30, 0.95);
   border: 1px solid #00ffe7;
@@ -124,19 +124,18 @@
   display: block;
   width: 100%;
   padding: 12px 25px;
-  color: #fff; /* Text color */
+  color: #fff;
   background: transparent;
   border: none;
   font-weight: 500;
-  font-size: 1rem; /* Font size */
+  font-size: 1rem;
   text-align: left;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
-  text-decoration: none; /* No underline */
-  border-radius: 10px; /* Rounded corners */
+  text-decoration: none;
+  border-radius: 10px;
 }
 
-/* Hover and Active States */
 .navbar-dropdown-item:hover,
 .navbar-dropdown-item:focus {
   background: rgba(0, 255, 231, 0.1);
@@ -147,41 +146,41 @@
 
 /* Scroll Hide / Show */
 .navbar-hidden {
-  transform: translateY(-100%); /* Hide navbar */
+  transform: translateY(-100%);
 }
 
 .navbar-visible {
-  transform: translateY(0); /* Show navbar */
+  transform: translateY(0);
 }
 
-/* Mobile Layout Fix - Ensure horizontal navbar on all screen sizes */
+/* Mobile Layout Fix */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: row; /* Force horizontal layout even on smaller screens */
+    flex-direction: row;
     padding: 1rem;
   }
 
   .navbar-list {
-    flex-direction: row; /* Ensure items stay in a horizontal row */
-    gap: 1.5rem; /* Increased gap for mobile */
+    flex-direction: row;
+    gap: 1.5rem;
   }
 
   .navbar-item {
-    padding: 10px 0; /* Adjusted padding for mobile */
+    padding: 10px 0;
   }
 
   .navbar-dropdown {
     right: 10px;
-    top: 55px; /* Adjusted dropdown position */
+    top: 55px;
   }
 
   .navbar-avatar-img {
-    width: 40px; /* Smaller avatar for mobile */
+    width: 40px;
     height: 40px;
   }
 }
 
-/* Animation */
+/* Fade-in Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -1,0 +1,154 @@
+/* GamingHub.css */
+.gaming-hub {
+  padding: 40px;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f48, #1a1a1a0a);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 10px rgba(0, 216, 255, 0.2);
+  animation: slideDown 0.8s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+  margin-bottom: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, opacity 0.6s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section:hover {
+  transform: scale(1.01);
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00d8ff;
+  border-bottom: 2px solid rgba(0, 216, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.tips ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.tips li {
+  margin-bottom: 12px;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.tips li:hover {
+  transform: translateX(5px);
+  color: #00d8ff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 216, 255, 0.1);
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00d8ff;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.quotes blockquote {
+  margin: 15px 0;
+  padding-left: 15px;
+  border-left: 3px solid #00d8ff;
+  font-style: italic;
+  color: #bbb;
+  transition: color 0.3s;
+}
+
+.quotes blockquote:hover {
+  color: #00d8ff;
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+.store-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #e0e0e0;
+  transition: background 0.3s, transform 0.3s;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.store-link:hover {
+  background: rgba(0, 216, 255, 0.1);
+  transform: translateY(-6px);
+}
+
+.store-logo {
+  width: 70px;
+  height: auto;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 5px rgba(0, 216, 255, 0.4));
+  transition: transform 0.3s;
+}
+
+.store-link:hover .store-logo {
+  transform: scale(1.1);
+}

@@ -11,6 +11,7 @@ import About from './pages/About/AboutPage';
 import LoginPage from './pages/Login/Login';
 import SignupPage from './pages/Login/SignupPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage'; // Import ProfilePage
+import GamesPage from './pages/GamesPage/GamesPage';
 
 function App() {
   const { wishlist, addToWishlist, removeFromWishlist, clearWishlist, loadUserWishlist } = useWishlist();
@@ -72,6 +73,16 @@ function App() {
             path="/login"
             element={
               <LoginPage setIsLoggedIn={setIsLoggedIn} loadUserWishlist={loadUserWishlist} />
+            }
+          />
+          <Route
+            path="/games"
+            element={
+              <GamesPage
+                addToWishlist={addToWishlist}
+                searchQuery={searchQuery}
+                wishlist={wishlist}
+              />
             }
           />
           <Route path="/signup" element={<SignupPage />} />

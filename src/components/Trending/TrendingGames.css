@@ -1,0 +1,86 @@
+.trending-section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.trending-heading {
+  font-size: 1.9rem;
+  color: #ffffffd8;
+  text-shadow: 0 0 8px #63f800;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+
+.trending-swiper {
+  padding-bottom: 40px;
+}
+
+/* Game card styling */
+.trending-card {
+  position: relative;
+  width: 85%;
+  height: 300px; /* smaller */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  display: block;
+}
+
+.trending-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* add depth */
+}
+
+
+.trending-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Overlay info */
+.trending-info {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.288);
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.game-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.game-genres {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+/* Swiper nav & bullets */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  text-shadow: 0 0 10px #63f800;
+}
+
+.swiper-pagination-bullet {
+  background: #63f800;
+  opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+  background: #ffffff;
+}
