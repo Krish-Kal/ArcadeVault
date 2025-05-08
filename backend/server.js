@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json()); // <-- This is VERY important
 
 // Connect to MongoDB
-const URI = process.env.MONGO_URI || 'mongodb://localhost:27017/arcadevault';
+const URI = process.env.MONGO_URI || 'mongodb+srv://ArcadeVault:21224466@cluster0.rw2vxmz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 console.log(`✅ Connecting to MongoDB at: ${URI}`);
 
 mongoose.connect(URI)
