@@ -1,6 +1,5 @@
 import React from "react";
 import "./AboutPage.css"; // Ensure the CSS from above is imported
-import Dp from  'D:/PORTFOLIO/public/DP.jpg';
 
 const About = () => {
   return (
@@ -16,7 +15,7 @@ const About = () => {
       {/* === About Me Section === */}
       <section className="about-me">
         <img
-          src= {Dp} // Replace with your creator image
+          src="/DP.jpg" // Corrected image path to be relative to the public folder
           alt="Creator"
           className="creator-photo"
         />
@@ -25,11 +24,12 @@ const About = () => {
           Hello, I'm the creator behind ArcadeVault. With a passion for gaming and technology, I've created a platform to bring gamers closer to their favorite games from Epic Games, Steam, and Rockstar Games. My goal is to combine convenience and innovation in one powerful platform.
         </p>
         <div className="social-links">
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="github"
-          ><i className="fab fa-github"></i></a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="github">
+            <i className="fab fa-github"></i>
+          </a>
           <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <i className="fab fa-linkedin"></i>
           </a>
