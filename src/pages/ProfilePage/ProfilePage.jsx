@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ProfilePage.css';
-import user from 'D:/PORTFOLIO/public/user.png';// Default avatar image
+import user from '/user.png'; // Corrected avatar image path
 
 const ProfilePage = () => {
   const [lastLogin, setLastLogin] = useState(null);
