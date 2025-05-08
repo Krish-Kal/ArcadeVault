@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import user from 'D:/PORTFOLIO/public/user.png'
 
-function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = 'public/user.png' }) {
+function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);

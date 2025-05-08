@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './GamingHub.css';
+import s from 'D:/PORTFOLIO/src/assets/s.png'
+import rlogo from 'D:/PORTFOLIO/src/assets/r.png'
+import plogo from 'D:/PORTFOLIO/src/assets/p.png'
 
 const tips = [
   'Practice regularly to improve aim and reflexes.',
@@ -17,26 +20,26 @@ const stats = [
 ];
 
 const quotes = [
-  '"Gaming is not a crime." – Anonymous',
-  '"Games give you a chance to excel." – Gary Gygax',
-  '"Reality is broken, video games are our fix." – Jane McGonigal'
+  '"Gaming world is sometimes enchanting." - Anonymous',
+  '"I am a Gamer, I have many lives." - Gary Gygax',
+  '"Reality is broken, video games are our fix." - Jane McGonigal'
 ];
 
 const storeLinks = [
   {
     name: 'Steam',
     url: 'https://store.steampowered.com',
-    image: 'src/assets/s.png'
+    image: s
   },
   {
     name: 'Rockstar Games',
     url: 'https://www.rockstargames.com',
-    image: 'src/assets/r.png'
+    image: rlogo
   },
   {
     name: 'PlayStation',
     url: 'https://www.playstation.com',
-    image: 'src/assets/p.png'
+    image: plogo
   },
   {
     name: 'Epic Games',

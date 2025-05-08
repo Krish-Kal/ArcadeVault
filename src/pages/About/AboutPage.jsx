@@ -1,5 +1,6 @@
 import React from "react";
 import "./AboutPage.css"; // Ensure the CSS from above is imported
+import Dp from  'D:/PORTFOLIO/public/..jpg';
 
 const About = () => {
   return (
@@ -15,7 +16,7 @@ const About = () => {
       {/* === About Me Section === */}
       <section className="about-me">
         <img
-          src="public\..jpg" // Replace with your creator image
+          src= {Dp} // Replace with your creator image
           alt="Creator"
           className="creator-photo"
         />

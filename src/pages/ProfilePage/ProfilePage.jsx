@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ProfilePage.css';
+import user from 'D:/PORTFOLIO/public/user.png';// Default avatar image
 
 const ProfilePage = () => {
   const [lastLogin, setLastLogin] = useState(null);
@@ -22,7 +23,7 @@ const ProfilePage = () => {
     }
 
     setUserEmail(localStorage.getItem('userEmail') || 'user@example.com');
-    setAvatar(localStorage.getItem('userAvatar') || 'public/user.png');
+    setAvatar(localStorage.getItem('userAvatar') || user);
 
     // Particle animation
     const canvas = canvasRef.current;
