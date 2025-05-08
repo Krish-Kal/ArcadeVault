@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutPage.css"; // Ensure the CSS from above is imported
-import Dp from  'D:/PORTFOLIO/public/..jpg';
+import Dp from  'D:/PORTFOLIO/public/DP.jpg';
 
 const About = () => {
   return (
