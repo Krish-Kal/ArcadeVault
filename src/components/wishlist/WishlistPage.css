@@ -7,7 +7,6 @@
   align-items: center;
   color: #fff;
   box-sizing: border-box;
-
 }
 
 .wishlist-title {
@@ -164,7 +163,60 @@
 .wishlist-buttons button:active {
   transform: scale(0.95);
 }
+
+/* Wishlist Container */
 .wishlist-container {
   margin-top: 100px; /* Match the height of your fixed navbar */
   padding: 2rem;
+}
+
+/* === Mobile Layout Fix (Only Applied Below 768px) === */
+@media (max-width: 768px) {
+  .wishlist-wrapper {
+    padding: 4rem 1rem 2rem; /* Adjust padding for mobile view */
+  }
+
+  .wishlist-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust card layout */
+    gap: 1.5rem;
+  }
+
+  .wishlist-card {
+    min-height: 300px; /* Reduce card height for mobile */
+  }
+
+  .game-cover {
+    height: 150px; /* Adjust game cover size */
+  }
+
+  .game-info h3 {
+    font-size: 1.2rem; /* Adjust font size for mobile */
+  }
+
+  .game-info p {
+    font-size: 0.9rem; /* Smaller text for mobile */
+  }
+
+  .game-info span {
+    font-size: 1rem; /* Adjust span size for mobile */
+  }
+
+  .wishlist-buttons {
+    gap: 0.8rem; /* Reduce gap between buttons */
+  }
+
+  .go-to-game,
+  .remove-game {
+    font-size: 1rem; /* Reduce button text size */
+    padding: 0.6rem 1.2rem; /* Adjust button padding */
+  }
+
+  .wishlist-container {
+    margin-top: 60px; /* Adjust margin for mobile */
+  }
 }

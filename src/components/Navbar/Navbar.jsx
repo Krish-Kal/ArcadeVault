@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import user from 'D:/PORTFOLIO/public/user.png'
+import user from 'D:/PORTFOLIO/public/user.png';
 
 function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -29,10 +29,13 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setIsNavbarVisible(false); // scroll down = hide navbar
-      } else {
-        setIsNavbarVisible(true); // scroll up = show navbar
+      // Check if screen size is larger than 768px (desktop)
+      if (window.innerWidth > 768) {
+        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+          setIsNavbarVisible(false); // scroll down = hide navbar
+        } else {
+          setIsNavbarVisible(true); // scroll up = show navbar
+        }
       }
 
       lastScrollY = currentScrollY;

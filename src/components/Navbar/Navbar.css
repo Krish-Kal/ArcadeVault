@@ -153,33 +153,6 @@
   transform: translateY(0);
 }
 
-/* Mobile Layout Fix */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: row;
-    padding: 1rem;
-  }
-
-  .navbar-list {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-
-  .navbar-item {
-    padding: 10px 0;
-  }
-
-  .navbar-dropdown {
-    right: 10px;
-    top: 55px;
-  }
-
-  .navbar-avatar-img {
-    width: 40px;
-    height: 40px;
-  }
-}
-
 /* Fade-in Animation */
 @keyframes fadeIn {
   from {
@@ -190,4 +163,53 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* === Mobile Layout Fix (Only Applied Below 768px) === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .navbar-list {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    width: auto;
+    margin-left: auto;
+  }
+
+  .navbar-item {
+    padding: 0; /* Avoid pushing them down */
+  }
+
+  .navbar-link {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+    white-space: nowrap;
+  }
+
+  .logo {
+    width: 60px;
+  }
+
+  /* Ensuring user avatar stays on the right */
+  .navbar-avatar-img {
+    width: 36px;
+    height: 36px;
+    margin-left: auto; /* This moves the avatar to the far right */
+  }
+
+  .navbar-dropdown {
+    top: 55px;
+    right: 10px;
+  }
+  
+  
 }

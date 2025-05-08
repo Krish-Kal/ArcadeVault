@@ -35,6 +35,7 @@
   text-align: center;
   font-size: 1.1rem;
   z-index: 1;
+  max-width: 90%; /* To ensure it doesn't overflow on smaller screens */
 }
 
 /* Header + Avatar */
@@ -68,7 +69,7 @@
 }
 
 .user-info p {
-  margin: 16px 0; /* Increased from 8px to 16px */
+  margin: 16px 0;
   font-size: 1.2rem;
   text-shadow: 0 0 3px rgba(0, 255, 231, 0.5);
 }
@@ -102,4 +103,30 @@
   background-color: rgba(0, 255, 231, 0.8);
   animation: particleMovement 3s infinite ease-in-out;
   pointer-events: none;
+}
+
+/* === Responsive Design for Mobile === */
+@media (max-width: 768px) {
+  .profile-box {
+    width: 85%; /* Adjust the profile box width for smaller screens */
+    padding: 20px; /* Decrease padding on mobile for better space management */
+  }
+
+  .profile-header {
+    margin-bottom: 15px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px; /* Adjust avatar size for mobile */
+  }
+
+  .user-info p {
+    font-size: 1.1rem; /* Slightly smaller font size for mobile */
+  }
+
+  .profile-box {
+    width: 100%; /* Ensure it takes full width on small screens */
+    max-width: 400px; /* Limit the max width on very small screens */
+  }
 }

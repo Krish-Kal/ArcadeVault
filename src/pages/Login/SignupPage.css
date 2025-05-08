@@ -127,23 +127,36 @@
     color: #00f0ff;
 }
 
-/* === Responsive Styles === */
+/* === Responsive Styles (only for mobile screens) === */
 @media (max-width: 768px) {
+    /* Adjust Signup Box for smaller screens */
     .signup-box {
-        width: 90%;
-        padding: 2rem;
-        margin-top: 60px; /* Adjusted margin for smaller screens */
+        width: 90%; /* Take 90% width of the screen */
+        max-width: 400px; /* Prevent it from being too wide */
+        padding: 2rem; /* Adjust padding */
+        margin-top: 60px; /* Adjust margin-top for smaller screens */
     }
 
+    /* Adjust Signup Title for smaller screens */
     .signup-title {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Slightly smaller font size */
+        margin-bottom: 0.8rem; /* Reduced margin */
     }
 
+    /* Adjust Input Fields for smaller screens */
     .signup-form input {
-        font-size: 1rem;
+        font-size: 1rem; /* Font size for better readability */
+        padding: 0.8rem; /* Adjust padding */
     }
 
+    /* Adjust Signup Button */
     .signup-btn {
-        font-size: 1rem;
+        font-size: 1rem; /* Smaller font size for the button */
+        padding: 0.9rem; /* Slightly reduced padding */
+    }
+
+    /* Adjust Login Text for smaller screens */
+    .login {
+        font-size: 1rem; /* Slightly larger font size for readability */
     }
 }

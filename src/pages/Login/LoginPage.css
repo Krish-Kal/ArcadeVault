@@ -167,23 +167,40 @@
   }
 }
 
-/* === Responsive Styles === */
+/* === Responsive Styles for Mobile === */
+/* === Responsive Styles for Mobile === */
 @media (max-width: 768px) {
+    /* Adjust Login Box for smaller screens */
     .login-box {
-        width: 90%;
-        padding: 2rem;
-        margin-top: 60px;
+        width: 90%; /* Make the login box take 90% width */
+        max-width: 400px; /* Prevent it from becoming too wide on mobile */
+        padding: 1.8rem 1.5rem; /* Slightly reduce padding for mobile */
+        margin-top: 60px; /* Reduce margin-top for a better look on mobile */
     }
 
+    /* Adjust the Login Title */
     .login-title {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Smaller font size for mobile */
+        margin-bottom: 0.8rem; /* Slightly reduce margin */
     }
 
+    /* Adjust Input Fields */
     .login-form input {
-        font-size: 1rem;
+        font-size: 1rem; /* Ensure input fields have a good font size on mobile */
+        padding: 0.8rem; /* Reduce padding for inputs on mobile */
+        width: 100%; /* Ensure input fields take full width of the container */
     }
 
+    /* Adjust Login Button */
     .login-btn {
-        font-size: 1rem;
+        font-size: 1rem; /* Smaller font size for mobile */
+        padding: 0.9rem; /* Reduce padding for the button */
+        width: 100%; /* Ensure the button takes full width of the container */
+    }
+
+    /* Adjust Signup Text */
+    .signup {
+        font-size: 1rem; /* Slightly increase font size for readability */
     }
 }
+
