@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './GamingHub.css';
+import rlogo from '../../assets/r.png'; // Adjust path as needed
 
 const tips = [
   'Practice regularly to improve aim and reflexes.',
@@ -30,7 +31,7 @@ const storeLinks = [
   },
   {
     name: 'Rockstar Games',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Rockstar_Games_Logo.svg/250px-Rockstar_Games_Logo.svg.png',
+    url: 'https://www.rockstargames.com',
     image: rlogo
   },
   {
@@ -51,7 +52,7 @@ const GamingHub = () => {
   // Intersection Observer callback
   const handleIntersection = (entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && !visibleSections.includes(entry.target.id)) {
         setVisibleSections((prev) => [...prev, entry.target.id]);
       }
     });
@@ -60,7 +61,7 @@ const GamingHub = () => {
   // Set up Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.3, // Trigger when 30% of the section is visible
+      threshold: 0.3 // Trigger when 30% of the section is visible
     });
 
     // Observe each section
@@ -71,7 +72,8 @@ const GamingHub = () => {
     return () => {
       sections.forEach(section => observer.unobserve(section));
     };
-  }, []);
+    // eslint-disable-next-line
+  }, [visibleSections]);
 
   return (
     <div className="gaming-hub">
