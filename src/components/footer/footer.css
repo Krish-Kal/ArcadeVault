@@ -1,3 +1,4 @@
+/* === Footer Styling === */
 .footer {
   background: linear-gradient(135deg, #111111a9, #33333360); /* Dark gradient, tech-inspired */
   color: #fff;
@@ -70,6 +71,8 @@
 .footer p a:hover {
   text-decoration: underline;
 }
+
+/* === "Go to Top" Button === */
 .go-to-top {
   position: fixed;
   bottom: 40px;
@@ -97,3 +100,60 @@
   outline: none; /* Remove focus outline */
 }
 
+/* === Mobile Styling (Responsive Adjustments) === */
+@media (max-width: 768px) {
+  /* Footer adjustments for mobile */
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footer p {
+    font-size: 12px; /* Slightly smaller text */
+  }
+
+  .footer-link {
+    font-size: 14px;
+    margin: 0 10px; /* Less spacing between links */
+  }
+
+  .social-links a {
+    font-size: 25px; /* Smaller icons on mobile */
+    margin: 0 10px; /* Less spacing between icons */
+  }
+
+  .go-to-top {
+    bottom: 20px; /* Reduced distance from bottom */
+    right: 20px; /* Reduced distance from right */
+    padding: 10px 15px; /* Smaller padding for mobile */
+    font-size: 14px; /* Slightly smaller text size */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Additional styling for very small screens */
+  .footer {
+    padding: 20px 10px; /* Smaller padding for smaller screens */
+  }
+
+  .footer p {
+    font-size: 12px; /* Keep the text small */
+    letter-spacing: 0.8px; /* Reduced letter spacing */
+  }
+
+  .footer-link {
+    font-size: 14px;
+    margin: 0 8px; /* Less margin between links */
+  }
+
+  .social-links a {
+    font-size: 22px; /* Even smaller icons on very small screens */
+    margin: 0 8px; /* Less margin between icons */
+  }
+
+  .go-to-top {
+    bottom: 15px; /* Reduce bottom space further */
+    right: 15px; /* Reduce right space further */
+    padding: 8px 12px; /* Smaller button on very small screens */
+    font-size: 12px; /* Even smaller font size */
+  }
+}

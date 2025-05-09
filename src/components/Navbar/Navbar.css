@@ -1,46 +1,29 @@
-/* Logging Out Message */
-.navbar-logout-message {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background: rgba(0, 255, 231, 0.9);
-  padding: 10px 20px;
-  border-radius: 8px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.1rem;
-  animation: fadeOut 2s forwards;
-}
-
-/* Animation for fade out */
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-/* Navbar Styling */
+/* === Base Navbar Styling === */
 .navbar {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.6rem 2rem;
+  padding: 0.6rem 1.5rem;
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 0 4px 10px rgba(64, 224, 208, 0.3);
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease-in-out;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 999;
 }
 
-/* Logo Styling */
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+.navbar-visible {
+  transform: translateY(0);
+}
+
+/* Logo */
 .logo {
   width: 85px;
   height: auto;
@@ -50,31 +33,23 @@
   text-decoration: none;
 }
 
-/* Navbar List Styling */
+/* Nav list */
 .navbar-list {
-  list-style-type: none;
+  list-style: none;
   display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
   gap: 45px;
-  flex-grow: 1;
-  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-/* Navbar Item Styling */
-.navbar-item {
-  padding: 12px 0;
-}
-
-/* Navbar Link Styling */
+/* Items */
 .navbar-link {
   text-decoration: none;
   color: #fff;
   font-size: 1.1rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  position: relative;
   padding: 0.5rem 1.2rem;
   border-radius: 10px;
 }
@@ -86,7 +61,7 @@
   background: rgba(64, 224, 208, 0.2);
 }
 
-/* Avatar Button */
+/* Avatar */
 .navbar-avatar-img {
   width: 45px;
   height: 45px;
@@ -102,10 +77,10 @@
   box-shadow: 0 0 20px rgba(0, 255, 231, 0.5);
 }
 
-/* Dropdown Menu */
+/* Dropdown */
 .navbar-dropdown {
   position: absolute;
-  top: 70px;
+  top: 60px;
   right: 20px;
   background: rgba(20, 20, 30, 0.95);
   border: 1px solid #00ffe7;
@@ -114,7 +89,6 @@
   min-width: 180px;
   box-shadow: 0 0 15px #00ffe7;
   z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
 }
 
 .navbar-dropdown-item {
@@ -133,75 +107,61 @@
   border-radius: 10px;
 }
 
-.navbar-dropdown-item:hover,
-.navbar-dropdown-item:focus {
+.navbar-dropdown-item:hover {
   background: rgba(0, 255, 231, 0.1);
-  color: #ffffff;
   box-shadow: inset 0 0 6px rgba(0, 255, 231, 0.6);
-  outline: none;
 }
 
-/* Scroll Hide / Show */
-.navbar-hidden {
-  transform: translateY(-100%);
-}
-
-.navbar-visible {
-  transform: translateY(0);
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Hamburger Menu Styling */
+/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  gap: 4px;
   margin-left: 1rem;
-  z-index: 1001;
+  position: absolute;
+  bottom: 0.5rem; /* Fix at the bottom of the navbar */
+  right: 1rem; /* Align to the right side of the navbar */
 }
 
 .hamburger span {
   height: 3px;
   width: 25px;
   background: #00ffe7;
-  margin: 4px 0;
   border-radius: 5px;
-  transition: all 0.3s ease;
 }
 
-/* === Mobile Layout Fix (Only Applied Below 768px) === */
+/* Mobile Styles */
 @media (max-width: 768px) {
   .navbar {
-    justify-content: space-between;
-    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
   }
 
   .logo {
     width: 60px;
   }
 
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
   .navbar-list {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
     flex-direction: column;
     align-items: flex-start;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background: rgba(0, 0, 0, 0.95);
-    width: 100%;
-    padding: 1rem 1.5rem;
-    gap: 1rem;
+    padding: 1rem;
     transform: translateY(-200%);
     transition: transform 0.3s ease-in-out;
     z-index: 998;
@@ -211,23 +171,9 @@
     transform: translateY(0);
   }
 
-  .navbar-item {
-    padding: 0;
-  }
-
-  .navbar-link {
-    font-size: 0.95rem;
-    padding: 0.4rem 0.8rem;
-    white-space: nowrap;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
   .navbar-login {
     position: absolute;
-    top: 0.9rem;
+    top: 0.7rem;
     right: 1rem;
   }
 
@@ -239,5 +185,40 @@
   .navbar-dropdown {
     top: 55px;
     right: 10px;
+  }
+
+  /* Mobile hide on scroll or tap */
+  .navbar.navbar-hidden {
+    transform: translateY(-100%);
+  }
+
+  .navbar.navbar-visible {
+    transform: translateY(0);
+  }
+
+  .navbar {
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+.navbar-logout-message {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: rgba(0, 255, 231, 0.9);
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 0.6; }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }

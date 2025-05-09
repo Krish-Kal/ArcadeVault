@@ -33,18 +33,37 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
       if (window.innerWidth > 768) {
         if (currentScrollY > lastScrollY && currentScrollY > 80) {
           setIsNavbarVisible(false);
         } else {
           setIsNavbarVisible(true);
         }
+      } else {
+        if (currentScrollY > lastScrollY) {
+          setIsNavbarVisible(false); // hide on scroll down
+        } else {
+          setIsNavbarVisible(true);  // show on scroll up
+        }
       }
+
       lastScrollY = currentScrollY;
     };
 
+    const handleTap = (e) => {
+      if (window.innerWidth <= 768) {
+        setIsNavbarVisible(false); // hide navbar on screen tap
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('click', handleTap);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleTap);
+    };
   }, []);
 
   return (
@@ -55,9 +74,9 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
 
       {/* Hamburger Button */}
       <div className="hamburger" onClick={toggleMobileMenu}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
       {/* Conditionally visible nav list */}
