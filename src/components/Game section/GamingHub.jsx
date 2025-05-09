@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './GamingHub.css';
+// Example logo import (replace with your own if you have them)
 import rlogo from '../../assets/r.png'; // Adjust path as needed
 
 const tips = [
@@ -27,7 +28,7 @@ const storeLinks = [
   {
     name: 'Steam',
     url: 'https://store.steampowered.com',
-    image: 'https://cdn.fastly.steamstatic.com/store//about/logo_steam.svg'
+    image: 'https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/steam.svg'
   },
   {
     name: 'Rockstar Games',
@@ -37,7 +38,7 @@ const storeLinks = [
   {
     name: 'PlayStation',
     url: 'https://www.playstation.com',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/PlayStation_App_Icon.jpg/960px-PlayStation_App_Icon.jpg'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/91/PlayStation_App_Icon.jpg'
   },
   {
     name: 'Epic Games',
@@ -52,23 +53,23 @@ const GamingHub = () => {
   // Intersection Observer callback
   const handleIntersection = (entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && !visibleSections.includes(entry.target.id)) {
+      if (
+        entry.isIntersecting &&
+        !visibleSections.includes(entry.target.id)
+      ) {
         setVisibleSections((prev) => [...prev, entry.target.id]);
       }
     });
   };
 
-  // Set up Intersection Observer
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.3 // Trigger when 30% of the section is visible
+    const observer = new window.IntersectionObserver(handleIntersection, {
+      threshold: 0.3,
     });
 
-    // Observe each section
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => observer.observe(section));
 
-    // Cleanup on component unmount
     return () => {
       sections.forEach(section => observer.unobserve(section));
     };
@@ -130,7 +131,12 @@ const GamingHub = () => {
               rel="noopener noreferrer"
               className="store-link"
             >
-              <img src={store.image} alt={store.name} className="store-logo" />
+              <img
+                src={store.image}
+                alt={store.name}
+                className="store-logo"
+                onError={e => { e.target.style.display = 'none'; }}
+              />
               <span>{store.name}</span>
             </a>
           ))}
