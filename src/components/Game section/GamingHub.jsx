@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './GamingHub.css';
-import rlogo from 'D:/PORTFOLIO/src/assets/r.png'
-import plogo from 'D:/PORTFOLIO/src/assets/p.png'
 
 const tips = [
   'Practice regularly to improve aim and reflexes.',
