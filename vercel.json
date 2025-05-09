@@ -1,12 +1,8 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/404",
-      "dest": "/404"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/404"
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }
