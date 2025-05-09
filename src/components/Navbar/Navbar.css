@@ -32,13 +32,12 @@
   padding: 0.6rem 2rem;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 10px rgba(64, 224, 208, 0.3);
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease-in-out;
   position: relative;
-  flex-wrap: nowrap;
+  z-index: 999;
 }
 
 /* Logo Styling */
@@ -80,7 +79,6 @@
   border-radius: 10px;
 }
 
-/* Navbar Hover Effect */
 .navbar-link:hover {
   color: #40e0d0;
   transform: scale(1.1);
@@ -119,7 +117,6 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Dropdown Items */
 .navbar-dropdown-item {
   display: block;
   width: 100%;
@@ -165,28 +162,57 @@
   }
 }
 
+/* Hamburger Menu Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 1rem;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #00ffe7;
+  margin: 4px 0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
 /* === Mobile Layout Fix (Only Applied Below 768px) === */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    padding: 0.8rem 1.2rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .logo {
+    width: 60px;
   }
 
   .navbar-list {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.95);
+    width: 100%;
+    padding: 1rem 1.5rem;
     gap: 1rem;
-    flex-wrap: nowrap; /* Prevent wrapping */
-    width: auto;
-    margin-left: auto;
+    transform: translateY(-200%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 998;
+  }
+
+  .navbar-list.open {
+    transform: translateY(0);
   }
 
   .navbar-item {
-    padding: 0; /* Avoid pushing them down */
+    padding: 0;
   }
 
   .navbar-link {
@@ -195,21 +221,23 @@
     white-space: nowrap;
   }
 
-  .logo {
-    width: 60px;
+  .hamburger {
+    display: flex;
   }
 
-  /* Ensuring user avatar stays on the right */
+  .navbar-login {
+    position: absolute;
+    top: 0.9rem;
+    right: 1rem;
+  }
+
   .navbar-avatar-img {
     width: 36px;
     height: 36px;
-    margin-left: auto; /* This moves the avatar to the far right */
   }
 
   .navbar-dropdown {
     top: 55px;
     right: 10px;
   }
-  
-  
 }

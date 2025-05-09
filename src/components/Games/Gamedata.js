@@ -1,25 +1,4 @@
-import mc from 'D:/PORTFOLIO/src/assets/mc.png';
-import ft from 'D:/PORTFOLIO/src/assets/ft.png';
-import w3 from 'D:/PORTFOLIO/src/assets/w3.png';
-import gta5 from 'D:/PORTFOLIO/src/assets/gta5.jpg';
-import cod from 'D:/PORTFOLIO/src/assets/cod.png';
-import ap from 'D:/PORTFOLIO/src/assets/ap.png';
-import rdr2 from 'D:/PORTFOLIO/src/assets/rdr2.png';
-import vl from 'D:/PORTFOLIO/src/assets/vl.png';
-import amus from 'D:/PORTFOLIO/src/assets/amus.png';
-import lol from 'D:/PORTFOLIO/src/assets/lol.png';
-import elscr from 'D:/PORTFOLIO/src/assets/elscr.png';
-import cp from 'D:/PORTFOLIO/src/assets/cp.png';
-import ovw from 'D:/PORTFOLIO/src/assets/ovw.png';
-import fg from 'D:/PORTFOLIO/src/assets/fg.png';
-import smo from 'D:/PORTFOLIO/src/assets/smo.png';
-import hades from 'D:/PORTFOLIO/src/assets/hades.png';
-import rl from 'D:/PORTFOLIO/src/assets/rl.png';
-import asv from 'D:/PORTFOLIO/src/assets/asv.png';
-import sdv from 'D:/PORTFOLIO/src/assets/sdv.png';
-import wow from 'D:/PORTFOLIO/src/assets/wow.png';
-import gta3 from 'D:/PORTFOLIO/src/assets/gta3.png';
-import vc from 'D:/PORTFOLIO/src/assets/vc.png';
+
 export const gamesList = [
     {
       id: 1,
@@ -28,7 +7,7 @@ export const gamesList = [
       description: "A game about placing blocks and going on adventures.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2011-11-18",
-      imageUrl: mc,
+      imageUrl: 'https://assets.nintendo.com/image/upload/v1720020435/ncom/en_US/merchandising/curated%20list/Minecraft/Minecraft_Titan_BaseGameBedrock_Nintendo_eShopBanner_1920x1080.jpg',
       price: 0.00,
       link: "https://www.minecraft.net"
     },
@@ -39,7 +18,7 @@ export const gamesList = [
       description: "A fast-paced, ever-changing battle royale game.",
       platform: "PC, Xbox, PlayStation, Switch",
       releaseDate: "2017-09-26",
-      imageUrl: ft,
+      imageUrl: 'https://dropinblog.net/34253310/files/featured/imagem-2024-09-26-103919931.png',
       price: 0.00,
       link: "https://www.epicgames.com/fortnite"
     },
@@ -50,7 +29,7 @@ export const gamesList = [
       description: "An open-world action RPG with a rich story.",
       platform: "PC, Xbox, PlayStation, Switch",
       releaseDate: "2015-05-19",
-      imageUrl: w3,
+      imageUrl: 'https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f',
       price: 39.99,
       link: "https://thewitcher.com/en/witcher3"
     },
@@ -61,7 +40,7 @@ export const gamesList = [
       description: "An open-world action-adventure game in Los Santos.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2013-09-17",
-      imageUrl: gta5,
+      imageUrl: 'https://img.gta5-mods.com/q85-w800/images/save-game-44/a82937-v_trunk_1920x1080.jpg',
       price: 29.99,
       link: "https://www.rockstargames.com/V"
     },
@@ -72,7 +51,7 @@ export const gamesList = [
       description: "A tactical military shooter game with stunning graphics.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2019-10-25",
-      imageUrl: cod,
+      imageUrl: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2000950/capsule_616x353.jpg?t=1678294805',
       price: 59.99,
       link: "https://www.callofduty.com/modernwarfare"
     },
@@ -83,7 +62,7 @@ export const gamesList = [
       description: "A free-to-play battle royale game with unique characters.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2019-02-04",
-      imageUrl:   ap,
+      imageUrl:   'https://play-lh.googleusercontent.com/OtFyhtgvo8pv3oB4ZR-nYDxHMfwoYgjbZH-iBdoDm60-d67tOqJrLCnTzL9Be3VYbgpTZtTMx8o=w600-h300-pc0xffffff-pd',
       price: 0.00,
       link: "https://www.ea.com/games/apex-legends"
     },
@@ -94,7 +73,7 @@ export const gamesList = [
       description: "A breathtaking open-world game set in the Wild West.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2018-10-26",
-      imageUrl: rdr2,
+      imageUrl: 'https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg',
       price: 59.99,
       link: "https://www.rockstargames.com/reddeadredemption2"
     },
@@ -105,7 +84,7 @@ export const gamesList = [
       description: "A 5v5 tactical FPS with unique agents and abilities.",
       platform: "PC",
       releaseDate: "2020-06-02",
-      imageUrl:   vl,
+      imageUrl:   'https://sm.ign.com/ign_in/screenshot/default/beta-key-art-valorant_1n2h.jpg',
       price: 0.00,
       link: "https://playvalorant.com"
     },
@@ -116,7 +95,7 @@ export const gamesList = [
       description: "A multiplayer party game where you deceive and collaborate with others.",
       platform: "PC, Mobile",
       releaseDate: "2018-06-15",
-      imageUrl: amus,
+      imageUrl: 'https://umobix.com/blog/wp-content/uploads/2024/05/about-the-among-us-game.jpg',
       price: 4.99,
       link: "https://www.innersloth.com/gameAmongUs.php"
     },
@@ -127,7 +106,7 @@ export const gamesList = [
       description: "A team-based battle game with strategic gameplay and champions.",
       platform: "PC",
       releaseDate: "2009-10-27",
-      imageUrl: lol,
+      imageUrl: 'https://egw.news/_next/image?url=https%3A%2F%2Fegw.news%2Fuploads%2Fnews%2F1%2F17%2F1739981305866_1739981305866.webp&w=1920&q=75',
       price: 0.00,
       link: "https://www.leagueoflegends.com"
     },
@@ -138,7 +117,7 @@ export const gamesList = [
       description: "An epic open-world RPG set in a medieval fantasy world.",
       platform: "PC, Xbox, PlayStation, Switch",
       releaseDate: "2011-11-11",
-      imageUrl: elscr,
+      imageUrl: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/306130/84d80ea3db5f3dd6f9c135eb3d2a05027d7c06f0/capsule_616x353.jpg?t=1744323757',
       price: 39.99,
       link: "https://elderscrolls.bethesda.net/en/skyrim"
     },
@@ -149,7 +128,7 @@ export const gamesList = [
       description: "An open-world RPG set in a futuristic cyberpunk city.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2020-12-10",
-      imageUrl: cp,
+      imageUrl: 'https://image.api.playstation.com/vulcan/ap/rnd/202311/2812/ae84720b553c4ce943e9c342621b60f198beda0dbf533e21.jpg',
       price: 59.99,
       link: "https://www.cyberpunk.net"
     },
@@ -160,7 +139,7 @@ export const gamesList = [
       description: "A team-based multiplayer first-person shooter game.",
       platform: "PC, Xbox, PlayStation, Switch",
       releaseDate: "2016-05-24",
-      imageUrl: ovw,
+      imageUrl: 'https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/bltec310a912eb6ceb1/67ffe15675d9ef1e30e1c799/Browsing_Card-and-Asset_Gallery_1.png',
       price: 39.99,
       link: "https://playoverwatch.com"
     },
@@ -171,7 +150,7 @@ export const gamesList = [
       description: "A hilarious and fun battle royale with jellybean-like characters.",
       platform: "PC, PlayStation",
       releaseDate: "2020-08-04",
-      imageUrl: fg,
+      imageUrl: 'https://cdn2.unrealengine.com/cmp-10-9keyart-16x9-pg-4-3840x2160-28f8b8d2edcb.png',
       price: 19.99,
       link: "https://www.fallguys.com"
     },
@@ -182,7 +161,7 @@ export const gamesList = [
       description: "A 3D platformer adventure game featuring Mario in various worlds.",
       platform: "Switch",
       releaseDate: "2017-10-27",
-      imageUrl: smo,
+      imageUrl: 'https://www.gbhbl.com/wp-content/uploads/2018/08/Super-Mario-Odyssey-Pic-1.jpg',
       price: 59.99,
       link: "https://www.nintendo.com/games/detail/super-mario-odyssey-switch"
     },
@@ -193,7 +172,7 @@ export const gamesList = [
       description: "A fast-paced, action-packed roguelike where you escape the Underworld.",
       platform: "PC, Switch, PlayStation",
       releaseDate: "2020-09-17",
-      imageUrl: hades,
+      imageUrl: 'https://stanforddaily.com/wp-content/uploads/2020/02/hades.jpg',
       price: 24.99,
       link: "https://supergiantgames.com/games/hades"
     },
@@ -204,7 +183,7 @@ export const gamesList = [
       description: "A car soccer game where you score goals by hitting the ball with your car.",
       platform: "PC, Xbox, PlayStation, Switch",
       releaseDate: "2015-07-07",
-      imageUrl: rl,
+      imageUrl: 'https://cdn1.epicgames.com/offer/9773aa1aa54f4f7b80e44bef04986cea/eEGS_RocketLeague_PsyonixLLC_S1_2560x1440-2c4734fceda0a1b6df485271f7f7b748',
       price: 19.99,
       link: "https://www.rocketleague.com"
     },
@@ -215,7 +194,7 @@ export const gamesList = [
       description: "An open-world action RPG set in the Viking age.",
       platform: "PC, Xbox, PlayStation",
       releaseDate: "2020-11-10",
-      imageUrl: asv,
+      imageUrl: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2208920/capsule_616x353.jpg?t=1736257857',
       price: 59.99,
       link: "https://www.ubisoft.com/game/assassins-creed/valhalla"
     },
@@ -226,7 +205,7 @@ export const gamesList = [
       description: "A farming simulation where you grow crops and build a farm.",
       platform: "PC, Xbox, PlayStation, Switch",
       releaseDate: "2016-02-26",
-      imageUrl: sdv,
+      imageUrl: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/capsule_616x353.jpg?t=1711128146',
       price: 14.99,
       link: "https://www.stardewvalley.net"
     },
@@ -237,7 +216,7 @@ export const gamesList = [
       description: "A massive multiplayer online role-playing game set in the fantasy world of Azeroth.",
       platform: "PC",
       releaseDate: "2004-11-23",
-      imageUrl: wow,
+      imageUrl: 'https://assets2.ignimgs.com/2014/02/14/wow-boss-compilation-wallpaperjpg-dc3b63.jpg',
       price: 14.99,
       link: "https://worldofwarcraft.com"
     },
@@ -248,7 +227,7 @@ export const gamesList = [
       description: "The first 3D game in the GTA series, set in Liberty City.",
       platform: "PC, PlayStation, Xbox, Switch",
       releaseDate: "2001-10-22",
-      imageUrl: gta3,
+      imageUrl: 'https://static1.thegamerimages.com/wordpress/wp-content/uploads/2021/11/GTA-Trilogy.jpg',
       price: 9.99,
       link: "https://www.rockstargames.com/games/grandtheftauto3"
     },
@@ -259,7 +238,7 @@ export const gamesList = [
       description: "A neon-soaked open-world adventure set in the 1980s.",
       platform: "PC, PlayStation, Xbox, Switch",
       releaseDate: "2002-10-29",
-      imageUrl: vc,
+      imageUrl: 'https://media.moddb.com/images/downloads/1/226/225579/1614506.png',
       price: 9.99,
       link: "https://www.rockstargames.com/games/vicecity"
     },

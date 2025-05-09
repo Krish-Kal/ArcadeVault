@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import user from '/user.png'; // Adjusted to the correct path relative to the public folder
+import user from '/user.png';
 
 function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const navigate = useNavigate();
@@ -12,6 +13,10 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const handleLogoutClick = () => {
@@ -28,21 +33,17 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Check if screen size is larger than 768px (desktop)
       if (window.innerWidth > 768) {
         if (currentScrollY > lastScrollY && currentScrollY > 80) {
-          setIsNavbarVisible(false); // scroll down = hide navbar
+          setIsNavbarVisible(false);
         } else {
-          setIsNavbarVisible(true); // scroll up = show navbar
+          setIsNavbarVisible(true);
         }
       }
-
       lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -52,11 +53,19 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
         <img src="/AV.png" alt="ArcadeVault Logo" className="logo" />
       </Link>
 
-      <ul className="navbar-list">
-        <li><Link to="/" className="navbar-link">Home</Link></li>
-        <li><Link to="/about" className="navbar-link">About</Link></li>
-        <li><Link to="/games" className="navbar-link">Games</Link></li> {/* ✅ NEW GAMES LINK */}
-        <li><Link to="/wishlist" className="navbar-link">Wishlist ({wishlistCount})</Link></li>
+      {/* Hamburger Button */}
+      <div className="hamburger" onClick={toggleMobileMenu}>
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+
+      {/* Conditionally visible nav list */}
+      <ul className={`navbar-list ${isMobileMenuOpen ? 'open' : ''}`}>
+        <li><Link to="/" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
+        <li><Link to="/about" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
+        <li><Link to="/games" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>Games</Link></li>
+        <li><Link to="/wishlist" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>Wishlist ({wishlistCount})</Link></li>
       </ul>
 
       <div className="navbar-login">
