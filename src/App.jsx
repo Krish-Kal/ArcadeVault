@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/footer/footer';
 import HomePage from './pages/HomePage';
 import Wishlist from './pages/Wishlist';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/404';
 import useWishlist from './components/wishlist/wishlistManager';
 import './App.css';
 import About from './pages/About/AboutPage';
