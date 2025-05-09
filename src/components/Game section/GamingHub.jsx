@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './GamingHub.css';
-import s from 'D:/PORTFOLIO/src/assets/s.png'
 import rlogo from 'D:/PORTFOLIO/src/assets/r.png'
 import plogo from 'D:/PORTFOLIO/src/assets/p.png'
 
@@ -29,17 +28,17 @@ const storeLinks = [
   {
     name: 'Steam',
     url: 'https://store.steampowered.com',
-    image: s
+    image: 'https://cdn.fastly.steamstatic.com/store//about/logo_steam.svg'
   },
   {
     name: 'Rockstar Games',
-    url: 'https://www.rockstargames.com',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Rockstar_Games_Logo.svg/250px-Rockstar_Games_Logo.svg.png',
     image: rlogo
   },
   {
     name: 'PlayStation',
     url: 'https://www.playstation.com',
-    image: plogo
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/PlayStation_App_Icon.jpg/960px-PlayStation_App_Icon.jpg'
   },
   {
     name: 'Epic Games',
