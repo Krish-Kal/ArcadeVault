@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   color: white;
+  padding-top: 0; /* No padding on desktop */
 }
 
 .stars {
@@ -28,10 +29,14 @@
   animation: twinkle 2s infinite ease-in-out alternate;
 }
 
-
+/* Twinkle Animation */
 @keyframes twinkle {
-  0% { opacity: 0.3; }
-  100% { opacity: 5; }
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .glow-center {
@@ -85,6 +90,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px;
+    padding-top: 200px; /* Add padding to push content below the navbar */
   }
 
   .notfound-title {
