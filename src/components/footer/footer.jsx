@@ -27,18 +27,16 @@ function Footer() {
           <a href="/contact-us" className="footer-link">Contact Us</a>
         </div>
         <div className="social-links">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <i className="fab fa-facebook"></i>
-          </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <i className="fab fa-instagram"></i>
+          <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer" aria-label="github">
+            <i className="fab fa-github"></i>
           </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <i className="fab fa-linkedin"></i>
           </a>
+        
         </div>
       </div>
 
