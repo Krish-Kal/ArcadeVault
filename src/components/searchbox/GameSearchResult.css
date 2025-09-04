@@ -1,0 +1,214 @@
+/* === Search Results Section === */
+.search-results-section {
+  margin-top: 20px;
+  padding: 15px;
+  color: #fff;
+}
+
+.search-results-section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #40e0d0;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(64, 224, 208, 0.6);
+}
+
+/* === Loader Styling === */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.loader div {
+  width: 12px;
+  height: 12px;
+  background: #ff4500;
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  to {
+    transform: translateY(-15px);
+    opacity: 0.7;
+  }
+}
+
+/* === Grid for Search Results === */
+.search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
+  text-align: center;
+}
+
+/* === Game Card === */
+.search-results-grid .game-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fade-slide-in 0.5s forwards;
+}
+
+/* Stagger animation with nth-child */
+.search-results-grid .game-card:nth-child(1) { animation-delay: 0.05s; }
+.search-results-grid .game-card:nth-child(2) { animation-delay: 0.1s; }
+.search-results-grid .game-card:nth-child(3) { animation-delay: 0.15s; }
+.search-results-grid .game-card:nth-child(4) { animation-delay: 0.2s; }
+.search-results-grid .game-card:nth-child(5) { animation-delay: 0.25s; }
+.search-results-grid .game-card:nth-child(6) { animation-delay: 0.3s; }
+/* Continue nth-child if needed */
+
+@keyframes fade-slide-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-results-grid .game-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(212, 0, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* === Game Image === */
+.search-results-grid .game-card .game-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* === Game Title === */
+.search-results-grid .game-card h2 {
+  font-size: 1.1rem;
+  margin: 6px 0;
+  color: #40e0d0;
+  text-shadow: 0 0 8px rgba(64, 224, 208, 0.7);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* === Genre === */
+.search-results-grid .genre {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #ff73fa;
+  font-weight: bold;
+}
+
+/* === Button Container === */
+.search-results-grid .button-container {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.search-results-grid .go-to-game-btn,
+.search-results-grid .wishlist-btn {
+  flex-grow: 1;
+  padding: 6px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-results-grid .go-to-game-btn {
+  background-color: #40e0d0;
+  color: #000;
+}
+
+.search-results-grid .go-to-game-btn:hover {
+  background-color: #f80189;
+  color: #fff;
+}
+
+.search-results-grid .wishlist-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.search-results-grid .wishlist-btn:hover {
+  background-color: #f80189;
+}
+
+.search-results-grid .wishlist-btn:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* === Responsive Design === */
+@media (max-width: 1024px) {
+  .search-results-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .search-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-results-grid .game-card .game-image {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-results-grid .game-card .game-image {
+    height: 100px;
+  }
+
+  .search-results-grid .game-card h2 {
+    font-size: 1rem;
+  }
+
+  .search-results-grid .genre {
+    font-size: 0.75rem;
+  }
+
+  .search-results-grid .go-to-game-btn,
+  .search-results-grid .wishlist-btn {
+    font-size: 0.7rem;
+    padding: 4px;
+  }
+}

@@ -1,7 +1,8 @@
-/* Games Page Styles */
+/* === Games Page Styles === */
 .games-page {
-  margin-top: 100px; /* Ensure there's space between the navbar and the content */
+  margin-top: 100px;
   padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .games-page-title {
@@ -10,17 +11,15 @@
   color: #fff;
   text-align: center;
   margin-bottom: 35px;
-  margin-top: 10px;
   text-shadow: 0 0 10px rgba(64, 224, 208, 0.6);
 }
 
 /* === Sort By Container === */
-/* === Sort By Container (Aligned Left) === */
 .sort-by-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 10px; /* Align left with page padding */
+  margin-left: 10px;
   gap: 10px;
 }
 
@@ -33,7 +32,6 @@
   text-shadow: 0 0 6px rgba(64, 224, 208, 0.7);
 }
 
-/* === Sort By Dropdown (Futuristic Style) === */
 .sort-by-dropdown {
   background: rgba(0, 0, 0, 0.6);
   color: #40e0d0;
@@ -60,13 +58,12 @@
   color: #ffffff;
 }
 
-
-/* === Game Grid === */
+/* === Games Grid === */
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  margin-top: 20px; /* Adjusted margin for better spacing */
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -78,24 +75,20 @@
   padding: 20px;
   text-align: center;
   backdrop-filter: blur(10px);
-  opacity: 1; /* Ensure cards are visible */
-  transform: none; /* No initial transform */
   box-shadow: 0 0 15px rgba(0, 183, 255, 0.815);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* === Game Card Hover (Zoom Effect) === */
 .game-card:hover {
-  transform: scale(1.02); /* Slight zoom on hover */
-  box-shadow: 0 0 15px rgba(212, 0, 255, 0.397);
-  transition: transform 0.3s ease; /* Smooth zoom transition */
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(212, 0, 255, 0.5);
 }
 
-/* === Game Card Image === */
+/* === Game Image === */
 .game-image {
   width: 100%;
   height: auto;
@@ -103,7 +96,7 @@
   margin-bottom: 10px;
 }
 
-/* === Game Card Title === */
+/* === Game Title === */
 .game-card h2 {
   font-size: 1.5rem;
   margin: 10px 0;
@@ -111,7 +104,7 @@
   text-shadow: 0 0 8px rgba(64, 224, 208, 0.8);
 }
 
-/* === Game Genre (Centered) === */
+/* === Genre === */
 .genre {
   font-size: 1.2rem;
   margin: 10px 0;
@@ -120,27 +113,21 @@
   font-weight: bold;
 }
 
-/* === Game Card Description === */
-.description {
+/* === Platforms === */
+.platforms {
   font-size: 1rem;
-  color: #e9f0ef;
-  margin-bottom: 15px;
+  margin: 8px 0;
+  color: #00ffff;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 
+    0 0 6px rgba(0, 255, 255, 0.6),
+    0 0 12px rgba(0, 255, 255, 0.4),
+    0 0 18px rgba(0, 255, 255, 0.3);
+  letter-spacing: 0.5px;
 }
 
-/* === Price (Glowing Dollar Amount) === */
-.price {
-  font-size: 1.2rem;
-  color: #e9f0ef;
-  margin: 10px 0;
-}
-
-.price span {
-  font-weight: bold;
-  color: #adff2f;
-  text-shadow: 0 0 8px #7fff00;
-}
-
-/* === Button Container (Go to Game & Wishlist Button Adjacent) === */
+/* === Button Container === */
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -149,7 +136,6 @@
   margin-top: 10px;
 }
 
-/* === Go to Game Button === */
 .go-to-game-btn {
   background-color: #40e0d0;
   color: white;
@@ -166,7 +152,6 @@
   background-color: #f80189;
 }
 
-/* === Add to Wishlist Button === */
 .wishlist-btn {
   background-color: #28a745;
   color: white;
@@ -183,24 +168,65 @@
   background-color: #f80189;
 }
 
-.wishlist-btn:active {
-  transform: translateY(0);
-}
-
-.wishlist-btn:focus {
-  outline: none;
-}
-
 .wishlist-btn:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 
-/* === Responsive Design === */
+/* === Pagination === */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  background: rgba(0, 0, 0, 0.6);
+  color: #40e0d0;
+  border: 1px solid #40e0d0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 6px rgba(64, 224, 208, 0.7);
+}
+
+.pagination button:hover {
+  background: #101010;
+  box-shadow: 0 0 14px rgba(0, 255, 255, 0.4);
+}
+
+.pagination button:disabled {
+  background: rgba(0,0,0,0.4);
+  border-color: #444;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* === Current Page Highlight === */
+.pagination span {
+  color: #40e0d0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 5px;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .games-grid {
-    grid-template-columns: 1fr 1fr; /* 2 columns */
-    margin-top: 100px; /* Added margin for smaller screens to adjust the spacing */
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
   }
 
   .game-card {
@@ -213,5 +239,94 @@
 
   .game-image {
     width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}
+
+/* === Skeleton Loader Styles === */
+.skeleton {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+/* Skeleton box */
+.skeleton-box {
+  background: rgba(64, 224, 208, 0.15);
+  border-radius: 6px;
+  width: 100%;
+  height: 20px;
+}
+
+.game-image.skeleton-box {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.game-title.skeleton-box {
+  width: 70%;
+  height: 22px;
+  margin: 5px auto;
+}
+
+.game-genre.skeleton-box {
+  width: 50%;
+  height: 16px;
+  margin: 5px auto;
+}
+
+.skeleton-btn {
+  width: 45%;
+  height: 35px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+/* Responsive skeleton cards matching grid */
+@media (max-width: 1024px) {
+  .skeleton {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton {
+    padding: 12px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(64, 224, 208, 0.15);
+  }
+  50% {
+    background-color: rgba(64, 224, 208, 0.25);
+  }
+  100% {
+    background-color: rgba(64, 224, 208, 0.15);
   }
 }

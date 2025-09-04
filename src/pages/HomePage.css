@@ -129,3 +129,120 @@
     margin-top: 60px;
   }
 }
+/* === Updated Search Results Grid & Cards === */
+.search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 12px 12px; /* smaller gap between rows and columns */
+  justify-items: center;
+}
+
+.search-results-grid .game-card {
+  width: 240px;           /* a bit wider than before */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-results-grid .game-card .game-image {
+  width: 100%;
+  height: 140px;         /* slightly taller to match wider card */
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+
+.search-results-grid .game-card h2 {
+  font-size: 1rem;
+  color: #40e0d0;
+  margin-bottom: 5px;
+  text-shadow: 0 0 6px rgba(64, 224, 208, 0.7);
+}
+
+.search-results-grid .game-card .genre {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #ff73fa;
+  font-weight: 500;
+}
+
+/* Hide platforms */
+.search-results-grid .game-card .platforms {
+  display: none;
+}
+
+.search-results-grid .game-card .button-container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.search-results-grid .game-card .go-to-game-btn,
+.search-results-grid .game-card .wishlist-btn {
+  flex: 1;
+  padding: 6px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-results-grid .game-card .go-to-game-btn {
+  background-color: #40e0d0;
+  color: #000;
+}
+
+.search-results-grid .game-card .go-to-game-btn:hover {
+  background-color: #00ffff;
+}
+
+.search-results-grid .game-card .wishlist-btn {
+  background-color: #f80189;
+  color: #fff;
+}
+
+.search-results-grid .game-card .wishlist-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments for search results */
+@media (max-width: 1024px) {
+  .search-results-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .search-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .search-results-grid .game-card {
+    width: 200px;
+  }
+  .search-results-grid .game-card .game-image {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-results-grid {
+    grid-template-columns: 1fr;
+  }
+  .search-results-grid .game-card {
+    width: 100%;
+  }
+  .search-results-grid .game-card .game-image {
+    height: 160px;
+  }
+}
