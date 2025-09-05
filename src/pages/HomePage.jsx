@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GameSearchResults from '../components/searchbox/GameSearchResult';
 import TrendingGames from '../components/Trending/TrendingGames';
 import GamingHub from '../components/Game section/GamingHub';
@@ -6,6 +6,29 @@ import Searchbox from '../components/searchbox/Gamesearch';
 import './HomePage.css';
 
 const HomePage = ({ searchQuery, setSearchQuery, addToWishlist, wishlist, games }) => {
+  const [topGames, setTopGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // ✅ Fetch top-rated + popular games smoothly
+  useEffect(() => {
+    const fetchTopGames = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `https://api.rawg.io/api/games?key=dbdfb4c288374e7b8e71571677db40fa&ordering=-rating&metacritic=80&page_size=12`
+        );
+        const data = await response.json();
+        setTopGames(data.results || []);
+      } catch (err) {
+        console.error('Failed to fetch top games:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopGames();
+  }, []);
+
   return (
     <>
       <div className="background">
@@ -19,14 +42,14 @@ const HomePage = ({ searchQuery, setSearchQuery, addToWishlist, wishlist, games 
               player and with every genre. ArcadeVault isn't just a store — it's your next-level 
               gaming hub. Power up your play. 🔥
             </p>
-            
+
             {/* 🔍 Search bar inside welcome box */}
             <Searchbox searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
           </div>
         </div>
       </div>
 
-      {/* 🔍 Centralized Search Results (only results grid) */}
+      {/* 🔍 Centralized Search Results */}
       <GameSearchResults
         searchQuery={searchQuery}
         addToWishlist={addToWishlist}
@@ -34,8 +57,9 @@ const HomePage = ({ searchQuery, setSearchQuery, addToWishlist, wishlist, games 
         games={games}
       />
 
-      {/* 🔥 Trending Section */}
-      <TrendingGames />
+      {/* 🔥 Trending Section with top-rated games */}
+      <TrendingGames loading={loading} games={topGames} />
+
       <GamingHub />
     </>
   );

@@ -1,15 +1,15 @@
-/* === Footer Styling === */
+/* === Footer Styling (Polished Old Style) === */
 .footer {
-  background: linear-gradient(135deg, #111111a9, #33333360); /* Dark gradient, tech-inspired */
+  background: linear-gradient(135deg, #111111a9, #33333360);
   color: #fff;
   text-align: center;
-  padding: 40px 0;
+  padding: 40px 0; /* keep old size */
   position: relative;
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
-  backdrop-filter: blur(10px); /* Modern blur effect */
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.15); /* cleaner border */
 }
 
 .footer-content {
@@ -22,138 +22,63 @@
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 1px;
-  opacity: 0.8;
+  opacity: 0.85; /* slightly brighter text */
 }
 
 .footer-links {
-  margin-top: 20px;
+  margin-top: 18px; /* subtle adjustment */
 }
 
 .footer-link {
   color: #fff;
-  font-size: 16px;
-  margin: 0 20px;
+  font-size: 15px;
+  margin: 0 18px;
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #04cef1; /* Neon blue hover effect */
-  transform: translateY(-3px); /* Slight lift effect */
+  color: #04cef1;
+  transform: translateY(-2px); /* lighter lift */
 }
 
 .social-links {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .social-links a {
   color: #fff;
-  font-size: 30px;
-  margin: 0 15px;
+  font-size: 28px; /* balanced size */
+  margin: 0 12px;
   transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
 }
 
 .social-links a:hover {
-  color: #04cef1; /* Neon blue hover effect */
-  transform: translateY(-5px); /* Slight lift */
-  text-shadow: 0 0 10px #04cef1, 0 0 20px #04cef1; /* Glowing effect */
-}
-
-.social-links a:focus {
-  outline: none;
-}
-
-.footer p a {
   color: #04cef1;
-  text-decoration: none;
+  transform: translateY(-4px);
+  text-shadow: 0 0 8px #04cef1;
 }
 
-.footer p a:hover {
-  text-decoration: underline;
-}
-
-/* === "Go to Top" Button === */
+/* "Go to Top" Button */
 .go-to-top {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 35px;
+  right: 35px;
   background-color: transparent;
-  color: #04cef1; /* Neon blue text */
-  border: 2px solid #04cef1; /* Border to match text color */
-  padding: 12px 20px;
-  font-size: 16px;
+  color: #04cef1;
+  border: 2px solid #04cef1;
+  padding: 11px 18px;
+  font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 22px;
   transition: background-color 0.3s ease, transform 0.3s ease;
   z-index: 999;
 }
 
 .go-to-top:hover {
-  background-color: #04cef1; /* Neon blue background on hover */
-  color: white; /* Change text color to white on hover */
-  transform: translateY(-4px); /* Slight lift effect */
-}
-
-.go-to-top:focus {
-  outline: none; /* Remove focus outline */
-}
-
-/* === Mobile Styling (Responsive Adjustments) === */
-@media (max-width: 768px) {
-  /* Footer adjustments for mobile */
-  .footer {
-    padding: 30px 15px;
-  }
-
-  .footer p {
-    font-size: 12px; /* Slightly smaller text */
-  }
-
-  .footer-link {
-    font-size: 14px;
-    margin: 0 10px; /* Less spacing between links */
-  }
-
-  .social-links a {
-    font-size: 25px; /* Smaller icons on mobile */
-    margin: 0 10px; /* Less spacing between icons */
-  }
-
-  .go-to-top {
-    bottom: 20px; /* Reduced distance from bottom */
-    right: 20px; /* Reduced distance from right */
-    padding: 10px 15px; /* Smaller padding for mobile */
-    font-size: 14px; /* Slightly smaller text size */
-  }
-}
-
-@media (max-width: 480px) {
-  /* Additional styling for very small screens */
-  .footer {
-    padding: 20px 10px; /* Smaller padding for smaller screens */
-  }
-
-  .footer p {
-    font-size: 12px; /* Keep the text small */
-    letter-spacing: 0.8px; /* Reduced letter spacing */
-  }
-
-  .footer-link {
-    font-size: 14px;
-    margin: 0 8px; /* Less margin between links */
-  }
-
-  .social-links a {
-    font-size: 22px; /* Even smaller icons on very small screens */
-    margin: 0 8px; /* Less margin between icons */
-  }
-
-  .go-to-top {
-    bottom: 15px; /* Reduce bottom space further */
-    right: 15px; /* Reduce right space further */
-    padding: 8px 12px; /* Smaller button on very small screens */
-    font-size: 12px; /* Even smaller font size */
-  }
+  background-color: #04cef1;
+  color: white;
+  transform: translateY(-3px);
 }

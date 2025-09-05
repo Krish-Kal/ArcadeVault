@@ -5,10 +5,10 @@ function GamesPage({ addToWishlist, wishlist, searchQuery }) {
   const [games, setGames] = useState([]);
   const [addedGames, setAddedGames] = useState([]);
   const [sortBy, setSortBy] = useState("name");
-  const [page, setPage] = useState(1); // track page number
-  const [loading, setLoading] = useState(true); // <-- new loading state
-  const pageSize = 20; // 20 games per page
-  const totalGames = 200; // limit to 200 games
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const pageSize = 20;
+  const totalGames = 300; // extend to 300 relevant games
 
   // Sync wishlist
   useEffect(() => {
@@ -16,24 +16,50 @@ function GamesPage({ addToWishlist, wishlist, searchQuery }) {
     setAddedGames(wishlistIds);
   }, [wishlist]);
 
-  // Fetch games from RAWG API
+  // Prefetch helper to warm up images before showing
+  const preloadImages = (urls) => {
+    urls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  };
+
+  // Fetch games (TOP rated + POPULAR only)
   useEffect(() => {
+    let isMounted = true;
+
     const fetchGames = async () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://api.rawg.io/api/games/lists/popular?key=dbdfb4c288374e7b8e71571677db40fa&page_size=${pageSize}&page=${page}`
+          `https://api.rawg.io/api/games?key=dbdfb4c288374e7b8e71571677db40fa&page_size=${pageSize}&page=${page}&ordering=-rating,-added`
         );
         const data = await response.json();
-        setGames(data.results || []);
+
+        if (isMounted) {
+          const results = data.results || [];
+
+          // Preload background images before swapping
+          preloadImages(results.map((g) => g.background_image));
+
+          // Use requestAnimationFrame to avoid blocking UI
+          requestAnimationFrame(() => {
+            setGames(results);
+            setLoading(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
       } catch (error) {
         console.error("Error fetching games:", error);
+        if (isMounted) setLoading(false);
       }
-      setLoading(false);
-      window.scrollTo(0, 0); // scroll to top on page change
     };
 
     fetchGames();
+
+    return () => {
+      isMounted = false;
+    };
   }, [page]);
 
   // Add to wishlist
@@ -138,6 +164,8 @@ function GamesPage({ addToWishlist, wishlist, searchQuery }) {
                   src={game.background_image}
                   alt={game.name}
                   className="game-image"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h2>{game.name}</h2>
                 <p className="genre">

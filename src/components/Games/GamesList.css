@@ -330,3 +330,18 @@
     background-color: rgba(64, 224, 208, 0.15);
   }
 }
+
+/* === Smooth Scroll & Performance Enhancements === */
+html {
+  scroll-behavior: smooth;
+}
+
+.games-grid {
+  will-change: transform;
+}
+
+.game-image {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  image-rendering: auto;
+}

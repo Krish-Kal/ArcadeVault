@@ -18,6 +18,7 @@
   z-index: 1;
   margin-top: 100px;
   animation: scaleUp 0.8s ease-out forwards;
+  transition: all 0.4s ease-in-out;
 }
 
 /* === Title & Text === */
@@ -29,6 +30,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   text-align: center;
+  transition: all 0.4s ease-in-out;
 }
 
 .info-text {
@@ -37,6 +39,7 @@
   color: #e9f0ef;
   text-shadow: 0 0 8px #7deb83;
   margin-bottom: 2rem;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* === Content Section === */
@@ -52,6 +55,7 @@
   min-height: 100vh;
   margin-top: 60px;
   text-align: center;
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* === Games List === */
@@ -68,6 +72,7 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
   z-index: 1;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .games-list h2 {
@@ -77,6 +82,7 @@
   text-shadow: 0 0 15px #40e0d0;
   width: 100%;
   text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
 .section-heading {
@@ -87,6 +93,7 @@
   margin-bottom: 4rem;
   margin-top: 4rem;
   text-align: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* === Enhanced Mobile Responsive Layout === */
@@ -129,16 +136,18 @@
     margin-top: 60px;
   }
 }
+
 /* === Updated Search Results Grid & Cards === */
 .search-results-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-  gap: 12px 12px; /* smaller gap between rows and columns */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 12px;
   justify-items: center;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .search-results-grid .game-card {
-  width: 240px;           /* a bit wider than before */
+  width: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,23 +158,33 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+}
+
+.search-results-grid .game-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
 }
 
 .search-results-grid .game-card .game-image {
   width: 100%;
-  height: 140px;         /* slightly taller to match wider card */
+  height: 140px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
+  transition: transform 0.4s ease;
 }
 
+.search-results-grid .game-card:hover .game-image {
+  transform: scale(1.05);
+}
 
 .search-results-grid .game-card h2 {
   font-size: 1rem;
   color: #40e0d0;
   margin-bottom: 5px;
   text-shadow: 0 0 6px rgba(64, 224, 208, 0.7);
+  transition: color 0.3s ease;
 }
 
 .search-results-grid .game-card .genre {
@@ -173,9 +192,9 @@
   margin-bottom: 10px;
   color: #ff73fa;
   font-weight: 500;
+  transition: opacity 0.3s ease;
 }
 
-/* Hide platforms */
 .search-results-grid .game-card .platforms {
   display: none;
 }
@@ -194,7 +213,7 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .search-results-grid .game-card .go-to-game-btn {

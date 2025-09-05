@@ -106,7 +106,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
             )}
           </>
         ) : (
-          <Link to="/login" className="navbar-link">Login</Link>
+          <Link to="/login" className="navbar-link">Vault</Link>
         )}
       </div>
     </nav>
