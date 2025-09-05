@@ -325,4 +325,71 @@
   background-color: deeppink;
   box-shadow: 0 0 8px rgba(255, 20, 147, 0.7);
 }
+/* === Mobile Styles Only === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: nowrap;
+    padding: 0.6rem 1rem;
+    justify-content: space-between;
+  }
+
+  .logo {
+    width: 60px;
+  }
+
+  /* Hamburger visible on mobile */
+  .hamburger {
+    display: flex;
+    position: relative;
+    right: 0;
+    margin-left: auto;
+    z-index: 1001;
+  }
+
+  /* Hide nav list by default */
+  .navbar-list {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 1rem;
+    gap: 20px;
+    transform: translateY(-200%);
+    transition: transform 0.35s ease-in-out;
+    z-index: 998;
+  }
+
+  /* Show when hamburger active */
+  .navbar-list.open {
+    transform: translateY(0);
+  }
+
+  .navbar-link {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  /* Avatar smaller */
+  .navbar-avatar-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Dropdown repositioned */
+  .navbar-dropdown {
+    top: 55px;
+    right: 15px;
+  }
+
+  /* Login button adjustment */
+  .navbar-login {
+    margin-top: 0.5rem;
+    align-self: flex-start;
+  }
+}
 
