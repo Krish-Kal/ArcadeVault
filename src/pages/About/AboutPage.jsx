@@ -1,81 +1,93 @@
-import React from "react";
-import "./AboutPage.css"; // Ensure this path is correct
+import React, { useEffect } from "react";
+import "./AboutPage.css";
 
 const About = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const elements = document.querySelectorAll(".feature-card, .about-me-card, .footer-section");
+    elements.forEach((el) => observer.observe(el));
+  }, []);
+
   return (
     <div className="about-page">
-      {/* === Header Section === */}
-      <section className="header">
+
+      {/* Hero Section */}
+      <section className="hero-section">
         <h1>ArcadeVault</h1>
         <p>
-          Welcome to ArcadeVault, your one-stop destination for all things gaming. Explore the future of gaming with a seamless experience across multiple platforms.
+          Step into ArcadeVault — your Ultimate Gaming Hub. Discover, compare, and explore games across various websites and platforms, all in one smooth, immersive platform designed for the modern gamer.
         </p>
       </section>
 
-      {/* === About Us Section (Two Creators) === */}
-      <section className="about-me two-creators">
-        <div className="creator-card">
-          <img
-            src="/DP.jpg"
-            alt="Krishna Kalvakolanu"
-            className="creator-photo"
-          />
-          <h2>Krishna Kalvakolanu</h2>
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="feature-card">
+          <h3>Unified Game Library</h3>
           <p>
-             Hello, I'm the creator behind ArcadeVault. With a passion for gaming and technology, I've created a platform to bring gamers closer to their favorite games from Epic Games, Steam, and Rockstar Games. My goal is to combine convenience and innovation in one powerful platform.
+            Access all your favorite games from multiple platforms in one sleek interface — no switching, no clutter.
           </p>
-          <div className="social-links">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </div>
         </div>
-
-        <div className="creator-card">
-          <img
-            src="/DP2.jpg"
-            alt="Alex Morgan"
-            className="creator-photo"
-          />
-          <h2>Mani Shashank</h2>
-          <p>
-            I'm Mani Shashank, co-developer of ArcadeVault.
-I focus on making the platform smoother, faster, and more enjoyable to use. I work on improving the overall experience — from how things look to how they feel — by suggesting new features, helping with layout improvements, and keeping the site responsive across devices.
-          </p>
-          <div className="social-links">
-            <a href="https://twitter.com/alexdev" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://github.com/alexdev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/alexmorgan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </div>
+        <div className="feature-card">
+           <h3>Wishlist & Favorites</h3>
+    <p>
+      Save your favorite games, build wishlists, and track releases easily — your Vault keeps your gaming world organized.
+    </p>
+        </div>
+        <div className="feature-card">
+           <h3>Vault Access</h3>
+    <p>
+      Secure and personalized user authentication — your gaming preferences and activity are safely stored in your personal Vault.
+    </p>
+        </div>
+        <div className="feature-card">
+           <h3>Seamless Experience</h3>
+    <p>
+      Smooth, immersive, and responsive design ensures a gaming browsing experience that’s fast, intuitive, and enjoyable.
+    </p>
         </div>
       </section>
 
-      {/* === Project Overview Section === */}
-      <section className="project-overview">
-        <h2>About the Project</h2>
-        <p>
-          ArcadeVault is built with cutting-edge technology and a vision to revolutionize how gamers discover and purchase games. This platform brings together games from major platforms like Epic, Steam, and Rockstar, allowing gamers to browse and compare in one unified space.
-        </p>
+      {/* About Me Section */}
+      <section className="about-me-section">
+        <div className="about-me-card">
+          <img src="/DP.jpg" alt="Krishna Kalvakolanu" />
+          <div className="about-text">
+            <h2>About Me</h2>
+            <p>
+              I'm Krishna Kalvakolanu, the mind behind ArcadeVault. I blend creativity, technology, and a love for gaming to build smooth, engaging, and slightly quirky experiences that gamers actually enjoy.
+            </p>
+            <div className="social-links">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* === Call to Action (CTA) Section === */}
-      <section className="cta">
-        <h2>Join Us on This Journey</h2>
-        <p>Be part of the future of gaming. Explore our collection of games and join a community of like-minded gamers.</p>
-        <a className="cta-button" href="/">Explore ArcadeVault</a>
+      {/* Footer Section */}
+      <section className="footer-section">
+        <h2>Ready to Level Up?</h2>
+        <p>Explore ArcadeVault, discover your next favorite game, and join a community of passionate gamers worldwide.</p>
+        <a className="footer-cta" href="/">Start Exploring</a>
       </section>
+
     </div>
   );
 };
