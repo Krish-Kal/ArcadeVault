@@ -43,7 +43,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
       } else {
         if (currentScrollY > lastScrollY) {
           setIsNavbarVisible(false); // hide on scroll down
-          setMobileMenuOpen(false);  // ✅ auto-close hamburger menu
+          setMobileMenuOpen(false);  // auto-close hamburger menu
         } else {
           setIsNavbarVisible(true);  // show on scroll up
         }
@@ -52,18 +52,13 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
       lastScrollY = currentScrollY;
     };
 
-    const handleTap = (e) => {
-      if (window.innerWidth <= 768) {
-        setIsNavbarVisible(false); // hide navbar on screen tap
-      }
-    };
-
     window.addEventListener('scroll', handleScroll);
-    document.addEventListener('click', handleTap);
+
+    // ✅ Removed the problematic click/tap handler
+    // It was closing mobile menu immediately
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('click', handleTap);
     };
   }, []);
 
