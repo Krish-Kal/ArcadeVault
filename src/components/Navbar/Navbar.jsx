@@ -43,6 +43,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
       } else {
         if (currentScrollY > lastScrollY) {
           setIsNavbarVisible(false); // hide on scroll down
+          setMobileMenuOpen(false);  // ✅ auto-close hamburger menu
         } else {
           setIsNavbarVisible(true);  // show on scroll up
         }

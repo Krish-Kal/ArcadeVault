@@ -325,16 +325,18 @@
   background-color: deeppink;
   box-shadow: 0 0 8px rgba(255, 20, 147, 0.7);
 }
-/* === Mobile Styles Only === */
+/* === Mobile Styles Only (Enhanced) === */
 @media (max-width: 768px) {
   .navbar {
     flex-wrap: nowrap;
     padding: 0.6rem 1rem;
     justify-content: space-between;
+    transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
   }
 
   .logo {
     width: 60px;
+    transition: transform 0.3s ease;
   }
 
   /* Hamburger visible on mobile */
@@ -344,6 +346,7 @@
     right: 0;
     margin-left: auto;
     z-index: 1001;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   /* Hide nav list by default */
@@ -358,13 +361,15 @@
     padding: 1rem;
     gap: 20px;
     transform: translateY(-200%);
-    transition: transform 0.35s ease-in-out;
+    opacity: 0;
+    transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
     z-index: 998;
   }
 
   /* Show when hamburger active */
   .navbar-list.open {
     transform: translateY(0);
+    opacity: 1;
   }
 
   .navbar-link {
@@ -372,18 +377,21 @@
     width: 100%;
     font-size: 1rem;
     padding: 0.8rem 1rem;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   }
 
   /* Avatar smaller */
   .navbar-avatar-img {
     width: 36px;
     height: 36px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   /* Dropdown repositioned */
   .navbar-dropdown {
     top: 55px;
     right: 15px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   /* Login button adjustment */
@@ -391,5 +399,15 @@
     margin-top: 0.5rem;
     align-self: flex-start;
   }
-}
 
+  /* Smooth hide/show for navbar & hamburger on scroll */
+  .navbar.navbar-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .navbar.navbar-visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

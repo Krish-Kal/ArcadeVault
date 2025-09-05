@@ -1,7 +1,3 @@
-/* === Wishlist Adjustment === */
-.wishlist-active {
-  margin-top: 60px; /* Adjust the margin to be directly below the navbar */
-}
 /* === Global Website Background (Smooth & No Flicker) === */
 body {
   margin: 0;
@@ -11,38 +7,46 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-
-  /* Hide flicker until image fully loaded */
   background: #000; /* fallback */
 }
 
-/* Use ::before pseudo-element to hold the background */
+/* ::before pseudo-element holds the background */
 body::before {
   content: "";
-  position: fixed;
+  position: fixed; /* keep it fixed */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image: url('./assets/background.png');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  z-index: -1; /* behind all content */
+  z-index: -1; /* behind content */
 
   /* Smooth load */
   opacity: 0;
   animation: bgFadeIn 1s forwards ease-in-out;
-  will-change: opacity, background-position;
+  will-change: opacity, transform;
 }
 
+/* Mobile enhancement to avoid flicker */
+@media (max-width: 768px) {
+  body::before {
+    transform: translateZ(0); /* forces GPU acceleration */
+    backface-visibility: hidden; /* smoother rendering */
+    -webkit-transform: translate3d(0,0,0); /* iOS smooth fix */
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Fade-in animation */
 @keyframes bgFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* === Wishlist Adjustment === */
+/* Wishlist adjustment */
 .wishlist-active {
-  margin-top: 60px; /* Adjust the margin to be directly below the navbar */
+  margin-top: 60px; /* below navbar */
 }
