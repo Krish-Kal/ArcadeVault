@@ -18,15 +18,40 @@ body {
 .about-page {
   min-height: 100vh;
   padding: 8rem 2rem 4rem 2rem; /* space below navbar */
-  color: #fff;
   font-family: 'Arial', sans-serif;
-  background: none;
   width: 100%;
+  margin: 0;
   position: relative;
-  overflow-x: hidden;
-  max-width: 1200px;
-  margin: 0 auto;
+  overflow: hidden;
   z-index: 1;
+
+  /* Full-page background */
+  background: 
+    linear-gradient(rgba(18, 28, 45, 0.507), rgba(17, 28, 46, 0.651)),
+    url("/images/about-bg.jpg") no-repeat center center/cover;
+}
+
+/* === Cosmic Particles Layer === */
+.about-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, #8ad0ff 70%, transparent),
+    radial-gradient(2px 2px at 40% 80%, #b19fff 70%, transparent),
+    radial-gradient(3px 3px at 70% 40%, #ffffff 70%, transparent),
+    radial-gradient(2px 2px at 80% 60%, #ffcb8a 70%, transparent),
+    radial-gradient(2px 2px at 25% 75%, #8ad0ff 70%, transparent);
+  background-size: cover;
+  animation: floatParticles 60s linear infinite;
+  opacity: 1;
+  z-index: 0;
+}
+
+@keyframes floatParticles {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-80px) translateX(60px); }
+  100% { transform: translateY(0) translateX(0); }
 }
 
 /* === Hero Section === */
@@ -34,65 +59,72 @@ body {
   text-align: center;
   max-width: 800px;
   margin: 0 auto 5rem auto;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-section h1 {
   font-size: 3rem;
   color: #8ad0ff;
-  text-shadow: 0 0 10px rgba(138,208,255,0.6), 0 0 20px rgba(138,208,255,0.4);
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(138,208,255,0.6), 0 0 25px rgba(138,208,255,0.4);
   margin-bottom: 1rem;
   animation: fadeInUp 1s ease forwards;
 }
 
 .hero-section p {
   font-size: 1.2rem;
-  color: #ccc;
-  line-height: 1.6;
+  color: #d6d6d6;
+  line-height: 1.7;
   animation: fadeInUp 1.2s ease forwards;
 }
 
 /* === Features Section === */
 .features-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem 3.2rem; /* vertical | horizontal spacing */
-  justify-items: center; /* center tiles in their grid cell */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  justify-items: center;
   margin: 0 auto 5rem auto;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
+  position: relative;
+  z-index: 1;
 }
 
-
 .feature-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 25px;
-  padding: 2rem 0.8rem; /* more vertical padding for better spacing */
+  border-radius: 20px;
+  padding: 2rem 1.2rem;
   text-align: center;
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(138, 208, 255, 0.3);
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 0.4s ease, box-shadow 0.3s ease;
   width: 100%;
-  max-width: 240px; /* keeps tiles compact */
+  max-width: 260px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  /* Frosted white glass */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .feature-card h3 {
   color: #8ad0ff;
-  font-size: 1.4rem; /* professional, readable */
+  font-size: 1.5rem;
   margin-bottom: 0.8rem;
   line-height: 1.3;
-  text-shadow: 0 0 6px rgba(138, 208, 255, 0.6);
+  text-shadow: 0 0 10px rgba(138,208,255,0.6);
 }
 
 .feature-card p {
-  color: #ddd;
-  font-size: 0.95rem; /* readable font size */
-  line-height: 1.6; /* spacing between lines */
-  margin-bottom: 0; /* remove extra bottom space */
+  color: #e9e9e9;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .feature-card.fade-in {
@@ -101,9 +133,10 @@ body {
 }
 
 .feature-card:hover {
-  transform: scale(1.06);
-  border-color: rgba(138, 208, 255, 0.7);
-  box-shadow: 0 0 25px rgba(138, 208, 255, 0.4), 0 0 50px rgba(138, 208, 255, 0.2);
+  transform: scale(1.07);
+  border-color: rgba(138, 208, 255, 0.8);
+  box-shadow: 0 0 25px rgba(138,208,255,0.4),
+              0 0 50px rgba(138,208,255,0.25);
 }
 
 /* === About Me Section === */
@@ -112,21 +145,27 @@ body {
   justify-content: center;
   margin-bottom: 5rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .about-me-card {
   display: flex;
-  max-width: 750px;
-  border-radius: 30px;
+  max-width: 800px;
+  border-radius: 25px;
   overflow: hidden;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(18px);
-  border: 2px solid rgba(138,208,255,0.3);
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 0.4s ease, box-shadow 0.3s ease;
   width: 100%;
   flex-wrap: wrap;
+
+  /* Frosted white glass */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .about-me-card.fade-in {
@@ -135,12 +174,13 @@ body {
 }
 
 .about-me-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(138,208,255,0.4), 0 0 60px rgba(138,208,255,0.2);
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(138,208,255,0.35),
+              0 0 55px rgba(138,208,255,0.2);
 }
 
 .about-me-card img {
-  width: 200px;
+  width: 220px;
   object-fit: cover;
   border-right: 2px solid rgba(138,208,255,0.3);
   transition: transform 0.3s ease;
@@ -158,27 +198,28 @@ body {
 .about-text h2 {
   color: #8ad0ff;
   margin-bottom: 1rem;
-  text-shadow: 0 0 8px rgba(138,208,255,0.6);
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px rgba(138,208,255,0.6);
   animation: fadeInUp 1.2s ease forwards;
 }
 
 .about-text p {
   font-size: 1rem;
-  line-height: 1.6;
-  color: #ddd;
+  line-height: 1.7;
+  color: #e5e5e5;
   animation: fadeInUp 1.4s ease forwards;
 }
 
 .social-links a {
   margin-right: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #8ad0ff;
   transition: all 0.3s ease;
 }
 
 .social-links a:hover {
   color: #b19fff;
-  text-shadow: 0 0 10px rgba(138,208,255,0.6);
+  text-shadow: 0 0 12px rgba(138,208,255,0.7);
   transform: scale(1.2);
 }
 
@@ -186,14 +227,18 @@ body {
 .footer-section {
   text-align: center;
   padding: 3rem 2rem;
-  background: rgba(255,255,255,0.05);
-  border-radius: 30px;
-  border: 2px solid rgba(138,208,255,0.3);
-  backdrop-filter: blur(18px);
+  border-radius: 25px;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.4s ease, transform 0.3s ease;
+  transition: all 0.4s ease;
   width: 100%;
+
+  /* Frosted white glass */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .footer-section.fade-in {
@@ -205,11 +250,11 @@ body {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #8ad0ff;
-  text-shadow: 0 0 8px rgba(138,208,255,0.6);
+  text-shadow: 0 0 10px rgba(138,208,255,0.6);
 }
 
 .footer-section p {
-  color: #ccc;
+  color: #e5e5e5;
   margin-bottom: 1.5rem;
 }
 
@@ -221,31 +266,28 @@ body {
   color: #000;
   font-weight: bold;
   text-decoration: none;
-  box-shadow: 0 0 15px rgba(138,208,255,0.4), 0 0 25px rgba(177,159,255,0.2);
+  box-shadow: 0 0 15px rgba(138,208,255,0.4),
+              0 0 25px rgba(177,159,255,0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .footer-cta:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(138,208,255,0.4), 0 0 45px rgba(177,159,255,0.3);
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(138,208,255,0.5),
+              0 0 45px rgba(177,159,255,0.3);
 }
 
 /* === Fade-in Animations === */
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* === Responsive Adjustments === */
 @media (max-width: 768px) {
   .about-page {
     padding: 10rem 1rem 4rem 1rem;
+    background-attachment: scroll;
   }
 
   .about-me-card {
@@ -255,17 +297,126 @@ body {
   }
 
   .about-me-card img {
-    width: 150px;
+    width: 160px;
     border-right: none;
     border-bottom: 2px solid rgba(138,208,255,0.3);
   }
 
   .features-section {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .feature-card {
     max-width: 100%;
   }
-}  
+}
+/* === Mobile & Tablet Enhancements === */
+@media (max-width: 1024px) {
+  .about-page {
+    padding: 6rem 1.5rem 3rem 1.5rem;
+  }
+
+  .feature-card,
+  .about-me-card,
+  .footer-section {
+    margin: 1rem 0;
+    padding: 1.2rem;
+    border-radius: 20px;
+  }
+
+  .feature-card h3,
+  .about-text h2,
+  .footer-section h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .feature-card p,
+  .about-text p,
+  .footer-section p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 5rem 1rem 2.5rem 1rem;
+  }
+
+  .feature-card,
+  .about-me-card,
+  .footer-section {
+    width: 100%;
+    margin: 0.8rem 0;
+    padding: 1rem;
+    border-radius: 18px;
+  }
+
+  .feature-card h3,
+  .about-text h2,
+  .footer-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .feature-card p,
+  .about-text p,
+  .footer-section p {
+    font-size: 0.9rem;
+  }
+
+  /* Center all content on mobile */
+  .feature-card,
+  .about-me-card,
+  .footer-section {
+    text-align: center;
+  }
+
+  /* Adjust cosmic overlay particle speed for smaller screens */
+  .cosmic-overlay span {
+    animation-duration: 14s;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page {
+    padding: 4rem 0.8rem 2rem 0.8rem;
+  }
+
+  .feature-card h3,
+  .about-text h2,
+  .footer-section h2 {
+    font-size: 1rem;
+  }
+
+  .feature-card p,
+  .about-text p,
+  .footer-section p {
+    font-size: 0.85rem;
+  }
+
+  .feature-card,
+  .about-me-card,
+  .footer-section {
+    padding: 0.9rem;
+    border-radius: 15px;
+  }
+}
+/* === Fix navbar overlapping content === */
+.about-page {
+  padding-top: calc(8rem + 60px); /* existing top padding + navbar height */
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding-top: calc(5rem + 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page {
+    padding-top: calc(4rem + 60px);
+  }
+}
