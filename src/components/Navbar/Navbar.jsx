@@ -34,35 +34,20 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (window.innerWidth > 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 80) {
-          setIsNavbarVisible(false);
-        } else {
-          setIsNavbarVisible(true);
-        }
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsNavbarVisible(false); // hide on scroll down
+        setMobileMenuOpen(false);   // hide mobile menu too
       } else {
-        if (currentScrollY > lastScrollY) {
-          setIsNavbarVisible(false); // hide on scroll down
-        } else {
-          setIsNavbarVisible(true);  // show on scroll up
-        }
+        setIsNavbarVisible(true);  // show on scroll up
       }
 
       lastScrollY = currentScrollY;
     };
 
-    const handleTap = (e) => {
-      if (window.innerWidth <= 768) {
-        setIsNavbarVisible(false); // hide navbar on screen tap
-      }
-    };
-
     window.addEventListener('scroll', handleScroll);
-    document.addEventListener('click', handleTap);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('click', handleTap);
     };
   }, []);
 
