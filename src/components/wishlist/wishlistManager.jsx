@@ -8,6 +8,12 @@ const useWishlist = () => {
 
   // Load wishlist from storage on mount
   useEffect(() => {
+    loadUserWishlist();
+    // eslint-disable-next-line
+  }, []);
+
+  // Function to load wishlist from storage
+  const loadUserWishlist = () => {
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('userEmail');
     const key = token && email ? `userWishlist_${email}` : 'guestWishlist';
@@ -15,7 +21,8 @@ const useWishlist = () => {
 
     const saved = localStorage.getItem(key) || sessionStorage.getItem('wishlist');
     if (saved) setWishlist(JSON.parse(saved));
-  }, []);
+    else setWishlist([]);
+  };
 
   // Save wishlist to correct storage
   const saveToStorage = (list) => {
@@ -70,6 +77,7 @@ const useWishlist = () => {
     addToWishlist,
     removeFromWishlist,
     clearWishlist,
+    loadUserWishlist, // <-- now included
   };
 };
 
