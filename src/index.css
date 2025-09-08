@@ -2,6 +2,7 @@
 .wishlist-active {
   margin-top: 60px; /* Adjust the margin to be directly below the navbar */
 }
+
 /* === Global Website Background (Smooth & No Flicker) === */
 body {
   margin: 0;
@@ -24,7 +25,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./assets/background.png');
+  background-image: url('./assets/background.png'); /* desktop wallpaper */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,12 +38,17 @@ body::before {
   will-change: opacity, background-position;
 }
 
+/* Fade-in Animation */
 @keyframes bgFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* === Wishlist Adjustment === */
-.wishlist-active {
-  margin-top: 60px; /* Adjust the margin to be directly below the navbar */
+/* === Mobile Wallpaper Override === */
+@media (max-width: 1024px) {
+  body::before {
+    background-image: url('./assets/background-mobile.jpg'); /* mobile wallpaper */
+    position: absolute;              /* prevents mobile flicker */
+    background-attachment: scroll;   /* safe for mobile */
+  }
 }
