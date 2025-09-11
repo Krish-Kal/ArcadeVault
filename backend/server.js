@@ -9,8 +9,18 @@ dotenv.config();
 
 const app = express();
 
+// Allow your deployed frontend domain
+const allowedOrigins = [
+  'https://arcade-vault-seven.vercel.app', // your deployed frontend
+  'http://localhost:5173', // local dev (optional)
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json()); // parse JSON requests
 
 // Connect to MongoDB
