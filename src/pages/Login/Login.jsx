@@ -77,19 +77,16 @@ const LoginPage = ({ setIsLoggedIn, loadUserWishlist }) => {
       const data = await res.json();
 
       if (res.ok) {
-        // On successful login
         localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', email);
-        sessionStorage.removeItem('wishlist');
-        loadUserWishlist();
+        loadUserWishlist(); // <-- fetch wishlist from DB
         setIsLoggedIn(true);
-        setLoginMessage('Login successful!'); // Set success message
+        setLoginMessage('Login successful!');
         setTimeout(() => {
           navigate('/profile');
-          setLoginMessage(''); // Clear message after redirect
-        }, 2000); // Clear the message after 2 seconds
+          setLoginMessage('');
+        }, 2000);
       } else {
-        // On failed login (incorrect credentials)
         setLoginMessage(data.message || 'Login failed! Incorrect email or password.');
       }
     } catch (error) {

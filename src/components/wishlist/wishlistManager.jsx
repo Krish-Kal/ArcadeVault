@@ -1,33 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const API_KEY = 'dbdfb4c288374e7b8e71571677db40fa';
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://arcadevault-4.onrender.com/api/users/wishlist';
 
 const useWishlist = () => {
-  const [wishlist, setWishlist] = useState([]);
-  const [storageKey, setStorageKey] = useState(null);
+  // Always initialize from sessionStorage for instant guest experience
+  const [wishlist, setWishlist] = useState(() => {
+    const saved = sessionStorage.getItem('wishlist');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Load wishlist from storage on mount
-  useEffect(() => {
-    loadUserWishlist();
-    // eslint-disable-next-line
-  }, []);
-
-  // Function to load wishlist from storage
-  const loadUserWishlist = () => {
+  // Load wishlist from MongoDB (for logged-in) or sessionStorage (for guests)
+  const loadUserWishlist = async () => {
     const token = localStorage.getItem('token');
-    const email = localStorage.getItem('userEmail');
-    const key = token && email ? `userWishlist_${email}` : 'guestWishlist';
-    setStorageKey(key);
-
-    const saved = localStorage.getItem(key) || sessionStorage.getItem('wishlist');
-    if (saved) setWishlist(JSON.parse(saved));
-    else setWishlist([]);
+    if (token) {
+      try {
+        const res = await fetch(API_BASE, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setWishlist(data.wishlist || []);
+        } else {
+          setWishlist([]);
+        }
+      } catch (err) {
+        setWishlist([]);
+      }
+    } else {
+      const saved = sessionStorage.getItem('wishlist');
+      setWishlist(saved ? JSON.parse(saved) : []);
+    }
   };
 
-  // Save wishlist to correct storage
-  const saveToStorage = (list) => {
-    if (storageKey && storageKey.startsWith('userWishlist_')) {
-      localStorage.setItem(storageKey, JSON.stringify(list));
+  // Save wishlist to MongoDB (for logged-in) or sessionStorage (for guests)
+  const saveToStorage = async (list) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        await fetch(API_BASE, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ wishlist: list }),
+        });
+      } catch (err) {
+        // Optionally handle error
+      }
     } else {
       sessionStorage.setItem('wishlist', JSON.stringify(list));
     }
@@ -53,23 +74,26 @@ const useWishlist = () => {
       if (details) {
         const updated = [...wishlist, details];
         setWishlist(updated);
-        saveToStorage(updated);
+        await saveToStorage(updated);
       }
     }
   };
 
   // Remove game from wishlist
-  const removeFromWishlist = (id) => {
+  const removeFromWishlist = async (id) => {
     const updated = wishlist.filter((g) => g.id !== id);
     setWishlist(updated);
-    saveToStorage(updated);
+    await saveToStorage(updated);
   };
 
   // Clear entire wishlist
-  const clearWishlist = () => {
+  const clearWishlist = async () => {
     setWishlist([]);
-    if (storageKey && storageKey.startsWith('userWishlist_')) localStorage.removeItem(storageKey);
-    else sessionStorage.removeItem('wishlist');
+    const token = localStorage.getItem('token');
+    if (!token) {
+      sessionStorage.removeItem('wishlist');
+    }
+    // Optionally, clear on server for logged-in users if needed
   };
 
   return {
@@ -77,7 +101,7 @@ const useWishlist = () => {
     addToWishlist,
     removeFromWishlist,
     clearWishlist,
-    loadUserWishlist, // <-- now included
+    loadUserWishlist,
   };
 };
 

@@ -19,12 +19,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
   useEffect(() => {
-    if (isLoggedIn) loadUserWishlist();
+    if (isLoggedIn) {
+      loadUserWishlist();
+    }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    sessionStorage.removeItem('wishlist');
+    localStorage.removeItem('userEmail');
     clearWishlist();
     setIsLoggedIn(false);
   };

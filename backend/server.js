@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
-const aiRoutes = require('./routes/airouts'); // AI route
 
 dotenv.config();
 
@@ -27,7 +26,6 @@ mongoose
 
 // Routes
 app.use('/api/users', userRoutes);
-app.use('/api/ai-games', aiRoutes); // <-- AI games route
 
 // Fallback route
 app.get('/', (req, res) => {
