@@ -3,7 +3,6 @@ import "./AboutPage.css";
 
 const About = () => {
   useEffect(() => {
-    // IntersectionObserver for fade-in animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -15,16 +14,14 @@ const About = () => {
       { threshold: 0.2 }
     );
 
-    const elements = document.querySelectorAll(
-      ".feature-card, .about-me-card, .footer-section"
-    );
+    const elements = document.querySelectorAll(".feature-card, .about-me-card, .footer-section");
     elements.forEach((el) => observer.observe(el));
 
-    // Background canvas animation (only for content sections, NOT footer)
+    // Background canvas
     const container = document.querySelector(".about-page");
     const canvas = document.createElement("canvas");
     canvas.classList.add("bg-canvas");
-    container.prepend(canvas); // append inside about-page, behind content
+    container.prepend(canvas);
     const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
@@ -51,7 +48,7 @@ const About = () => {
         this.speedX = (Math.random() - 0.5) * 0.3;
         this.speedY = (Math.random() - 0.5) * 0.3;
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.sides = Math.floor(Math.random() * 3) + 3; // 3-5 sides
+        this.sides = Math.floor(Math.random() * 3) + 3;
         this.angle = 0;
         this.rotationSpeed = (Math.random() - 0.5) * 0.01;
       }
@@ -60,7 +57,6 @@ const About = () => {
         this.x += this.speedX + (mouse.x - canvas.width / 2) * 0.0005;
         this.y += this.speedY + (mouse.y - canvas.height / 2) * 0.0005;
         this.angle += this.rotationSpeed;
-
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
       }
@@ -83,9 +79,7 @@ const About = () => {
       }
     }
 
-    for (let i = 0; i < 40; i++) {
-      shapes.push(new Shape());
-    }
+    for (let i = 0; i < 40; i++) shapes.push(new Shape());
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -112,74 +106,70 @@ const About = () => {
 
   return (
     <div className="about-page">
-
       {/* Hero Section */}
       <section className="hero-section">
         <h1>ArcadeVault</h1>
         <p>
-          Step into ArcadeVault — your Ultimate Gaming Hub. Discover, compare, and explore games across various websites and platforms, all in one smooth, immersive platform designed for the modern gamer.
+          Welcome to ArcadeVault — your ultimate gaming hub! Discover, track, and manage games across platforms, build wishlists, compare stats, and explore personalized features all in one seamless experience.
         </p>
       </section>
 
       {/* Features Section */}
       <section className="features-section">
-        <div className="feature-card">
-          <h3>Unified Game Library</h3>
-          <p>
-            Access all your favorite games from multiple platforms in one sleek interface — no switching, no clutter.
-          </p>
-        </div>
-        <div className="feature-card">
-          <h3>Wishlist & Favorites</h3>
-          <p>
-            Save your favorite games, build wishlists, and track releases easily — your Vault keeps your gaming world organized.
-          </p>
-        </div>
-        <div className="feature-card">
+        <div className="feature-card highlight">
           <h3>Vault Access</h3>
-          <p>
-            Secure and personalized user authentication — your gaming preferences and activity are safely stored in your personal Vault.
-          </p>
+          <p>Secure login keeps your preferences, activity, and wishlist safely stored in your personal Vault.</p>
+        </div>
+        <div className="feature-card highlight">
+          <h3>Wishlist & Favorites</h3>
+          <p>Save games to your Vault, build custom wishlists, and never miss a release or update.</p>
+        </div>
+        <div className="feature-card">
+          <h3>Unified Game Hub</h3>
+          <p>Access games from multiple platforms in a single organized interface — no switching, no clutter.</p>
+        </div>
+        <div className="feature-card">
+          <h3>Game Stats</h3>
+          <p>Track your collection, see trending stats, compare game ratings, and make informed choices.</p>
         </div>
         <div className="feature-card">
           <h3>Seamless Experience</h3>
-          <p>
-            Smooth, immersive, and responsive design ensures a gaming browsing experience that’s fast, intuitive, and enjoyable.
-          </p>
+          <p>Fast, intuitive, and responsive design for a smooth browsing experience on any device.</p>
         </div>
       </section>
 
-      {/* About Me Section */}
-      <section className="about-me-section">
-        <div className="about-me-card">
-          <img src="/DP.jpg" alt="Krishna Kalvakolanu" />
-          <div className="about-text">
-            <h2>About Me</h2>
-            <p>
-              I'm Krishna Kalvakolanu, the mind behind ArcadeVault. I blend creativity, technology, and a love for gaming to build smooth, engaging, and slightly quirky experiences that gamers actually enjoy.
-            </p>
-            <div className="social-links">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+{/* Minimal About Me Section */}
+<section className="about-me-section">
+  <div className="about-me-card">
+    <div className="about-text">
+      <h2>About Me</h2>
+      <p>
+        I'm Krishna Kalvakolanu, the mind behind ArcadeVault. I blend creativity, technology, and a passion for gaming to craft smooth, engaging, and slightly quirky experiences that gamers truly enjoy.
+      </p>
+
+      {/* Social Links with Icons */}
+      <div className="social-links">
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Footer Section */}
       <section className="footer-section">
         <h2>Ready to Level Up?</h2>
-        <p>Explore ArcadeVault, discover your next favorite game, and join a community of passionate gamers worldwide.</p>
+        <p>Join ArcadeVault, explore games, track your wishlist, and connect with a community of passionate gamers worldwide.</p>
         <a className="footer-cta" href="/">Start Exploring</a>
       </section>
-
     </div>
   );
 };
