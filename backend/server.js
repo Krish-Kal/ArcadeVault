@@ -11,7 +11,7 @@ const app = express();
 
 // Allow your deployed frontend domain
 const allowedOrigins = [
-  'https://arcade-vault-seven.vercel.app', // your deployed frontend
+  'https://arcade-vault-hub.vercel.app', // your deployed frontend
   'http://localhost:5173', // local dev (optional)
 ];
 
