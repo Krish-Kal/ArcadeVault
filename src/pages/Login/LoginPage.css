@@ -175,7 +175,7 @@
         width: 90%; /* Make the login box take 90% width */
         max-width: 400px; /* Prevent it from becoming too wide on mobile */
         padding: 1.8rem 1.5rem; /* Slightly reduce padding for mobile */
-        margin-top: 60px; /* Reduce margin-top for a better look on mobile */
+        margin-top: 200px; /* Reduce margin-top for a better look on mobile */
     }
 
     /* Adjust the Login Title */

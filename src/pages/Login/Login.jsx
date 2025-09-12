@@ -124,9 +124,7 @@ const LoginPage = ({ setIsLoggedIn, loadUserWishlist }) => {
           <p>
             Don't have an account? <a href="/signup">Sign Up</a>
           </p>
-          <p>
-            <a href="#">Forgot Password?</a>
-          </p>
+
         </div>
 
         {/* Display the login message (success or error) */}
