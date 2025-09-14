@@ -17,7 +17,6 @@ const About = () => {
     const elements = document.querySelectorAll(".feature-card, .about-me-card, .footer-section");
     elements.forEach((el) => observer.observe(el));
 
-    // Background canvas
     const container = document.querySelector(".about-page");
     const canvas = document.createElement("canvas");
     canvas.classList.add("bg-canvas");
@@ -33,8 +32,8 @@ const About = () => {
 
     const shapes = [];
     const colors = [
-      "rgba(138,208,255,0.2)",
-      "rgba(177,159,255,0.15)",
+      "rgba(0,240,255,0.2)",
+      "rgba(138,208,255,0.15)",
       "rgba(255,255,255,0.1)",
     ];
 
@@ -79,7 +78,7 @@ const About = () => {
       }
     }
 
-    for (let i = 0; i < 40; i++) shapes.push(new Shape());
+    for (let i = 0; i < 50; i++) shapes.push(new Shape());
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -110,7 +109,7 @@ const About = () => {
       <section className="hero-section">
         <h1>ArcadeVault</h1>
         <p>
-          Welcome to ArcadeVault — your ultimate gaming hub! Discover, track, and manage games across platforms, build wishlists, compare stats, and explore personalized features all in one seamless experience.
+          Welcome to <strong>ArcadeVault</strong> — the ultimate gaming hub. Track your collection, explore game stats, manage wishlists, and enjoy a seamless gaming experience.
         </p>
       </section>
 
@@ -118,56 +117,51 @@ const About = () => {
       <section className="features-section">
         <div className="feature-card highlight">
           <h3>Vault Access</h3>
-          <p>Secure login keeps your preferences, activity, and wishlist safely stored in your personal Vault.</p>
-        </div>
+          <p>Securely log in to your personal Vault to manage your game collection, wishlists, and preferences — keeping your gaming data safe, organized, and accessible anytime.</p>
+          </div>
         <div className="feature-card highlight">
-          <h3>Wishlist & Favorites</h3>
-          <p>Save games to your Vault, build custom wishlists, and never miss a release or update.</p>
+          <h3>Wishlist</h3>
+          <p>Create and manage wishlists to never miss upcoming releases or updates for your favorite games.</p>
         </div>
         <div className="feature-card">
-          <h3>Unified Game Hub</h3>
-          <p>Access games from multiple platforms in a single organized interface — no switching, no clutter.</p>
+          <h3>Ultimate Gaming Hub</h3>
+           <p>Access pro tips, track your gaming stats, read legendary quotes, and explore top game stores — all in one hub.</p>
         </div>
         <div className="feature-card">
-          <h3>Game Stats</h3>
-          <p>Track your collection, see trending stats, compare game ratings, and make informed choices.</p>
-        </div>
-        <div className="feature-card">
-          <h3>Seamless Experience</h3>
-          <p>Fast, intuitive, and responsive design for a smooth browsing experience on any device.</p>
+          <h3>Multi-Platform Hub</h3>
+          <p>Access and manage games from various platforms in a single streamlined interface.</p>
         </div>
       </section>
 
-{/* Minimal About Me Section */}
-<section className="about-me-section">
-  <div className="about-me-card">
-    <div className="about-text">
-      <h2>About Me</h2>
-      <p>
-        I'm Krishna Kalvakolanu, the mind behind ArcadeVault. I blend creativity, technology, and a passion for gaming to craft smooth, engaging, and slightly quirky experiences that gamers truly enjoy.
-      </p>
+      {/* About Me Section */}
+      <section className="about-me-section">
+        <div className="about-me-card">
+          <div className="about-text">
+            <h2>About Me</h2>
+            <p>
+             I'm <strong>Krishna Kalvakolanu</strong>, the brain behind ArcadeVault. Born out of my love for gaming and technology, I built this hub to create experiences that gamers actually enjoy — fun, intuitive, and a little quirky, just like the games themselves.
+            </p>
 
-      {/* Social Links with Icons */}
-      <div className="social-links">
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <i className="fab fa-twitter"></i>
-        </a>
-        <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer">
-          <i className="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer">
-          <i className="fab fa-linkedin"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
+            {/* Social Links */}
+            <div className="social-links">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/Krish-Kal" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/krishna-kalvakolanu/" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer Section */}
       <section className="footer-section">
         <h2>Ready to Level Up?</h2>
-        <p>Join ArcadeVault, explore games, track your wishlist, and connect with a community of passionate gamers worldwide.</p>
+        <p>Join ArcadeVault today and elevate your gaming experience.</p>
         <a className="footer-cta" href="/">Start Exploring</a>
       </section>
     </div>
