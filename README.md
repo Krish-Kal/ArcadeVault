@@ -1,6 +1,6 @@
 # ArcadeVault 🎮
 
-ArcadeVault is a modern, fully-featured online gaming store built with React and Node.js. Discover, explore, and manage your favorite games from major platforms like Epic Games, Steam, and Rockstar. ArcadeVault provides a seamless and responsive experience, allowing users to search, wishlist, and securely manage their account with ease.
+ArcadeVault is a modern, fully-featured online gaming hub built with React and Node.js. Discover, explore, and manage your favorite games from major platforms like Epic Games, Steam, and Rockstar. ArcadeVault provides a seamless and responsive experience, allowing users to search, wishlist, and securely manage their accounts with ease.
 
 ## 🚀 Features
 
