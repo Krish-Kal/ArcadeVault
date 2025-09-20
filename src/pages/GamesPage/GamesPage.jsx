@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../components/Games/GamesList.css";
+import "./GamesPage.css";
 
 function GamesPage({ addToWishlist, wishlist, searchQuery }) {
   const [games, setGames] = useState([]);
