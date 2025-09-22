@@ -9,21 +9,14 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
   const [loggingOut, setLoggingOut] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const navigate = useNavigate();
-  let lastScrollY = window.scrollY;
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!isDropdownVisible);
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleDropdown = () => setDropdownVisible(!isDropdownVisible);
+  const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
 
   const handleLogoutClick = () => {
     setLoggingOut(true);
     handleLogout();
     setDropdownVisible(false);
-
     setTimeout(() => {
       setLoggingOut(false);
       navigate('/');
@@ -31,20 +24,29 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+    const scrollThreshold = 2; // very sensitive scroll detection
+    let lastScroll = window.scrollY;
 
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setIsNavbarVisible(false); // hide on scroll down
-        setMobileMenuOpen(false);   // hide mobile menu too
-      } else {
-        setIsNavbarVisible(true);  // show on scroll up
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll <= scrollThreshold) {
+        // Always show navbar at the very top
+        setIsNavbarVisible(true);
+        setMobileMenuOpen(false);
+      } else if (currentScroll - lastScroll > scrollThreshold) {
+        // scrolling down
+        setIsNavbarVisible(false);
+        setMobileMenuOpen(false);
+      } else if (lastScroll - currentScroll > scrollThreshold) {
+        // scrolling up
+        setIsNavbarVisible(true);
       }
 
-      lastScrollY = currentScrollY;
+      lastScroll = currentScroll;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -57,14 +59,14 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
         <img src="/AV.png" alt="ArcadeVault Logo" className="logo" />
       </Link>
 
-      {/* Hamburger Button */}
+      {/* Hamburger */}
       <div className="hamburger" onClick={toggleMobileMenu}>
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      {/* Conditionally visible nav list */}
+      {/* Nav list */}
       <ul className={`navbar-list ${isMobileMenuOpen ? 'open' : ''}`}>
         <li><Link to="/" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
         <li><Link to="/about" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
@@ -72,6 +74,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout, userAvatar = user }) 
         <li><Link to="/wishlist" className="navbar-link" onClick={() => setMobileMenuOpen(false)}>Wishlist ({wishlistCount})</Link></li>
       </ul>
 
+      {/* Avatar / Login */}
       <div className="navbar-login">
         {loggingOut ? (
           <div className="navbar-logout-message">Logging Out...</div>
