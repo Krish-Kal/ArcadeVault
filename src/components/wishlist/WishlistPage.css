@@ -8,6 +8,7 @@
   align-items: center;
   color: #fff;
   box-sizing: border-box;
+  padding-top: calc(6rem + 8px); /* fix for navbar overlap */
 }
 
 /* === Title Styling === */
@@ -178,37 +179,36 @@
 }
 
 /* === Wishlist Total (Corrected) === */
-/* Wishlist Total Text Styling */
 .wishlist-total {
-  font-size: 1.2rem; /* Font size */
-  font-weight: 500; /* Semi-bold */
-  color: #01f7ff; /* Light color */
-  display: flex; /* Align text to the right */
-  justify-content: flex-end; /* Align text to the right */
-  margin: 1.5rem 0; /* Space above and below */
-  padding-right: 1rem; /* Padding on the right */
-  text-align: right; /* Align text to the right */
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #01f7ff;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.5rem 0;
+  padding-right: 1rem;
+  text-align: right;
 }
 
 /* Neon Glow Effect on Hover */
 .wishlist-total:hover {
-  color: #01f7ff; /* Neon blue color on hover */
-  text-shadow: 0 0 5px ;
-  transition: text-shadow 0.3s ease-in-out; /* Smooth transition */
+  color: #01f7ff;
+  text-shadow: 0 0 5px;
+  transition: text-shadow 0.3s ease-in-out;
 }
 
 /* Price Styling */
 .wishlist-total h2 span {
-  color: #a07dff; /* Neon blue text for the price */
-  font-weight: bold; /* Bold font for the price */
-  text-shadow: 0 0 8px #9900ff; /* Glowing effect */
+  color: #a07dff;
+  font-weight: bold;
+  text-shadow: 0 0 8px #9900ff;
 }
-
 
 /* === Mobile Layout Fix (Only Applied Below 768px) === */
 @media (max-width: 768px) {
   .wishlist-wrapper {
     padding: 4rem 1rem 2rem; /* Adjust padding for mobile view */
+    padding-top: calc(4rem + 60px); /* fix for mobile navbar overlap */
   }
 
   .wishlist-title {
@@ -217,41 +217,41 @@
   }
 
   .wishlist-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust card layout */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1.5rem;
   }
 
   .wishlist-card {
-    min-height: 300px; /* Reduce card height for mobile */
+    min-height: 300px;
   }
 
   .game-cover {
-    height: 150px; /* Adjust game cover size */
+    height: 150px;
   }
 
   .game-info h3 {
-    font-size: 1.2rem; /* Adjust font size for mobile */
+    font-size: 1.2rem;
   }
 
   .game-info p {
-    font-size: 0.9rem; /* Smaller text for mobile */
+    font-size: 0.9rem;
   }
 
   .game-info span {
-    font-size: 1rem; /* Adjust span size for mobile */
+    font-size: 1rem;
   }
 
   .wishlist-buttons {
-    gap: 0.8rem; /* Reduce gap between buttons */
+    gap: 0.8rem;
   }
 
   .go-to-game,
   .remove-game {
-    font-size: 1rem; /* Reduce button text size */
-    padding: 0.6rem 1.2rem; /* Adjust button padding */
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .wishlist-container {
-    margin-top: 60px; /* Adjust margin for mobile */
+    margin-top: 60px;
   }
 }
