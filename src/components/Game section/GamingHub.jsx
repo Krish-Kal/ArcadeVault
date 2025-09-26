@@ -121,7 +121,7 @@ const GamingHub = () => {
         className={`section stores ${visibleSections.includes('stores') ? 'visible' : ''}`}
         id="stores"
       >
-        <h2>🛒 Top Gaming Stores</h2>
+        <h2>🚀 Jump to Your Favorite Stores</h2>
         <div className="store-grid">
           {storeLinks.map((store, index) => (
             <a

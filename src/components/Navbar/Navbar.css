@@ -7,12 +7,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 24px; /* more rounded bubble look */
+  border-radius: 24px; /* rounded bubble look */
+
+  /* Frosted liquid glass effect */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+
+  /* Keep original border & glow */
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
     0 8px 20px rgba(0, 0, 0, 0.6), 
     inset 0 0 8px rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px) saturate(150%);
-  border: 1px solid rgba(255,255,255,0.08);
+
   transition: transform 0.35s ease-in-out, background 0.35s ease, box-shadow 0.35s ease;
   position: fixed;
   top: 8px; /* lifted slightly */
@@ -20,6 +26,7 @@
   right: 0;
   z-index: 999;
 }
+
 
 /* Hide/Show on scroll */
 .navbar-hidden {
