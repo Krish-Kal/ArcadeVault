@@ -13,9 +13,7 @@ const TrendingGames = () => {
   // Fetch only basic info initially
   const fetchTrendingGames = async () => {
     try {
-      const response = await fetch(
-        `https://api.rawg.io/api/games/lists/popular?key=2f8350d140d340dbad4c35a3cded84d3&page_size=10`
-      );
+      const response = await fetch(`/api/rawg/games/lists/popular?page_size=10`);
       const data = await response.json();
       const topGames = data.results
         .filter(g => g.background_image && g.slug)
@@ -43,9 +41,7 @@ const TrendingGames = () => {
   const fetchOfficialWebsite = async (index) => {
     if (!games[index] || games[index].officialFetched) return;
     try {
-      const res = await fetch(
-        `https://api.rawg.io/api/games/${games[index].slug}?key=2f8350d140d340dbad4c35a3cded84d3`
-      );
+      const res = await fetch(`/api/rawg/games/${games[index].slug}`);
       const details = await res.json();
       setGames(prev =>
         prev.map((g, i) =>
