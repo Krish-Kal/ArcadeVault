@@ -14,7 +14,7 @@ const TrendingGames = () => {
   const fetchTrendingGames = async () => {
     try {
       const response = await fetch(
-        `https://api.rawg.io/api/games/lists/popular?key=dbdfb4c288374e7b8e71571677db40fa&page_size=10`
+        `https://api.rawg.io/api/games/lists/popular?key=2f8350d140d340dbad4c35a3cded84d3&page_size=10`
       );
       const data = await response.json();
       const topGames = data.results
@@ -44,7 +44,7 @@ const TrendingGames = () => {
     if (!games[index] || games[index].officialFetched) return;
     try {
       const res = await fetch(
-        `https://api.rawg.io/api/games/${games[index].slug}?key=dbdfb4c288374e7b8e71571677db40fa`
+        `https://api.rawg.io/api/games/${games[index].slug}?key=2f8350d140d340dbad4c35a3cded84d3`
       );
       const details = await res.json();
       setGames(prev =>
@@ -58,8 +58,6 @@ const TrendingGames = () => {
       console.error('Error fetching official website:', error);
     }
   };
-
-
 
   return (
     <div className="trending-section">

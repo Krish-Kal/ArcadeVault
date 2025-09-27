@@ -32,7 +32,7 @@ function GamesPage({ addToWishlist, wishlist, searchQuery }) {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://api.rawg.io/api/games?key=dbdfb4c288374e7b8e71571677db40fa&page_size=${pageSize}&page=${page}&ordering=-rating,-added`
+          `https://api.rawg.io/api/games?key=2f8350d140d340dbad4c35a3cded84d3&page_size=${pageSize}&page=${page}&ordering=-rating,-added`
         );
         const data = await response.json();
 
@@ -68,19 +68,22 @@ function GamesPage({ addToWishlist, wishlist, searchQuery }) {
     setAddedGames((prev) => [...prev, game.id]);
   };
 
-  // Fetch actual game website
-  const handleGoToGame = async (gameId) => {
-    try {
-      const response = await fetch(
-        `https://api.rawg.io/api/games/${gameId}?key=dbdfb4c288374e7b8e71571677db40fa`
-      );
-      const data = await response.json();
-      const url = data.website || data.metacritic || "#";
-      window.open(url, "_blank");
-    } catch (err) {
-      console.error("Error fetching game URL:", err);
-      window.open("#", "_blank");
-    }
+  // Safari-safe Go to Game
+  const handleGoToGame = (gameId) => {
+    // Open a new tab immediately
+    const newTab = window.open("", "_blank");
+
+    // Fetch the actual game URL
+    fetch(`https://api.rawg.io/api/games/${gameId}?key=2f8350d140d340dbad4c35a3cded84d3`)
+      .then((res) => res.json())
+      .then((data) => {
+        const url = data.website || data.metacritic || "#";
+        newTab.location.href = url; // redirect new tab
+      })
+      .catch((err) => {
+        console.error("Error fetching game URL:", err);
+        newTab.location.href = "#";
+      });
   };
 
   // Sorting function
