@@ -1,108 +1,136 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { gamesList } from '../../pages/GamesPage/Gamedata';
 
-const API_KEY = 'dbdfb4c288374e7b8e71571677db40fa';
 const API_BASE = import.meta.env.VITE_API_BASE || 'https://arcadevault-4.onrender.com/api/users/wishlist';
 
 const useWishlist = () => {
-  // Always initialize from sessionStorage for instant guest experience
   const [wishlist, setWishlist] = useState(() => {
     const saved = sessionStorage.getItem('wishlist');
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Load wishlist from MongoDB (for logged-in) or sessionStorage (for guests)
-  const loadUserWishlist = async () => {
+  // Fetch wishlist from server if logged-in
+  const loadUserWishlist = useCallback(async () => {
     const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const res = await fetch(API_BASE, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await res.json();
-        if (res.ok) {
-          setWishlist(data.wishlist || []);
-        } else {
-          setWishlist([]);
-        }
-      } catch (err) {
-        setWishlist([]);
-      }
-    } else {
-      const saved = sessionStorage.getItem('wishlist');
-      setWishlist(saved ? JSON.parse(saved) : []);
-    }
-  };
+    if (!token) return;
 
-  // Save wishlist to MongoDB (for logged-in) or sessionStorage (for guests)
-  const saveToStorage = async (list) => {
+    try {
+      const res = await fetch(API_BASE, { headers: { Authorization: `Bearer ${token}` } });
+      const data = await res.json();
+      if (res.ok && Array.isArray(data.wishlist)) {
+        setWishlist(data.wishlist);
+        sessionStorage.setItem('wishlist', JSON.stringify(data.wishlist));
+      }
+    } catch (err) {
+      console.warn('Failed to load wishlist from server:', err);
+    }
+  }, []);
+
+  // Save wishlist: server if logged-in, sessionStorage otherwise
+  const saveToStorage = useCallback(async (list) => {
     const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        await fetch(API_BASE, {
+    setWishlist(list);
+
+    try {
+      if (token) {
+        const res = await fetch(API_BASE, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify({ wishlist: list }),
         });
-      } catch (err) {
-        // Optionally handle error
+        const data = await res.json();
+        if (res.ok && Array.isArray(data.wishlist)) {
+          setWishlist(data.wishlist);
+          sessionStorage.setItem('wishlist', JSON.stringify(data.wishlist));
+          return;
+        }
       }
-    } else {
-      sessionStorage.setItem('wishlist', JSON.stringify(list));
+    } catch (err) {
+      console.warn('Failed to save wishlist to server, saving locally:', err);
     }
-  };
 
-  // Fetch game details from RAWG
-  const fetchGameDetails = async (gameId) => {
-    const res = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`);
-    const data = await res.json();
+    // Fallback: always save locally
+    sessionStorage.setItem('wishlist', JSON.stringify(list));
+  }, []);
+
+  // Normalize game details from local JSON
+  const fetchGameDetails = useCallback(async (gameInput) => {
+    if (!gameInput) return null;
+
+    let game = typeof gameInput === 'object' ? gameInput : null;
+
+    if (!game) {
+      const key = String(gameInput).toLowerCase();
+      game = gamesList.find((g) => String(g.id) === key || String(g.slug).toLowerCase() === key || String(g.name).toLowerCase() === key);
+    }
+
+    if (!game) return { id: gameInput, name: `Game ${gameInput}`, imageUrl: '', genre: '', link: '#' };
+
     return {
-      id: data.id,
-      name: data.name,
-      imageUrl: data.background_image,
-      genre: data.genres?.map((g) => g.name).join(', '),
-      link: data.website || data.metacritic || `https://rawg.io/games/${data.slug}`,
+      id: game.id,
+      name: game.name || `Game ${game.id}`,
+      imageUrl: game.background_image || game.imageUrl || '',
+      genre: game.genres?.map((x) => x.name).join(', ') || game.genre || '',
+      link: game.website || game.link || game.metacritic || `/games/${game.id}` || '#',
     };
-  };
+  }, []);
 
   // Add game to wishlist
-  const addToWishlist = async (game) => {
-    if (!wishlist.some((g) => g.id === game.id)) {
-      const details = await fetchGameDetails(game.id);
-      if (details) {
-        const updated = [...wishlist, details];
-        setWishlist(updated);
-        await saveToStorage(updated);
-      }
-    }
-  };
+  const addToWishlist = useCallback(async (game) => {
+    if (wishlist.some((g) => String(g.id) === String(game.id))) return;
+    const details = await fetchGameDetails(game);
+    if (!details) return;
+    const updated = [...wishlist, details];
+    await saveToStorage(updated);
+  }, [wishlist, fetchGameDetails, saveToStorage]);
 
   // Remove game from wishlist
-  const removeFromWishlist = async (id) => {
-    const updated = wishlist.filter((g) => g.id !== id);
-    setWishlist(updated);
+  const removeFromWishlist = useCallback(async (id) => {
+    const updated = wishlist.filter((g) => String(g.id) !== String(id));
     await saveToStorage(updated);
-  };
+  }, [wishlist, saveToStorage]);
 
   // Clear entire wishlist
-  const clearWishlist = async () => {
+  const clearWishlist = useCallback(async () => {
     setWishlist([]);
     const token = localStorage.getItem('token');
-    if (!token) {
-      sessionStorage.removeItem('wishlist');
-    }
-    // Optionally, clear on server for logged-in users if needed
-  };
+    try {
+      if (token) {
+        await fetch(`${API_BASE}/clear`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ wishlist: [] }),
+        });
+      }
+    } catch {}
+    sessionStorage.removeItem('wishlist');
+  }, []);
 
-  return {
-    wishlist,
-    addToWishlist,
-    removeFromWishlist,
-    clearWishlist,
-    loadUserWishlist,
-  };
+  // Initialize wishlist on mount and watch for token changes
+  useEffect(() => {
+    const init = async () => {
+      const token = localStorage.getItem('token');
+      if (token) await loadUserWishlist();
+      else {
+        const saved = sessionStorage.getItem('wishlist');
+        setWishlist(saved ? JSON.parse(saved) : []);
+      }
+    };
+    init();
+
+    const onStorage = (e) => {
+      if (e.key === 'token') {
+        const token = localStorage.getItem('token');
+        if (token) loadUserWishlist();
+        else setWishlist(JSON.parse(sessionStorage.getItem('wishlist') || '[]'));
+      }
+    };
+
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, [loadUserWishlist]);
+
+  return { wishlist, addToWishlist, removeFromWishlist, clearWishlist, loadUserWishlist };
 };
 
 export default useWishlist;

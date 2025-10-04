@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Searchbox from './Gamesearch';
+import React, { useEffect, useState, useMemo } from 'react';
 import './GameSearchResult.css';
+import { gamesList } from '../../pages/GamesPage/Gamedata';
 
 // Debounce hook
 function useDebounce(value, delay = 400) {
@@ -14,104 +14,87 @@ function useDebounce(value, delay = 400) {
   return debouncedValue;
 }
 
-const GameSearchResults = ({ searchQuery, addToWishlist, wishlist }) => {
+const GameSearchResults = ({ searchQuery, addToWishlist, wishlist = [] }) => {
   const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const debouncedSearchQuery = useDebounce(searchQuery, 400);
 
-  // Fetch popular games with website URLs once
+  // Load local games data
   useEffect(() => {
-    const cachedGames = JSON.parse(sessionStorage.getItem('popularGames') || '[]');
-
-    if (cachedGames.length > 0) {
-      setGames(cachedGames);
-      return;
-    }
-
-    const fetchGames = async () => {
-      setLoading(true);
+    try {
+      const preparedGames = gamesList.map((g) => ({
+        ...g,
+        website: g.website || g.link || g.metacritic || '#',
+        background_image: g.background_image || g.imageUrl || '',
+      }));
+      setGames(preparedGames);
       try {
-        const response = await fetch(
-          `https://api.rawg.io/api/games/lists/popular?key=dbdfb4c288374e7b8e71571677db40fa&page_size=50`
-        );
-        const data = await response.json();
-        // Enrich games with website URLs
-        const enrichedGames = await Promise.all(
-          data.results.map(async (game) => {
-            try {
-              const res = await fetch(
-                `https://api.rawg.io/api/games/${game.id}?key=dbdfb4c288374e7b8e71571677db40fa`
-              );
-              const details = await res.json();
-              return { ...game, website: details.website || details.metacritic || "#" };
-            } catch {
-              return { ...game, website: "#" };
-            }
-          })
-        );
-        setGames(enrichedGames);
-        sessionStorage.setItem('popularGames', JSON.stringify(enrichedGames));
-      } catch (err) {
-        console.error("Error fetching games:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGames();
+        sessionStorage.setItem('popularGames', JSON.stringify(preparedGames));
+      } catch {}
+    } catch (err) {
+      console.error('Error loading games:', err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  // Filter games based on debounced search
-  const filteredGames = games.filter((game) =>
-    game.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
-  );
+  // Filter games based on search query
+  const filteredGames = useMemo(() => {
+    const query = (debouncedSearchQuery || '').trim().toLowerCase();
+    if (!query) return [];
+    return games.filter((game) =>
+      (game.name || '').toLowerCase().includes(query)
+    );
+  }, [games, debouncedSearchQuery]);
 
-  if (!debouncedSearchQuery) return null;
+  if (!debouncedSearchQuery.trim()) return null;
 
   return (
     <div className="search-results-section">
-      <h2>Search Results for "{debouncedSearchQuery}"</h2>
+      <h2>Search Results for "{debouncedSearchQuery.trim()}"</h2>
 
       {loading ? (
         <p className="loading-text">Loading games...</p>
       ) : filteredGames.length > 0 ? (
         <div className="search-results-grid">
-          {filteredGames.map((game) => (
-            <div className="game-card" key={game.id}>
-              <img
-                src={game.background_image}
-                alt={game.name}
-                className="game-image"
-              />
-              <h2 className="game-name">{game.name}</h2>
-              <p className="genre">
-                {game.genres?.map((g) => g.name).join(", ") || "Unknown Genre"}
-              </p>
-              <div className="button-container">
-                <button
-                  onClick={() => window.open(game.website, "_blank")}
-                  className="go-to-game-btn"
-                >
-                  Go to Game
-                </button>
-                <button
-                  onClick={() => addToWishlist(game)}
-                  className="wishlist-btn"
-                  disabled={wishlist.some((g) => g.id === game.id)}
-                >
-                  {wishlist.some((g) => g.id === game.id)
-                    ? "Added to Wishlist"
-                    : "Add to Wishlist"}
-                </button>
+          {filteredGames.map((game) => {
+            const inWishlist = wishlist.some((g) => g.id === game.id);
+            return (
+              <div className="game-card" key={game.id}>
+                <img
+                  src={game.background_image}
+                  alt={game.name}
+                  className="game-image"
+                />
+                <h3 className="game-name">{game.name}</h3>
+                <p className="genre">
+                  {game.genres?.map((g) => g.name).join(', ') || game.genre || 'Unknown Genre'}
+                </p>
+                <div className="button-container">
+                  <button
+                    onClick={() => window.open(game.website, '_blank')}
+                    className="go-to-game-btn"
+                  >
+                    Go to Game
+                  </button>
+                  <button
+                    onClick={() => addToWishlist(game)}
+                    className="wishlist-btn"
+                    disabled={inWishlist}
+                  >
+                    {inWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
-        <p className="no-results">No games found for "{debouncedSearchQuery}".</p>
+        <p className="no-results">No games found for "{debouncedSearchQuery.trim()}".</p>
       )}
     </div>
   );
 };
 
-export default GameSearchResults; 
+export default GameSearchResults;
