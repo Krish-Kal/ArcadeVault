@@ -11,6 +11,7 @@ import LoginPage from './pages/Login/Login';
 import SignupPage from './pages/Login/SignupPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import GamesPage from './pages/GamesPage/GamesPage';
+import ArcadeLoader from './components/ArcadeLoader/ArcadeLoader';
 import './App.css';
 
 function App() {
@@ -18,12 +19,44 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (isLoggedIn) {
       loadUserWishlist();
     }
     // eslint-disable-next-line
   }, [isLoggedIn]);
+
+  /* LOADER LOGIC */
+
+  useEffect(() => {
+
+    const MIN_LOAD_TIME = 2000;
+    const startTime = Date.now();
+
+    const handlePageLoaded = () => {
+
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, MIN_LOAD_TIME - elapsed);
+
+      setTimeout(() => {
+        setLoading(false);
+      }, remaining);
+
+    };
+
+    if (document.readyState === "complete") {
+      handlePageLoaded();
+    } else {
+      window.addEventListener("load", handlePageLoaded);
+    }
+
+    return () => {
+      window.removeEventListener("load", handlePageLoaded);
+    };
+
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -36,6 +69,10 @@ function App() {
     window.location.href = '/profile';
   };
 
+  if (loading) {
+    return <ArcadeLoader />;
+  }
+
   return (
     <Router>
       <div className="app-container">
@@ -45,6 +82,7 @@ function App() {
           handleLogout={handleLogout}
           navigateToProfile={navigateToProfile}
         />
+
         <Routes>
           <Route
             path="/"
@@ -57,23 +95,31 @@ function App() {
               />
             }
           />
+
           <Route
             path="/wishlist"
             element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />}
           />
+
           <Route path="/about" element={<About />} />
+
           <Route
             path="/login"
             element={<LoginPage setIsLoggedIn={setIsLoggedIn} loadUserWishlist={loadUserWishlist} />}
           />
+
           <Route
             path="/games"
             element={<GamesPage addToWishlist={addToWishlist} wishlist={wishlist} />}
           />
+
           <Route path="/signup" element={<SignupPage />} />
+
           <Route path="/profile" element={<ProfilePage />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
+
         <Footer />
       </div>
     </Router>

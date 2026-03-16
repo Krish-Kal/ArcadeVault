@@ -1,0 +1,153 @@
+.arcade-loader{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:radial-gradient(circle at center,#0c1425,#050812 70%);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+z-index:999999;
+font-family: "Inter", sans-serif;
+color:#d8e1ff;
+}
+
+
+/* center */
+
+.loader-center{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:40px;
+z-index:10;
+}
+
+
+/* rotating ring */
+
+.design-ring{
+width:120px;
+height:120px;
+border-radius:50%;
+border:2px solid rgba(70,120,255,0.15);
+display:flex;
+justify-content:center;
+align-items:center;
+animation:ringRotate 8s linear infinite;
+}
+
+.inner-ring{
+width:70px;
+height:70px;
+border-radius:50%;
+border:2px solid rgba(100,150,255,0.5);
+box-shadow:
+0 0 25px rgba(90,140,255,0.3),
+inset 0 0 12px rgba(90,140,255,0.2);
+animation:ringPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ringRotate{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
+
+@keyframes ringPulse{
+
+0%{
+transform:scale(1);
+opacity:.7;
+}
+
+50%{
+transform:scale(1.15);
+opacity:1;
+}
+
+100%{
+transform:scale(1);
+opacity:.7;
+}
+
+}
+
+
+/* progress */
+
+.progress-wrapper{
+width:260px;
+height:6px;
+background:#10182f;
+border-radius:50px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:linear-gradient(
+90deg,
+#1e4fff,
+#4f7dff,
+#1e4fff
+);
+animation:progressLoad 2s ease forwards;
+}
+
+@keyframes progressLoad{
+0%{width:0%;}
+100%{width:100%;}
+}
+
+
+/* text */
+
+.loader-text{
+font-size:14px;
+letter-spacing:2px;
+opacity:.75;
+color:#b9c7ff;
+}
+
+
+/* PARTICLES */
+
+.particle-field{
+position:absolute;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:1;
+}
+
+.particle-field span{
+position:absolute;
+width:3px;
+height:3px;
+background:#5f8cff;
+border-radius:50%;
+opacity:.6;
+animation:particleMove linear infinite;
+}
+
+@keyframes particleMove{
+
+0%{
+transform:translateY(0px);
+opacity:.2;
+}
+
+50%{
+opacity:.9;
+}
+
+100%{
+transform:translateY(-200px);
+opacity:.2;
+}
+
+}
