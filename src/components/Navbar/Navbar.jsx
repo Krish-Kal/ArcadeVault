@@ -24,10 +24,17 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
   };
 
   // 🔥 LOAD USER (IMPORTANT FOR AVATAR)
-  useEffect(() => {
+useEffect(() => {
+  const syncUser = () => {
     const stored = localStorage.getItem("user");
     if (stored) setUserData(JSON.parse(stored));
-  }, []);
+  };
+
+  window.addEventListener("storage", syncUser);
+  syncUser();
+
+  return () => window.removeEventListener("storage", syncUser);
+}, []);
 
   // scroll hide/show navbar
   useEffect(() => {
@@ -57,6 +64,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
 
   return (
     <nav className={`navbar ${isNavbarVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
+    
 
       <Link to="/" className="logo_link">
         <img src="/AV.png" alt="ArcadeVault Logo" className="logo" />
@@ -89,7 +97,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
             <img
               src={
                 userData?.avatar
-                  ? `http://localhost:5000${userData.avatar}`
+                  ? `${import.meta.env.VITE_API_URL}${userData.avatar}`
                   : user
               }
               alt="User Avatar"
