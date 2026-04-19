@@ -28,8 +28,6 @@ app.get("/", (req, res) => {
 });
 import path from "path";
 
-import path from "path";
-
 app.use("/uploads", express.static(path.resolve("uploads")));
 
 export default app;
