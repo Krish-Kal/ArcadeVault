@@ -17,8 +17,8 @@
   padding: 2rem 3rem; /* original dimensions */
   max-width: 800px;
   text-align: center;
+
   z-index: 1;
-  margin-top: 100px; /* original margin */
 
   /* Frosted liquid glass effect */
   backdrop-filter: blur(12px) saturate(150%);
@@ -64,8 +64,7 @@
   transition: all 0.4s ease-in-out;
 }
 
-/* === Info Text (adjusted for readability) === */
-/* === Info Text (with subtle glow) === */
+
 .info-text {
   font-size: 1.1rem;
   line-height: 1.6;
@@ -126,7 +125,7 @@
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  margin-top: 60px;
+  margin-top: 15px;
   text-align: center;
   transition: opacity 0.5s ease-in-out;
 }

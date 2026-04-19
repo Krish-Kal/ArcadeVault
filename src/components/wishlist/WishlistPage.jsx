@@ -13,7 +13,7 @@ function Wishlist({ wishlist, removeFromWishlist }) {
 
   return (
     <div className="wishlist-wrapper">
-      <h1 className="wishlist-title">✨ My Wishlist</h1>
+      <h1 className="wishlist-title">My Wishlist</h1>
 
       <div className="wishlist-grid">
         {wishlist.map((game) => (

@@ -335,7 +335,7 @@ export const gamesList = [
     },
 
     {
-      id: 32,
+      id: 31,
       name: "Need for Speed: Hot Pursuit",
       genre: "Racing",
       description: "Race and chase as cop or racer in this high-speed NFS entry.",

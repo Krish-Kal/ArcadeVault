@@ -14,6 +14,7 @@ html, body {
   position: relative;
   background: transparent; /* fix black behind navbar */
   scroll-behavior: smooth; /* Smooth scrolling for all anchor links */
+  margin-top:20px;
 }
 
 /* === Background Wrapper Using ::before === */
@@ -58,9 +59,7 @@ body[data-parallax="true"]::before {
   transition: transform 0.2s ease-out;
 }
 
-/* Usage in JS (if desired):
-   window.addEventListener('scroll', () => {
-     const scrollY = window.scrollY * 0.3; // adjust parallax speed
-     document.body.style.setProperty('--bg-scroll', `${scrollY}px`);
-   });
-*/
+body.no-global-bg {
+  background: #0f0f0f !important;   /* clean fallback */
+  background-image: none !important;
+}

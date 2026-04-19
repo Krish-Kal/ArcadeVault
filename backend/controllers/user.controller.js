@@ -6,7 +6,7 @@ import User from "../models/User.model.js";
 // Signup
 export const signup = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password,username } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -17,7 +17,8 @@ export const signup = async (req, res) => {
 
     const newUser = new User({
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      username
     });
 
     await newUser.save();
@@ -53,7 +54,15 @@ export const login = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ token, email: user.email });
+   res.json({
+  message: "Login successful",
+  token,
+  user: {
+    id: user._id,
+    email: user.email,
+    avatar: user.avatar
+  }
+});
 
   } catch (err) {
     console.error(err);
@@ -119,4 +128,46 @@ export const updateWishlist = async (req, res) => {
   } catch (err) {
     res.status(401).json({ message: "Invalid token" });
   }
+};
+
+// Get Profile
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Update Avatar
+export const updateAvatar = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    // store path
+    user.avatar = `/uploads/${req.file.filename}`;
+    await user.save();
+
+    res.json({ avatar: user.avatar });
+
+  } catch (err) {
+    res.status(500).json({ message: "Upload failed" });
+  }
+
 };

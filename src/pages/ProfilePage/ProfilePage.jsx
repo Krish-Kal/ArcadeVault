@@ -1,107 +1,153 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './ProfilePage.css';
-import user from '/user.png'; // Corrected avatar image path
+import React, { useEffect, useState } from "react";
+import "./ProfilePage.css";
+import ParticlesBackground from "../../components/ParticlesBackground";
 
-const ProfilePage = () => {
-  const [lastLogin, setLastLogin] = useState(null);
-  const [memberSince, setMemberSince] = useState(null);
-  const [userEmail, setUserEmail] = useState('user@example.com');
-  const [avatar, setAvatar] = useState('https://placekitten.com/200/200');
-  const canvasRef = useRef(null);
+function Profile() {
+  const [user, setUser] = useState(null);
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
+  const token = localStorage.getItem("token");
+  
+  const API = import.meta.env.VITE_API_URL;
+
+  // 🔥 FETCH PROFILE (SAFE + CLEAN)
   useEffect(() => {
-    const storedLastLogin = localStorage.getItem('lastLogin') || 'First login';
-    setLastLogin(storedLastLogin);
+    const fetchProfile = async () => {
+      try {
+        const res = await fetch(`${API}/api/users/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
-    const storedMemberSince = localStorage.getItem('memberSince');
-    if (!storedMemberSince) {
-      const currentDate = new Date().toLocaleDateString();
-      localStorage.setItem('memberSince', currentDate);
-      setMemberSince(currentDate);
-    } else {
-      setMemberSince(storedMemberSince);
-    }
+        const data = await res.json();
 
-    setUserEmail(localStorage.getItem('userEmail') || 'user@example.com');
-    setAvatar(localStorage.getItem('userAvatar') || user);
+        if (res.ok && data?.email) {
+          setUser(data);
+        } else {
+          console.error("Invalid user response:", data);
+          setUser(null);
+        }
+      } catch (err) {
+        console.error("Profile fetch error:", err);
+        setUser(null);
+      }
+    };
 
-    // Particle animation
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    fetchProfile();
+  }, [API, token]);
 
-    const particles = Array.from({ length: 75 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 1.2,
-      vy: (Math.random() - 0.5) * 1.2,
-      radius: 1.5 + Math.random() * 1.5,
-    }));
+  // 🔥 AVATAR UPLOAD (PRO VERSION)
+  const handleUpload = async () => {
+    if (!file) return;
 
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
+    setUploading(true);
 
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
+    try {
+      const formData = new FormData();
+      formData.append("avatar", file);
 
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#00ffe7';
-        ctx.fill();
+      const res = await fetch(`${API}/api/users/avatar`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData
       });
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 255, 231, ${1 - dist / 100})`;
-            ctx.stroke();
-          }
-        }
+      const data = await res.json();
+
+      if (res.ok) {
+        setUser((prev) => ({
+          ...prev,
+          avatar: data.avatar
+        }));
+
+        setFile(null);
+      } else {
+        console.error("Upload failed:", data);
       }
 
-      requestAnimationFrame(draw);
-    };
+    } catch (err) {
+      console.error("Upload error:", err);
+    } finally {
+      setUploading(false);
+    }
+  };
 
-    draw();
+  // 🔥 LOADING STATE
+  if (!user) {
+    return <div className="profile-loading">Loading Vault...</div>;
+  }
 
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
+return (
+  <div className="profile-wrapper">
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    {/* BACKGROUND LAYER */}
+    <ParticlesBackground />
 
-  return (
-    <div className="profile-page">
-      <canvas ref={canvasRef} className="bg-canvas"></canvas>
+    {/* MAIN CONTENT */}
+    <div className="profile-container">
 
-      <div className="profile-box">
-        <div className="profile-header">
-          <div className="avatar">
-            <img src={avatar} alt="User Avatar" />
-          </div>
+      {/* LEFT PANEL */}
+      <div className="profile-card">
+
+        <div className="avatar-section">
+          <img
+            src={
+              user?.avatar
+                ? `${API}${user.avatar}`
+                : "/user.png"
+            }
+            alt="avatar"
+            className="profile-avatar"
+          />
         </div>
-        <div className="user-info">
-          <p><strong>Email:</strong> {userEmail}</p>
-          <p><strong>Last Login:</strong> {lastLogin}</p>
-          <p><strong>Member Since:</strong> {memberSince}</p>
-        </div>
+
+        <h2 className="profile-email">{user.username || user.email}</h2>
+        <p className="profile-subtext">{user.email}</p>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setFile(e.target.files[0])}
+          className="avatar-input"
+        />
+
+        <button
+          onClick={handleUpload}
+          className="upload-btn"
+          disabled={!file || uploading}
+        >
+          {uploading ? "Uploading..." : "Upload Avatar"}
+        </button>
+
       </div>
-    </div>
-  );
-};
 
-export default ProfilePage;
+      {/* RIGHT PANEL */}
+      <div className="profile-stats">
+
+        <div className="stat-box">
+          <h3>Wishlist Items</h3>
+          <p>{user.wishlist?.length || 0}</p>
+        </div>
+
+        <div className="stat-box">
+          <h3>Account Status</h3>
+          <p>Premium Gamer</p>
+        </div>
+
+        <div className="stat-box">
+          <h3>Vault ID</h3>
+          <p>{user._id?.slice(0, 8)}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+);
+}
+
+export default Profile;

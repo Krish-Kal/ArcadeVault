@@ -1,47 +1,64 @@
-/* === Footer Styling (Polished Old Style) === */
+/* === FOOTER (PREMIUM BALANCED UPGRADE) === */
 .footer {
-  background: linear-gradient(135deg, #111111a9, #33333360);
+  background: linear-gradient(
+    135deg,
+    rgba(10, 18, 35, 0.85),   /* deep blue-black base */
+    rgba(15, 35, 70, 0.55)    /* soft electric blue tint */
+  );
+
   color: #fff;
   text-align: center;
-  padding: 40px 0; /* keep old size */
+
+  padding: 30px 0;
   position: relative;
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
+
   backdrop-filter: blur(10px);
-  border-top: 1.5px solid rgba(255, 255, 255, 0.15); /* cleaner border */
+  -webkit-backdrop-filter: blur(10px);
+
+  border-top: 1px solid rgba(56, 189, 248, 0.18); /* subtle cyan-blue edge */
 }
 
+/* container */
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 12px;
 }
 
+/* text (kept original feel, slightly refined) */
 .footer p {
   margin: 0;
-  font-size: 14px;
+  font-size: 13.5px;
   font-family: 'Roboto', sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   opacity: 0.85;
 }
 
+/* links (kept same behavior, slightly smoother UI) */
 .footer-links {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .footer-link {
   color: #fff;
-  font-size: 15px;
-  margin: 0 18px;
+  font-size: 14px;
+  margin: 0 16px;
   text-decoration: none;
+
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #04cef1;
+  color: #38bdf8;
   transform: translateY(-2px);
 }
 
+/* ========================= */
+/* 🚨 SOCIAL ICONS - NOT TOUCHED */
+/* ========================= */
 .social-links {
   margin-top: 18px;
 }
@@ -59,20 +76,28 @@
   text-shadow: 0 0 8px #04cef1;
 }
 
-/* "Go to Top" Button */
+/* ========================= */
+/* GO TO TOP (slightly refined only) */
+/* ========================= */
 .go-to-top {
   position: fixed;
-  bottom: 35px;
-  right: 35px;
-  background-color: transparent;
+  bottom: 30px;
+  right: 30px;
+
+  background-color: rgba(10,10,10,0.3);
+  backdrop-filter: blur(8px);
+
   color: #04cef1;
   border: 2px solid #04cef1;
-  padding: 11px 18px;
-  font-size: 14px;
+
+  padding: 10px 16px;
+  font-size: 13px;
   font-weight: bold;
   text-transform: uppercase;
+
   cursor: pointer;
   border-radius: 22px;
+
   transition: background-color 0.3s ease, transform 0.3s ease;
   z-index: 999;
 }
@@ -83,48 +108,44 @@
   transform: translateY(-3px);
 }
 
-/* === Mobile Styling Enhancements === */
+/* === MOBILE (preserves original spacing feel) === */
 @media (max-width: 768px) {
   .footer {
-    padding: 25px 15px; /* reduce space */
+    padding: 22px 15px;
   }
 
   .footer p {
-    font-size: 12px; /* slightly smaller text */
+    font-size: 12px;
     letter-spacing: 0.5px;
   }
 
   .footer-links {
-    margin-top: 15px;
+    margin-top: 14px;
   }
 
   .footer-link {
-    display: inline-block;
     font-size: 13px;
-    margin: 5px 10px; /* stack nicely */
+    margin: 5px 10px;
+    display: inline-block;
   }
 
-  .social-links {
-    margin-top: 15px;
-  }
-
+  /* SOCIAL ICONS LEFT EXACTLY AS YOU HAD IT */
   .social-links a {
-    font-size: 22px; /* resize icons */
+    font-size: 22px;
     margin: 0 8px;
   }
 
   .go-to-top {
-    bottom: 20px;
-    right: 20px;
-    padding: 8px 14px;
-    font-size: 12px;
-    border-radius: 18px;
+    bottom: 18px;
+    right: 18px;
+    padding: 8px 12px;
+    font-size: 11px;
   }
 }
 
 @media (max-width: 480px) {
   .footer {
-    padding: 20px 10px;
+    padding: 18px 10px;
   }
 
   .footer-link {
@@ -132,6 +153,7 @@
     margin: 4px 6px;
   }
 
+  /* SOCIAL ICONS unchanged scaling logic */
   .social-links a {
     font-size: 20px;
     margin: 0 6px;

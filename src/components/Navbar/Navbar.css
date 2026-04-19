@@ -1,19 +1,17 @@
 /* === Floating Liquid Glass Navbar === */
 .navbar {
-  background: rgba(15, 15, 20, 0.55); /* dark glass */
-  padding: 0.5rem 1.2rem; /* smaller padding */
-  max-width: 88%; /* slightly smaller than before */
-  margin: 0 auto; /* centered */
+  background: rgba(15, 15, 20, 0.55);
+  padding: 0.5rem 1.2rem;
+  max-width: 88%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 24px; /* rounded bubble look */
+  border-radius: 24px;
 
-  /* Frosted liquid glass effect */
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
 
-  /* Keep original border & glow */
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
     0 8px 20px rgba(0, 0, 0, 0.6), 
@@ -21,19 +19,23 @@
 
   transition: transform 0.35s ease-in-out, background 0.35s ease, box-shadow 0.35s ease;
   position: fixed;
-  top: 8px; /* lifted slightly */
+  top: 8px;
   left: 0;
   right: 0;
   z-index: 999;
+
+  /* 🔥 ONLY CHANGE (size reduce) */
+  transform: scale(0.95);
+  transform-origin: top center;
 }
 
 
 /* Hide/Show on scroll */
 .navbar-hidden {
-  transform: translateY(-120%);
+  transform: translateY(-120%) scale(0.95);
 }
 .navbar-visible {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.95);
 }
 
 /* === Logo === */
@@ -176,6 +178,9 @@
     max-width: 92%;
     padding: 0.5rem 1rem;
     border-radius: 20px;
+
+    /* 🔥 keep same scale */
+    transform: scale(0.95);
   }
 
   .logo {

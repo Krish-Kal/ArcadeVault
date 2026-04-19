@@ -14,6 +14,7 @@ import GamesPage from './pages/GamesPage/GamesPage';
 import ArcadeLoader from './components/ArcadeLoader/ArcadeLoader';
 import './App.css';
 
+
 function App() {
   const { wishlist, addToWishlist, removeFromWishlist, clearWishlist, loadUserWishlist } = useWishlist();
   const [searchQuery, setSearchQuery] = useState('');
@@ -75,7 +76,9 @@ function App() {
 
   return (
     <Router>
-      <div className="app-container">
+  
+    {/* 🔝 YOUR ACTUAL APP UI */}
+    <div className="app-container relative z-10">
         <Navbar
           wishlistCount={wishlist.length}
           isLoggedIn={isLoggedIn}
