@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 import path from "path";
 
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 export default app;
 
