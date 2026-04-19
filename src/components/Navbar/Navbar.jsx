@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import user from '/user.png';
 import Dropdown from '../../pages/ProfilePage/Dropdown';
+
 
 function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -10,7 +11,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [userData, setUserData] = useState(null);
 
   const toggleDropdown = () => setDropdownVisible(!isDropdownVisible);
@@ -30,10 +31,18 @@ useEffect(() => {
     if (stored) setUserData(JSON.parse(stored));
   };
 
+
+
+  // 🔥 listen both (cross-tab + same-tab)
   window.addEventListener("storage", syncUser);
+  window.addEventListener("userUpdated", syncUser);
+
   syncUser();
 
-  return () => window.removeEventListener("storage", syncUser);
+  return () => {
+    window.removeEventListener("storage", syncUser);
+    window.removeEventListener("userUpdated", syncUser);
+  };
 }, []);
 
   // scroll hide/show navbar
@@ -61,6 +70,11 @@ useEffect(() => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+useEffect(() => {
+  setDropdownVisible(false);
+  setMobileMenuOpen(false); // also good UX
+}, [location]);
 
   return (
     <nav className={`navbar ${isNavbarVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
@@ -100,6 +114,7 @@ useEffect(() => {
                   ? `${import.meta.env.VITE_API_URL}${userData.avatar}`
                   : user
               }
+              onError={(e) => (e.target.src = user)}
               alt="User Avatar"
               className="navbar-avatar-img"
               onClick={toggleDropdown}

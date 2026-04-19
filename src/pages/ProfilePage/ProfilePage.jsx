@@ -25,6 +25,7 @@ function Profile() {
 
         if (res.ok && data?.email) {
           setUser(data);
+          localStorage.setItem("user", JSON.stringify(data));
         } else {
           console.error("Invalid user response:", data);
           setUser(null);
@@ -58,14 +59,22 @@ function Profile() {
 
       const data = await res.json();
 
-      if (res.ok) {
-        setUser((prev) => ({
-          ...prev,
-          avatar: data.avatar
-        }));
+if (res.ok) {
+  const updatedUser = {
+    ...user,
+    avatar: data.avatar
+  };
 
-        setFile(null);
-      } else {
+  setUser(updatedUser);
+
+  // 🔥 sync with navbar
+  localStorage.setItem("user", JSON.stringify(updatedUser));
+
+  // 🔥 force navbar refresh (same tab)
+  window.dispatchEvent(new Event("userUpdated"));
+
+  setFile(null);
+} else {
         console.error("Upload failed:", data);
       }
 
