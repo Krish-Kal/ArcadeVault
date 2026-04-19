@@ -1,27 +1,26 @@
-/* === Wishlist Adjustment === */
-.wishlist-active {
-  margin-top: 60px;
-}
-
-/* === Global Base === */
 html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   color: #fff;
-  min-height: 100vh;
+  min-height: 100%;
+  height: auto;
   overflow-x: hidden;
   position: relative;
-  background: transparent;
+  background: #0a0f1a; /* ✅ fallback color (VERY IMPORTANT) */
   scroll-behavior: smooth;
-  margin-top: 30px;
+
 }
 
-/* === Background using ::before === */
+/* === Background === */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
 
   background: url('./assets/background.png') no-repeat center center;
   background-size: cover;
@@ -30,15 +29,10 @@ body::before {
   pointer-events: none;
 }
 
-/* === Mobile Fix + Soft Blur === */
+/* === Mobile Fix === */
 @media (max-width: 1024px) {
   body::before {
-    position: fixed;
-
-    /* 🔥 smooth out harsh look */
     filter: blur(6px) brightness(0.7);
-
-    /* 🔥 prevent edge cutoff after blur */
-    transform: scale(1.05);
+    
   }
 }

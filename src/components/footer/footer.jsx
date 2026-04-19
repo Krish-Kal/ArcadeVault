@@ -23,8 +23,7 @@ function Footer() {
         <p>&copy; 2025 Arcade Vault. All Rights Reserved.</p>
         <div className="footer-links">
           <a href="/terms-of-service" className="footer-link">Terms of Service</a>
-          <a href="/privacy-policy" className="footer-link">Privacy Policy</a>
-          <a href="/contact-us" className="footer-link">Contact Us</a>
+          <a href="https://krish-cyber-lab.vercel.app/" className="footer-link">Contact Us</a>
         </div>
         <div className="social-links">
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
