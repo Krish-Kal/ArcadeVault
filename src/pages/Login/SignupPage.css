@@ -1,11 +1,12 @@
-/* === Signup Page Styles (Arcade Vault Premium) === */
+/* === Signup Page Styles (Clean + Particles Friendly) === */
 .signup-page {
     position: relative;
     min-height: 100vh;
 
     overflow: hidden;
 
-    background: radial-gradient(circle at top, #0b1530 0%, #070a14 45%, #05060c 100%);
+    /* ❌ removed gradient */
+    background: transparent;
 
     display: flex;
     justify-content: center;
@@ -22,27 +23,10 @@
     box-sizing: border-box;
 }
 
-/* subtle animated glow background */
-.signup-page::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+/* ❌ removed glow overlay */
+/* .signup-page::before {} */
 
-    background: radial-gradient(circle at 25% 25%, rgba(0, 229, 255, 0.08), transparent 45%),
-                radial-gradient(circle at 80% 60%, rgba(0, 120, 255, 0.06), transparent 50%);
-
-    animation: bgPulse 8s ease-in-out infinite;
-
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes bgPulse {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.05); opacity: 1; }
-}
-
-/* Canvas particles layer */
+/* Canvas particles */
 .bg-canvas {
     position: absolute;
     top: 0;
@@ -58,7 +42,7 @@
     filter: blur(0.2px) saturate(1.2);
 }
 
-/* === Signup Box (Glass Core Panel) === */
+/* === Signup Box === */
 .signup-box {
     position: relative;
     z-index: 5;
@@ -91,7 +75,6 @@
     animation: fadeInUp 1s ease-out;
 }
 
-/* hover glow lift */
 .signup-box:hover {
     transform: translateY(-8px) scale(1.01);
 
@@ -228,21 +211,34 @@
     }
 }
 
-/* === Mobile === */
+/* === 🔥 MOBILE FIX (same as login, no compression) === */
 @media (max-width: 768px) {
+
     .signup-page {
-        padding-top: 80px;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 100vh;
     }
 
     .signup-box {
-        width: 90%;
-        padding: 1.8rem 1.4rem;
+        width: 92%;
+        max-width: 380px;
+
+        padding: 2.4rem 1.8rem;
+
+        border-radius: 18px;
     }
 
     .signup-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 }
+
+/* === Avatar Upload === */
 .avatar-upload-box {
   display: flex;
   flex-direction: column;

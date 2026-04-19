@@ -1,11 +1,11 @@
-/* === Login Page Styles (Arcade Vault Premium) === */
+/* === Login Page Styles (Clean + Particles Friendly) === */
 .login-page {
     position: relative;
     min-height: 100vh;
     overflow: hidden;
 
-    /* 🌌 Premium deep gaming background */
-    background: radial-gradient(circle at top, #0b1530 0%, #070a14 45%, #05060c 100%);
+    /* ❌ removed gradient background */
+    background: transparent;
 
     display: flex;
     justify-content: center;
@@ -20,23 +20,8 @@
     box-sizing: border-box;
 }
 
-
-/* subtle animated aura layer */
-.login-page::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.08), transparent 40%),
-                radial-gradient(circle at 80% 60%, rgba(0, 140, 255, 0.06), transparent 45%);
-    animation: bgPulse 8s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes bgPulse {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.05); opacity: 1; }
-}
+/* ❌ removed aura overlay completely */
+/* .login-page::before { } */
 
 /* Background canvas (particles) */
 .bg-canvas {
@@ -53,7 +38,7 @@
     filter: blur(0.2px) saturate(1.2);
 }
 
-/* === Login Box (Arcade Vault Glass Core) === */
+/* === Login Box === */
 .login-box {
     position: relative;
     z-index: 5;
@@ -64,7 +49,6 @@
 
     border-radius: 18px;
 
-    /* 🧊 ultra glass effect */
     background: linear-gradient(
         135deg,
         rgba(20, 30, 60, 0.75),
@@ -87,7 +71,6 @@
     animation: fadeInUp 1s ease-out;
 }
 
-/* hover = arcade glow lift */
 .login-box:hover {
     transform: translateY(-8px) scale(1.01);
 
@@ -132,7 +115,7 @@
 /* === Inputs === */
 .login-form input {
     width: 100%;
-    padding: 1rem;
+    padding: 0.9rem;
 
     border-radius: 12px;
 
@@ -142,7 +125,7 @@
 
     color: #fff;
 
-    font-size: 1rem;
+    font-size: 0.95rem;
 
     outline: none;
 
@@ -164,12 +147,12 @@
 /* === Button === */
 .login-btn {
     width: 100%;
-    padding: 1rem;
+    padding: 0.9rem;
 
     border-radius: 14px;
 
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
 
     cursor: pointer;
 
@@ -197,7 +180,7 @@
 /* === Signup === */
 .signup {
     margin-top: 1.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: rgba(200, 220, 255, 0.7);
 }
 
@@ -214,22 +197,11 @@
 
 /* === Messages === */
 .login-message {
-    margin-top: 1.5rem;
-    padding: 0.6rem;
+    margin-top: 1.2rem;
+    padding: 0.5rem;
     border-radius: 8px;
     font-weight: bold;
     animation: fadeIn 0.5s ease-in-out;
-}
-
-.login-message.success {
-    background: rgba(0, 229, 255, 0.15);
-    color: #00eaff;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-}
-
-.login-message.error {
-    background: rgba(255, 60, 60, 0.15);
-    color: #ff5c5c;
 }
 
 /* === Animations === */
@@ -241,7 +213,7 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(25px);
     }
     to {
         opacity: 1;
@@ -249,18 +221,47 @@
     }
 }
 
-/* === Mobile === */
+/* === 🔥 MOBILE POLISH === */
 @media (max-width: 768px) {
     .login-page {
-        padding-top: 80px;
+        padding-top: 90px;
+        align-items: center; /* 🔥 center vertically on mobile */
     }
 
     .login-box {
-        width: 90%;
-        padding: 1.8rem 1.4rem;
+        width: 92%;
+        padding: 1.6rem 1.2rem;
+        border-radius: 16px;
     }
 
     .login-title {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
+    }
+}
+/* === 🔥 MOBILE REAL FIX (no compression) === */
+@media (max-width: 768px) {
+
+    .login-page {
+        padding-top: 0;              /* ❌ remove forced top push */
+        align-items: center;         /* ✅ true vertical centering */
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .login-box {
+        width: 92%;
+        max-width: 380px;
+
+        /* 🔥 restore original proportions */
+        padding: 2.4rem 1.8rem;
+
+        border-radius: 18px;
+
+        /* 🔥 THIS is key */
+        transform: none;             /* avoid scaling issues */
+    }
+
+    .login-title {
+        font-size: 2rem;
     }
 }

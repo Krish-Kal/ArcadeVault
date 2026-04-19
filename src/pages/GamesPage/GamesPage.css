@@ -285,3 +285,66 @@ html {
     padding: 12px;
   }
 }
+/* === 🔥 MOBILE PERFECT GRID FIX === */
+@media (max-width: 600px) {
+
+  /* Fix page padding & centering */
+  .games-page {
+    padding: 10px 8px;
+    margin-top: 70px;
+  }
+
+  /* Center grid properly */
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    justify-content: center;
+    align-items: stretch;
+
+    width: 100%;
+  }
+
+  /* Fix card overflow + shift */
+  .game-card {
+    width: 100%;              /* 🔥 prevents overflow */
+    padding: 14px;
+    min-height: 300px;
+
+    transform: none;          /* 🔥 removes scale causing shift */
+    margin: 0;                /* 🔥 remove extra push */
+
+    border-radius: 16px;      /* 🔥 cleaner mobile look */
+  }
+
+  /* Image scaling fix */
+  .game-image {
+    height: 120px;
+    border-radius: 12px;
+  }
+
+  /* Text scaling */
+  .game-card h2 {
+    font-size: 1rem;
+  }
+
+  .genre {
+    font-size: 0.85rem;
+  }
+
+  .platforms {
+    font-size: 0.8rem;
+  }
+
+  /* Button stacking for better fit */
+  .button-container {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .go-to-game-btn,
+  .wishlist-btn {
+    font-size: 0.75rem;
+    padding: 7px;
+  }
+}

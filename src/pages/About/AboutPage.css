@@ -5,12 +5,10 @@
 }
 
 :root {
-  /* 🎯 SIZE CONTROL (fix zoom feel) */
   --base-font: 0.95rem;
 
-  /* 🎨 CYAN NEON PALETTE */
-  --bg-main: #0a0f1a;
-  --bg-soft: #0f1624;
+  --bg-main: transparent;
+  --bg-soft: transparent;
 
   --cyan-main: #00eaff;
   --cyan-soft: #5cf2ff;
@@ -26,27 +24,24 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-size: var(--base-font);
-  background: radial-gradient(circle at top, #0f1624, #050810);
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: hidden;
+
+  /* ✅ removed any background interference */
+  background: transparent;
 }
 
-/* ===============================
-   ABOUT PAGE BASE
-=============================== */
+/* =============================== */
 .about-page {
   min-height: 100vh;
   padding: clamp(6rem, 6vw, 7rem) 1.5rem 3rem;
   max-width: 1200px;  
   margin: 0 auto;
-
   width: 100%;
 }
 
-/* ===============================
-   HERO
-=============================== */
+/* =============================== */
 .hero-section {
   text-align: center;
   max-width: 700px;
@@ -70,9 +65,7 @@ body {
   line-height: 1.7;
 }
 
-/* ===============================
-   FEATURES GRID
-=============================== */
+/* =============================== */
 .features-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -95,7 +88,6 @@ body {
 .feature-card h3 {
   font-size: 1.2rem;
   color: var(--cyan-main);
-
   text-shadow: 0 0 6px rgba(0,234,255,0.6);
   margin-bottom: 0.6rem;
 }
@@ -106,20 +98,15 @@ body {
   line-height: 1.6;
 }
 
-/* 🔥 HOVER */
 .feature-card:hover {
   transform: translateY(-6px) scale(1.02);
-
   box-shadow:
     0 0 25px rgba(0,234,255,0.2),
     0 10px 30px rgba(0,0,0,0.4);
-
   border-color: var(--cyan-main);
 }
 
-/* ===============================
-   ABOUT ME
-=============================== */
+/* =============================== */
 .about-me-section {
   display: flex;
   justify-content: center;
@@ -149,7 +136,6 @@ body {
 .about-text h2 {
   font-size: 1.4rem;
   color: var(--cyan-main);
-
   text-shadow: 0 0 8px rgba(0,234,255,0.6);
   margin-bottom: 0.5rem;
 }
@@ -160,9 +146,7 @@ body {
   line-height: 1.6;
 }
 
-/* ===============================
-   SOCIAL LINKS
-=============================== */
+/* =============================== */
 .social-links {
   margin-top: 1.2rem;
   display: flex;
@@ -181,16 +165,15 @@ body {
   transform: scale(1.2);
 }
 
-/* ===============================
-   FOOTER
-=============================== */
+/* =============================== */
 .footer-section {
   text-align: center;
   padding: 2rem;
 
-  background: rgba(255,255,255,0.05);
-  border-radius: 18px;
+  /* ❌ removed heavy background feel */
+  background: rgba(255,255,255,0.03);
 
+  border-radius: 18px;
   border: 1px solid var(--border);
   backdrop-filter: blur(14px);
 }
@@ -198,7 +181,6 @@ body {
 .footer-section h2 {
   font-size: 1.6rem;
   color: var(--cyan-main);
-
   text-shadow: 0 0 10px rgba(0,234,255,0.5);
   margin-bottom: 0.5rem;
 }
@@ -209,7 +191,6 @@ body {
   margin-bottom: 1.4rem;
 }
 
-/* 🎯 BUTTON */
 .footer-cta {
   display: inline-block;
   padding: 0.7rem 1.8rem;
@@ -231,9 +212,7 @@ body {
   box-shadow: 0 0 35px rgba(0,234,255,0.5);
 }
 
-/* ===============================
-   FADE ANIMATION
-=============================== */
+/* =============================== */
 .fade-in {
   opacity: 0;
   transform: translateY(15px);
@@ -247,100 +226,53 @@ body {
   }
 }
 
-/* ===============================
-   PREMIUM MOBILE UPGRADE
-=============================== */
-@media (max-width: 768px) {
-  .about-page {
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
+/* =============================== */
+/* 🔥 PREMIUM MOBILE FIX */
+/* =============================== */
 @media (max-width: 768px) {
 
-  /* 🔥 Better page spacing */
   .about-page {
     padding: 5.5rem 1rem 2.5rem;
   }
 
-  /* 🎯 HERO feels less cramped */
-  .hero-section {
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-section h1 {
-    font-size: 1.9rem;
-    letter-spacing: 0.5px;
-  }
-
-  .hero-section p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  /* 🎮 FEATURES → better breathing + no boxy grid */
   .features-section {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
+  /* 🔥 MAIN FIX: NO MORE BOXY CARDS */
   .feature-card {
     padding: 1.2rem;
-    border-radius: 16px;
-    transform: none; /* removes heavy hover feel on mobile */
+    border-radius: 22px; /* smoother premium curve */
+    
+    width: 92%;
+    margin: 0 auto;
+
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(0, 234, 255, 0.25);
+
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.35),
+      0 0 20px rgba(0, 234, 255, 0.15);
+
+    transform: none;
   }
 
   .feature-card:hover {
     transform: none;
   }
 
-  .feature-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .feature-card p {
-    font-size: 0.9rem;
-  }
-
-  /* 👤 ABOUT ME card refinement */
+  /* 👤 MATCH ABOUT CARD STYLE */
   .about-me-card {
-    padding: 1.4rem;
-    border-radius: 16px;
+    border-radius: 22px;
+    width: 92%;
+    margin: 0 auto;
   }
 
-  .about-text h2 {
-    font-size: 1.25rem;
-  }
-
-  .about-text p {
-    font-size: 0.9rem;
-  }
-
-  /* 🔗 SOCIAL ICON spacing fix */
-  .social-links {
-    gap: 1.6rem;
-  }
-
-  /* 🎯 FOOTER upgrade */
+  /* 🎯 FOOTER MATCH */
   .footer-section {
-    padding: 1.5rem;
-    border-radius: 16px;
-  }
-
-  .footer-section h2 {
-    font-size: 1.35rem;
-  }
-
-  .footer-section p {
-    font-size: 0.9rem;
-  }
-
-  .footer-cta {
-    padding: 0.65rem 1.4rem;
-    font-size: 0.85rem;
+    border-radius: 22px;
+    width: 92%;
+    margin: 0 auto;
   }
 }

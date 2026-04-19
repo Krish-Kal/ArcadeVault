@@ -117,3 +117,69 @@
   position: relative;
   z-index: 2;
 }
+/* === MOBILE FIX (PROFILE PAGE) === */
+@media (max-width: 768px) {
+
+  .profile-container {
+    flex-direction: column;   /* 🔥 stack instead of side-by-side */
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 25px;
+    padding: 90px 15px 40px;
+
+    width: 100%;
+  }
+
+  /* LEFT CARD */
+  .profile-card {
+    width: 100%;
+    max-width: 340px;
+
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-email {
+    font-size: 1rem;
+  }
+
+  .upload-btn {
+    padding: 9px;
+    font-size: 0.95rem;
+  }
+
+  /* RIGHT STATS */
+  .profile-stats {
+    width: 100%;
+    max-width: 340px;
+
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .stat-box {
+    width: 100%;
+    padding: 16px;
+
+    border-radius: 14px;
+  }
+
+  .stat-box h3 {
+    font-size: 0.85rem;
+  }
+
+  .stat-box p {
+    font-size: 1.1rem;
+  }
+
+  /* prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+}

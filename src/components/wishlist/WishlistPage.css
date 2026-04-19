@@ -261,3 +261,71 @@
     margin-top: 60px;
   }
 }
+/* === 🔥 Wishlist Mobile Card Polish === */
+@media (max-width: 768px) {
+
+  /* Fix wrapper typo + spacing */
+  .wishlist-wrapper {
+    padding: 3.5rem 1rem 2rem;
+    margin-top: 60px;
+  }
+
+  /* Better grid fit */
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* 🔥 MAIN FIX: compact premium cards */
+  .wishlist-card {
+    border-radius: 16px;
+    min-height: 240px;
+    padding: 0;
+
+    /* cleaner look */
+    box-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.35),
+      0 0 15px rgba(0, 255, 255, 0.15);
+  }
+
+  /* Image tighter */
+  .game-cover {
+    height: 120px;
+  }
+
+  /* Reduce content bulk */
+  .game-info {
+    padding: 0.6rem;
+  }
+
+  .game-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .game-info p {
+    font-size: 0.8rem;
+  }
+
+  .game-info span {
+    font-size: 0.85rem;
+  }
+
+  /* Buttons more compact */
+  .wishlist-buttons {
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .go-to-game,
+  .remove-game {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+
+  /* Slightly reduce icon size */
+  .go-to-game:before {
+    font-size: 1rem;
+  }
+}
