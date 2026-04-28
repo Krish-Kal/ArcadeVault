@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import ParticlesBackground from '../../components/ParticlesBackground';
+import { emitUserUpdated } from '../../utils/avatar';
 
 
 const LoginPage = ({ setIsLoggedIn, loadUserWishlist }) => {
@@ -25,6 +26,10 @@ const LoginPage = ({ setIsLoggedIn, loadUserWishlist }) => {
       if (res.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', email);
+        if (data.user) {
+          localStorage.setItem('user', JSON.stringify(data.user));
+          emitUserUpdated();
+        }
         loadUserWishlist();
         setIsLoggedIn(true);
         setLoginMessage('Login successful!');

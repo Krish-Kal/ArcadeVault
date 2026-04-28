@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import user from '/user.png';
 import Dropdown from '../../pages/ProfilePage/Dropdown';
+import { emitUserUpdated, resolveAvatarSrc } from '../../utils/avatar';
 
 
 function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
@@ -13,6 +14,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [userData, setUserData] = useState(null);
+  const API = import.meta.env.VITE_API_URL || "https://arcadevault-4.onrender.com";
 
   const toggleDropdown = () => setDropdownVisible(!isDropdownVisible);
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
@@ -21,6 +23,7 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
     handleLogout();
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    emitUserUpdated();
     navigate('/');
   };
 
@@ -28,7 +31,12 @@ function Navbar({ wishlistCount, isLoggedIn, handleLogout }) {
 useEffect(() => {
   const syncUser = () => {
     const stored = localStorage.getItem("user");
-    if (stored) setUserData(JSON.parse(stored));
+    if (stored) {
+      setUserData(JSON.parse(stored));
+      return;
+    }
+
+    setUserData(null);
   };
 
 
@@ -109,11 +117,7 @@ useEffect(() => {
         {isLoggedIn ? (
           <>
             <img
-              src={
-                userData?.avatar
-                  ? `${import.meta.env.VITE_API_URL}${userData.avatar}`
-                  : user
-              }
+              src={resolveAvatarSrc(userData?.avatar, API)}
               onError={(e) => (e.target.src = user)}
               alt="User Avatar"
               className="navbar-avatar-img"

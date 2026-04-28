@@ -1,17 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./ProfilePage.css";
 import ParticlesBackground from "../../components/ParticlesBackground";
+import { emitUserUpdated, resolveAvatarSrc } from "../../utils/avatar";
+
+const formatDateTime = (date) =>
+  new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(date);
+
+const formatDate = (date) =>
+  new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium"
+  }).format(date);
+
+const getCreatedAtFromObjectId = (id) => {
+  if (!id || id.length < 8) {
+    return null;
+  }
+
+  const timestamp = Number.parseInt(id.slice(0, 8), 16) * 1000;
+
+  if (Number.isNaN(timestamp)) {
+    return null;
+  }
+
+  return new Date(timestamp);
+};
 
 function Profile() {
   const [user, setUser] = useState(null);
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [currentTime, setCurrentTime] = useState(() => new Date());
+  const [lastSyncedAt, setLastSyncedAt] = useState(() => new Date());
 
   const token = localStorage.getItem("token");
-  
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.VITE_API_URL || "https://arcadevault-4.onrender.com";
 
-  // 🔥 FETCH PROFILE (SAFE + CLEAN)
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -25,7 +61,9 @@ function Profile() {
 
         if (res.ok && data?.email) {
           setUser(data);
+          setLastSyncedAt(new Date());
           localStorage.setItem("user", JSON.stringify(data));
+          emitUserUpdated();
         } else {
           console.error("Invalid user response:", data);
           setUser(null);
@@ -39,11 +77,45 @@ function Profile() {
     fetchProfile();
   }, [API, token]);
 
-  // 🔥 AVATAR UPLOAD (PRO VERSION)
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
+
+  const joinedAt = useMemo(() => getCreatedAtFromObjectId(user?._id), [user?._id]);
+  const wishlistCount = user?.wishlist?.length || 0;
+  const vaultId = user?._id?.slice(0, 8)?.toUpperCase() || "UNKNOWN";
+  const completionScore = Math.min(100, 45 + wishlistCount * 9 + (user?.avatar ? 20 : 0));
+
+  const handleFileChange = (event) => {
+    const nextFile = event.target.files?.[0];
+
+    if (!nextFile) {
+      setFile(null);
+      setPreviewUrl("");
+      setStatusMessage("");
+      return;
+    }
+
+    const nextPreviewUrl = URL.createObjectURL(nextFile);
+
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+
+    setFile(nextFile);
+    setPreviewUrl(nextPreviewUrl);
+    setStatusMessage("");
+  };
+
   const handleUpload = async () => {
     if (!file) return;
 
     setUploading(true);
+    setStatusMessage("");
 
     try {
       const formData = new FormData();
@@ -59,104 +131,183 @@ function Profile() {
 
       const data = await res.json();
 
-if (res.ok) {
-  const updatedUser = {
-    ...user,
-    avatar: data.avatar
-  };
+      if (res.ok && data?.user) {
+        setUser(data.user);
+        setLastSyncedAt(new Date());
+        localStorage.setItem("user", JSON.stringify(data.user));
+        emitUserUpdated();
+        setStatusMessage("Avatar updated successfully.");
+        setFile(null);
 
-  setUser(updatedUser);
+        if (previewUrl) {
+          URL.revokeObjectURL(previewUrl);
+        }
 
-  // 🔥 sync with navbar
-  localStorage.setItem("user", JSON.stringify(updatedUser));
-
-  // 🔥 force navbar refresh (same tab)
-  window.dispatchEvent(new Event("userUpdated"));
-
-  setFile(null);
-} else {
+        setPreviewUrl("");
+      } else {
+        setStatusMessage(data.message || "Avatar upload failed.");
         console.error("Upload failed:", data);
       }
-
     } catch (err) {
+      setStatusMessage("Avatar upload failed. Please try again.");
       console.error("Upload error:", err);
     } finally {
       setUploading(false);
     }
   };
 
-  // 🔥 LOADING STATE
   if (!user) {
-    return <div className="profile-loading">Loading Vault...</div>;
+    return (
+      <div className="profile-wrapper">
+        <ParticlesBackground />
+        <div className="profile-loading-shell">
+          <div className="profile-loading">Loading Vault...</div>
+        </div>
+      </div>
+    );
   }
 
-return (
-  <div className="profile-wrapper">
+  return (
+    <div className="profile-wrapper">
+      <ParticlesBackground />
+      <div className="profile-backdrop" />
 
-    {/* BACKGROUND LAYER */}
-    <ParticlesBackground />
+      <div className="profile-container">
+        <section className="profile-overview">
+          <div className="profile-identity-card">
+            <div className="profile-identity-top">
+              <div className="profile-presence">
+                <span className="presence-dot" />
+                <span>Live session</span>
+              </div>
+              <p className="profile-sync">Updated {formatDateTime(lastSyncedAt)}</p>
+            </div>
 
-    {/* MAIN CONTENT */}
-    <div className="profile-container">
+            <div className="profile-identity-main">
+              <div className="avatar-section">
+                <img
+                  src={previewUrl || resolveAvatarSrc(user?.avatar, API)}
+                  onError={(e) => {
+                    e.currentTarget.src = "/user.png";
+                  }}
+                  alt="avatar"
+                  className="profile-avatar"
+                />
+              </div>
 
-      {/* LEFT PANEL */}
-      <div className="profile-card">
+              <div className="profile-copy">
+                <p className="profile-eyebrow">Player Profile</p>
+                <h1 className="profile-name">{user.username || user.email}</h1>
+                <p className="profile-subtext">{user.email}</p>
 
-        <div className="avatar-section">
-          <img
-            src={
-              user?.avatar
-                ? `${API}${user.avatar}`
-                : "/user.png"
-            }
-            alt="avatar"
-            className="profile-avatar"
-          />
-        </div>
+                <div className="profile-tags">
+                  <span className="profile-tag">Vault ID {vaultId}</span>
+                  <span className="profile-tag">{wishlistCount} saved titles</span>
+                  <span className="profile-tag">Profile score {completionScore}%</span>
+                </div>
+              </div>
+            </div>
 
-        <h2 className="profile-email">{user.username || user.email}</h2>
-        <p className="profile-subtext">{user.email}</p>
+            <div className="avatar-manager">
+              <div className="avatar-actions">
+                <label htmlFor="avatar-upload" className="modify-avatar-btn">
+                  Modify Avatar
+                </label>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFile(e.target.files[0])}
-          className="avatar-input"
-        />
+                <input
+                  id="avatar-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="avatar-input"
+                />
 
-        <button
-          onClick={handleUpload}
-          className="upload-btn"
-          disabled={!file || uploading}
-        >
-          {uploading ? "Uploading..." : "Upload Avatar"}
-        </button>
+                <button
+                  onClick={handleUpload}
+                  className="upload-btn"
+                  disabled={!file || uploading}
+                >
+                  {uploading ? "Uploading..." : file ? "Save Avatar" : "Choose an image"}
+                </button>
+              </div>
 
+              <p className="avatar-hint">
+                {file ? file.name : "PNG, JPG, WEBP, GIF, or AVIF up to 5 MB"}
+              </p>
+
+              {statusMessage ? (
+                <p className={`avatar-status ${statusMessage.includes("successfully") ? "success" : "error"}`}>
+                  {statusMessage}
+                </p>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="profile-live-grid">
+            <article className="live-panel emphasis">
+              <p className="panel-label">Local Time</p>
+              <h2>{formatDateTime(currentTime)}</h2>
+              <p className="panel-note">Real-time session clock for this device.</p>
+            </article>
+
+            <article className="live-panel">
+              <p className="panel-label">Joined Vault</p>
+              <h2>{joinedAt ? formatDate(joinedAt) : "Recently"}</h2>
+              <p className="panel-note">Derived from your account record.</p>
+            </article>
+
+            <article className="live-panel">
+              <p className="panel-label">Avatar State</p>
+              <h2>{previewUrl ? "Preview ready" : "Synced"}</h2>
+              <p className="panel-note">{previewUrl ? "Review and save your selection." : "Navbar and profile are aligned."}</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="profile-stats">
+          <div className="stat-box">
+            <div>
+              <h3>Wishlist Items</h3>
+              <p>{wishlistCount}</p>
+            </div>
+            <span className="stat-trend">{wishlistCount > 0 ? "Active" : "Start building"}</span>
+          </div>
+
+          <div className="stat-box">
+            <div>
+              <h3>Account Status</h3>
+              <p>Premium Gamer</p>
+            </div>
+            <span className="stat-trend">Healthy</span>
+          </div>
+
+          <div className="stat-box">
+            <div>
+              <h3>Vault ID</h3>
+              <p>{vaultId}</p>
+            </div>
+            <span className="stat-trend">Verified</span>
+          </div>
+
+          <div className="stat-box stat-box-wide">
+            <div className="stat-progress-head">
+              <div>
+                <h3>Profile Completion</h3>
+                <p>{completionScore}%</p>
+              </div>
+              <span className="stat-trend">Live</span>
+            </div>
+
+            <div className="progress-track" aria-hidden="true">
+              <span className="progress-fill" style={{ width: `${completionScore}%` }} />
+            </div>
+
+            <p className="panel-note">Completion reacts to your current avatar and saved library.</p>
+          </div>
+        </section>
       </div>
-
-      {/* RIGHT PANEL */}
-      <div className="profile-stats">
-
-        <div className="stat-box">
-          <h3>Wishlist Items</h3>
-          <p>{user.wishlist?.length || 0}</p>
-        </div>
-
-        <div className="stat-box">
-          <h3>Account Status</h3>
-          <p>Premium Gamer</p>
-        </div>
-
-        <div className="stat-box">
-          <h3>Vault ID</h3>
-          <p>{user._id?.slice(0, 8)}</p>
-        </div>
-
-      </div>
-
     </div>
-  </div>
-);
+  );
 }
 
 export default Profile;

@@ -1,6 +1,23 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.model.js";
+import { ObjectId } from "mongodb";
+import {
+  deleteAvatarFromStorage,
+  resolveUserAvatar,
+  streamAvatarFromStorage,
+  uploadAvatarToStorage
+} from "../utils/avatarStorage.js";
+
+const buildUserPayload = (user) => ({
+  id: user._id,
+  _id: user._id,
+  email: user.email,
+  username: user.username,
+  wishlist: user.wishlist,
+  avatar: resolveUserAvatar(user),
+  avatarVersion: user.avatarVersion || 0
+});
 
 
 // Signup
@@ -55,14 +72,10 @@ export const login = async (req, res) => {
     );
 
    res.json({
-  message: "Login successful",
-  token,
-  user: {
-    id: user._id,
-    email: user.email,
-    avatar: user.avatar
-  }
-});
+      message: "Login successful",
+      token,
+      user: buildUserPayload(user)
+    });
 
   } catch (err) {
     console.error(err);
@@ -139,7 +152,7 @@ export const getProfile = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json(user);
+    res.json(buildUserPayload(user));
 
   } catch (err) {
     res.status(500).json({ message: "Server error" });
@@ -153,22 +166,61 @@ export const updateAvatar = async (req, res) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      req.user.id,
-      {
-        avatar: `/uploads/${req.file.filename}`,
-      },
-      { new: true }
-    );
+    const existingUser = await User.findById(req.user.id);
+
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const uploadedAvatar = await uploadAvatarToStorage({
+      userId: req.user.id,
+      file: req.file
+    });
+
+    const previousAvatarFileId = existingUser.avatarFileId;
+
+    existingUser.avatar = uploadedAvatar.avatarUrl;
+    existingUser.avatarFileId = uploadedAvatar.avatarFileId;
+    existingUser.avatarVersion = uploadedAvatar.avatarVersion;
+
+    const updatedUser = await existingUser.save();
+
+    if (previousAvatarFileId && previousAvatarFileId !== uploadedAvatar.avatarFileId) {
+      await deleteAvatarFromStorage(previousAvatarFileId);
+    }
 
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json({ avatar: updatedUser.avatar });
+    res.json({
+      message: "Avatar updated successfully",
+      avatar: resolveUserAvatar(updatedUser),
+      user: buildUserPayload(updatedUser)
+    });
 
   } catch (err) {
     console.log("UPLOAD ERROR:", err);
     res.status(500).json({ message: err.message });
+  }
+};
+
+export const getAvatar = async (req, res) => {
+  try {
+    const { fileId } = req.params;
+
+    if (!ObjectId.isValid(fileId)) {
+      return res.status(404).json({ message: "Avatar not found" });
+    }
+
+    const wasStreamed = await streamAvatarFromStorage(fileId, res);
+
+    if (!wasStreamed && !res.headersSent) {
+      return res.status(404).json({ message: "Avatar not found" });
+    }
+  } catch (err) {
+    if (!res.headersSent) {
+      res.status(500).json({ message: "Failed to load avatar" });
+    }
   }
 };
