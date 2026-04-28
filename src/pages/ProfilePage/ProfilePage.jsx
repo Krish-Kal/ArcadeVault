@@ -178,9 +178,8 @@ function Profile() {
             <div className="profile-identity-top">
               <div className="profile-presence">
                 <span className="presence-dot" />
-                <span>Live session</span>
+                <span>Session Active</span>
               </div>
-              <p className="profile-sync">Updated {formatDateTime(lastSyncedAt)}</p>
             </div>
 
             <div className="profile-identity-main">
@@ -196,14 +195,14 @@ function Profile() {
               </div>
 
               <div className="profile-copy">
-                <p className="profile-eyebrow">Player Profile</p>
+                <p className="profile-eyebrow">Arcade Identity</p>
                 <h1 className="profile-name">{user.username || user.email}</h1>
                 <p className="profile-subtext">{user.email}</p>
 
                 <div className="profile-tags">
-                  <span className="profile-tag">Vault ID {vaultId}</span>
-                  <span className="profile-tag">{wishlistCount} saved titles</span>
-                  <span className="profile-tag">Profile score {completionScore}%</span>
+                  <span className="profile-tag">ID · {vaultId}</span>
+<span className="profile-tag">Library · {wishlistCount} titles</span>
+<span className="profile-tag">Tier · Elite</span>
                 </div>
               </div>
             </div>
@@ -245,66 +244,47 @@ function Profile() {
 
           <div className="profile-live-grid">
             <article className="live-panel emphasis">
-              <p className="panel-label">Local Time</p>
+              <p className="panel-label">System Clock</p>
               <h2>{formatDateTime(currentTime)}</h2>
-              <p className="panel-note">Real-time session clock for this device.</p>
+              <p className="panel-note">Local Time.</p>
             </article>
 
             <article className="live-panel">
-              <p className="panel-label">Joined Vault</p>
+              <p className="panel-label">Account Origin</p>
               <h2>{joinedAt ? formatDate(joinedAt) : "Recently"}</h2>
-              <p className="panel-note">Derived from your account record.</p>
+              <p className="panel-note">Timestamp of your entry into the Vault.</p>
             </article>
 
-            <article className="live-panel">
-              <p className="panel-label">Avatar State</p>
-              <h2>{previewUrl ? "Preview ready" : "Synced"}</h2>
-              <p className="panel-note">{previewUrl ? "Review and save your selection." : "Navbar and profile are aligned."}</p>
-            </article>
           </div>
         </section>
 
         <section className="profile-stats">
-          <div className="stat-box">
-            <div>
-              <h3>Wishlist Items</h3>
-              <p>{wishlistCount}</p>
-            </div>
-            <span className="stat-trend">{wishlistCount > 0 ? "Active" : "Start building"}</span>
-          </div>
+  <div className="stat-box">
+    <div>
+      <h3>Library Size</h3>
+      <p>{wishlistCount}</p>
+    </div>
+    <span className="stat-trend">
+      {wishlistCount > 0 ? "Growing" : "Empty"}
+    </span>
+  </div>
 
-          <div className="stat-box">
-            <div>
-              <h3>Account Status</h3>
-              <p>Premium Gamer</p>
-            </div>
-            <span className="stat-trend">Healthy</span>
-          </div>
+  <div className="stat-box">
+    <div>
+      <h3>Player Tier</h3>
+      <p>Elite</p>
+    </div>
+    <span className="stat-trend">Active</span>
+  </div>
 
-          <div className="stat-box">
-            <div>
-              <h3>Vault ID</h3>
-              <p>{vaultId}</p>
-            </div>
-            <span className="stat-trend">Verified</span>
-          </div>
-
-          <div className="stat-box stat-box-wide">
-            <div className="stat-progress-head">
-              <div>
-                <h3>Profile Completion</h3>
-                <p>{completionScore}%</p>
-              </div>
-              <span className="stat-trend">Live</span>
-            </div>
-
-            <div className="progress-track" aria-hidden="true">
-              <span className="progress-fill" style={{ width: `${completionScore}%` }} />
-            </div>
-
-            <p className="panel-note">Completion reacts to your current avatar and saved library.</p>
-          </div>
-        </section>
+  <div className="stat-box">
+    <div>
+      <h3>Vault Signature</h3>
+      <p>{vaultId}</p>
+    </div>
+    <span className="stat-trend">Verified</span>
+  </div>
+</section>
       </div>
     </div>
   );
