@@ -170,7 +170,6 @@ function Profile() {
   return (
     <div className="profile-wrapper">
       <ParticlesBackground />
-      <div className="profile-backdrop" />
 
       <div className="profile-container">
         <section className="profile-overview">
