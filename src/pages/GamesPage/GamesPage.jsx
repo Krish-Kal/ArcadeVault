@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./GamesPage.css";
 import { gamesList } from "./Gamedata";
+import Searchbox from "../../components/searchbox/Gamesearch";
 
-function GamesPage({ addToWishlist, wishlist = [], searchQuery }) {
+function GamesPage({
+  addToWishlist,
+  wishlist = [],
+  searchQuery,
+  setSearchQuery,
+}) {
   const [games, setGames] = useState([]);
   const [addedGames, setAddedGames] = useState([]);
   const [sortBy, setSortBy] = useState("name");
@@ -34,7 +40,7 @@ function GamesPage({ addToWishlist, wishlist = [], searchQuery }) {
       const end = start + pageSize;
       const pageItems = gamesList.slice(start, end);
       preloadImages(pageItems.map((g) => g.imageUrl || g.background_image));
-      setGames(pageItems);
+      setGames(gamesList);
       setLoading(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 150);
@@ -83,13 +89,41 @@ function GamesPage({ addToWishlist, wishlist = [], searchQuery }) {
     return sorted;
   };
 
-  const q = (searchQuery || "").trim().toLowerCase();
-  const filtered = q ? games.filter((g) => (g.name || "").toLowerCase().includes(q)) : games;
+ const q = (searchQuery || "").trim().toLowerCase();
+
+// Search ALL games when typing
+const filtered = q
+  ? gamesList.filter((game) => {
+      const name = (game.name || "").toLowerCase();
+
+      const genres = (
+        game.genre
+          ? [game.genre]
+          : (game.genres || []).map((g) => g.name)
+      )
+        .join(" ")
+        .toLowerCase();
+
+      const platform = (
+        game.platform ||
+        game.platforms?.map((p) => p.platform?.name).join(" ")
+      || "").toLowerCase();
+
+      return (
+        name.includes(q) ||
+        genres.includes(q) ||
+        platform.includes(q)
+      );
+    })
+  : games;
 
   return (
     <div className="games-page">
       <h1 className="games-page-title">Explore Trending Games</h1>
-
+<Searchbox
+  searchQuery={searchQuery}
+  setSearchQuery={setSearchQuery}
+/>
       <div className="sort-by-container">
         <label htmlFor="sort-by" className="sort-by-label">Sort by:</label>
         <select id="sort-by" value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="sort-by-dropdown">
@@ -101,7 +135,7 @@ function GamesPage({ addToWishlist, wishlist = [], searchQuery }) {
         </select>
       </div>
 
-      <div className="games-grid">
+      <div className="games-grid" key={searchQuery}>
         {loading ? (
           Array.from({ length: pageSize }).map((_, i) => (
             <div className="game-card skeleton" key={i}>
@@ -139,7 +173,7 @@ function GamesPage({ addToWishlist, wishlist = [], searchQuery }) {
         )}
       </div>
 
-      {!searchQuery && (
+      {!q && (
         <div className="pagination">
           <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>Previous</button>
           <span> Page {page} </span>

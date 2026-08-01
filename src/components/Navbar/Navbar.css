@@ -151,111 +151,416 @@
   box-shadow: inset 0 0 6px rgba(0, 255, 231, 0.35);
   transform: translateX(3px);
 }
+/* =========================================================
+   === PREMIUM GLASS HAMBURGER ==============================
+   ========================================================= */
 
-/* === Hamburger === */
 .hamburger {
   display: none;
-  flex-direction: column;
+
+  width: 28px;
+  height: 32px;
+
+  margin-left: auto;
+
+  position: relative;
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
-  gap: 5px;
-  margin-left: 1rem;
-  position: absolute;
-  bottom: 0.5rem;
-  right: 1rem;
-  transition: transform 0.3s ease;
+
+  /* NO BOX */
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+
+  padding: 0;
 }
+
+.hamburger:hover {
+  transform: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
 .hamburger span {
-  height: 3px;
-  width: 24px;
-  background: #00ffe7;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  position: absolute;
+
+  width: 20px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: #dffffb;
+
+  box-shadow:
+    0 0 6px rgba(0, 255, 231, 0.45);
+
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease,
+    width 0.25s ease,
+    background 0.25s ease;
 }
 
-/* === Mobile Styles === */
+.hamburger span:nth-child(1) {
+  transform: translateY(-6px);
+}
+
+.hamburger span:nth-child(2) {
+  width: 14px;
+}
+
+.hamburger span:nth-child(3) {
+  transform: translateY(6px);
+}
+
+.hamburger:hover span {
+  background: #00ffe7;
+  box-shadow:
+    0 0 7px rgba(0, 255, 231, 0.55);
+}
+
+/* Open → X */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  width: 0;
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   === MOBILE NAV ==========================================
+   ========================================================= */
+
 @media (max-width: 768px) {
-  .navbar {
-    max-width: 92%;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
 
-    /* 🔥 keep same scale */
-    transform: scale(0.95);
-  }
+.navbar {
+  max-width: 92%;
+  height: auto;
 
+  padding: 0.45rem 0.9rem;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;  
+  justify-content: space-between;        /* NEW — allows hamburger to drop to its own row */
+
+  gap: 8px;
+
+  border-radius: 19px;
+
+  transform: scale(0.95);
+}
   .logo {
     width: 58px;
+    flex: 0 0 auto;
   }
 
-  .hamburger {
-    display: flex;
+
+  /* =======================================================
+     === VAULT + HAMBURGER RIGHT SIDE ======================
+     ======================================================= */
+
+  .navbar-brand,
+  .brand,
+  .vault-text {
+    min-width: 0;
+
+    margin-left: auto;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: rgba(255, 255, 255, 0.92);
   }
+
+.hamburger {
+  display: flex;
+
+  order: 2;
+
+  flex: 0 0 auto;
+
+  margin: 0 auto;
+
+  z-index: 1002;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
+  user-select: none;
+}
+
+.hamburger:focus,
+.hamburger:active {
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+  /* =======================================================
+     === CRISP LIQUID GLASS MENU ============================
+     ======================================================= */
 
   .navbar-list {
-    flex-direction: column;
-    align-items: flex-start;
     position: absolute;
-    top: 100%;
+
+    top: calc(100% + 9px);
     left: 0;
     right: 0;
-    background: rgba(5, 5, 5, 0.9);
-    padding: 0.8rem 1rem;
-    border-radius: 0 0 14px 14px;
-    transform: translateY(-200%);
-    transition: transform 0.35s ease-in-out;
-    z-index: 998;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 7px;
+
+    border-radius: 18px;
+
+    /* darker + clearer, not foggy */
+    background:
+      linear-gradient(
+        145deg,
+        rgba(14, 22, 38, 0.96),
+        rgba(8, 14, 26, 0.94)
+      );
+
+    backdrop-filter:
+      blur(14px)
+      saturate(125%);
+
+    -webkit-backdrop-filter:
+      blur(14px)
+      saturate(125%);
+
+    border:
+      1px solid rgba(255, 255, 255, 0.085);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.065),
+      0 18px 38px rgba(0, 0, 0, 0.52),
+      0 0 20px rgba(0, 255, 231, 0.035);
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform:
+      translateY(-7px)
+      scale(0.985);
+
+    transform-origin: top right;
+
+    transition:
+      opacity 0.22s ease,
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.22s ease;
+
+    z-index: 1001;
+  }
+
+  /* extremely subtle top light */
+  .navbar-list::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 231, 0.5),
+        transparent
+      );
+
+    opacity: 0.8;
+  }
+
+  /* remove the fog blob completely */
+  .navbar-list::after {
+    display: none;
   }
 
   .navbar-list.open {
-    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+
+  /* =======================================================
+     === CLEAN OPTIONS ======================================
+     ======================================================= */
+
+  .navbar-list li {
+    position: relative;
+  }
+
+  .navbar-list li + li {
+    margin-top: 1px;
   }
 
   .navbar-link {
     width: 100%;
-    font-size: 0.98rem;
-    padding: 0.7rem 1rem;
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0.65rem 0.85rem;
+
+    color: rgba(255, 255, 255, 0.86);
+
+    /* completely transparent */
+    background: transparent;
+    border: 0;
+
+    border-radius: 10px;
+
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
   }
 
-  .navbar-login {
-    position: absolute;
-    top: 0.6rem;
-    right: 1rem;
+  .navbar-link::before {
+    display: none;
   }
+
+  .navbar-link::after {
+    left: 11px;
+    bottom: 4px;
+
+    width: 0;
+    height: 1.5px;
+
+    background: #00ffe7;
+
+    box-shadow:
+      0 0 6px rgba(0, 255, 231, 0.4);
+
+    transition:
+      width 0.22s ease;
+  }
+
+  .navbar-link:hover {
+    color: #00ffe7;
+
+    transform: translateX(3px);
+
+    background:
+      rgba(0, 255, 231, 0.045);
+
+    box-shadow: none;
+  }
+
+  .navbar-link:hover::after {
+    width: 28%;
+  }
+
+  /* active option */
+  .navbar-link.active {
+    color: #00ffe7;
+
+    transform: translateX(2px);
+
+    background:
+      rgba(0, 255, 231, 0.065);
+
+    border: 0;
+
+    box-shadow: none;
+  }
+
+  .navbar-link.active::after {
+    width: 24%;
+  }
+
+
+  /* =======================================================
+     === ACCOUNT ============================================
+     ======================================================= */
+
+.logo_link {
+  order: 1;
+}
+
+.hamburger {
+  order: 2;
+  margin: 0 auto;
+}
+
+.navbar-login {
+  order: 3;
+
+  margin-left: 0;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
 
   .navbar-avatar-img {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
+}
+
+
+
+  /* account dropdown */
 
   .navbar-dropdown {
     top: 52px;
     right: 12px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(18, 27, 44, 0.90),
+        rgba(7, 11, 22, 0.92)
+      );
+
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    border-color:
+      rgba(0, 255, 231, 0.2);
+
+    border-radius: 17px;
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 14px 32px rgba(0, 0, 0, 0.5),
+      0 0 18px rgba(0, 255, 231, 0.07);
   }
-}
 
-/* === Logout Message === */
-.navbar-logout-message {
-  position: absolute;
-  top: 8px;
-  right: 20px;
-  background: linear-gradient(90deg, rgba(0, 255, 231, 0.85), rgba(0, 200, 180, 0.85));
-  padding: 8px 18px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-  animation: fadeOut 2.2s forwards;
-  box-shadow: 0 0 12px rgba(0, 255, 231, 0.5);
-}
-
-/* === Animations === */
-@keyframes fadeOut {
-  0% { opacity: 1; transform: translateY(0); }
-  80% { opacity: 0.6; transform: translateY(-6px); }
-  100% { opacity: 0; transform: translateY(-16px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  .navbar-logout-message {
+    top: 8px;
+    right: 14px;
+  }

@@ -1,34 +1,142 @@
+/* ===========================
+   PREMIUM GAME SEARCH BAR
+=========================== */
+
 .searchbox-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 28px auto 38px;
+    position: relative;
+    width: 100%;
 }
 
 .searchbox-input {
-  padding: 12px 20px;
-  width: 60%;
-  font-size: 18px;
-  border-radius: 30px;
-  border: 2px solid #04cef1;
-  background: linear-gradient(145deg, #1e2a47, #2a3b65); /* Darker gradient background */
-  color: white;
-  box-sizing: border-box;
-  text-align: center;
-  outline: none;
-  transition: all 0.3s ease-in-out; /* Smooth transition for focus */
-  font-family: 'Roboto', sans-serif; /* Modern font */
-  box-shadow: 0 4px 12px rgba(4, 206, 241, 0.3); /* Glow effect */
+    width: min(560px, 90%);
+    height: 56px;
+
+    padding: 0 60px 0 24px;
+
+    border-radius: 50px;
+    border: 2px solid #04cef1;
+
+    background: linear-gradient(
+        145deg,
+        rgba(30, 42, 71, 0.92),
+        rgba(42, 59, 101, 0.92)
+    );
+
+    color: white;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+
+    outline: none;
+    transition: all .35s ease;
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 8px 22px rgba(4,206,241,.18),
+        inset 0 0 0 1px rgba(255,255,255,.04);
 }
 
-.searchbox-input:focus {
-  border-color: #00c2ff;
-  background: linear-gradient(145deg, #3700ff, #00ffeac5); /* Bright futuristic gradient on focus */
-  box-shadow: 0 8px 20px rgba(0, 194, 255, 0.6); /* Intense glow effect */
-  color: #fff;
+.searchbox-input::placeholder{
+    color: rgba(255,255,255,.60);
+    font-size:15px;
 }
 
-.searchbox-input::placeholder {
-  color: rgba(255, 255, 255, 0.6); /* Lighter placeholder for better contrast */
-  font-size: 16px;
+.searchbox-input:hover{
+    border-color:#22dfff;
+
+    box-shadow:
+        0 10px 26px rgba(4,206,241,.28),
+        0 0 12px rgba(4,206,241,.18);
+}
+
+.searchbox-input:focus{
+
+    border-color:#00c2ff;
+
+    background: linear-gradient(
+        145deg,
+        #3700ff,
+        #00ffeac5
+    );
+
+    color:white;
+
+    box-shadow:
+        0 0 0 3px rgba(4,206,241,.15),
+        0 0 24px rgba(0,194,255,.55),
+        0 12px 30px rgba(0,194,255,.25);
+}
+
+/* Clear Button */
+
+.search-clear{
+
+    position:absolute;
+
+    right:calc(50% - 260px + 18px);
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    color:#04cef1;
+
+    cursor:pointer;
+
+    font-size:18px;
+    font-weight:bold;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.25s;
+}
+
+.search-clear:hover{
+
+    background:#04cef1;
+    color:#fff;
+
+    transform:scale(1.12);
+
+    box-shadow:0 0 14px rgba(4,206,241,.55);
+}
+
+/* Mobile */
+
+@media (max-width:700px){
+
+.searchbox-container{
+
+    margin:22px auto 28px;
+    
+
+}
+
+.searchbox-input{
+
+    width:92%;
+    height:50px;
+
+    font-size:15px;
+
+    padding-left:18px;
+    padding-right:50px;
+
+}
+
+.search-clear{
+
+    right:8%;
+}
+
 }

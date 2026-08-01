@@ -77,56 +77,68 @@ function App() {
   return (
     <Router>
   
-    {/* 🔝 YOUR ACTUAL APP UI */}
-    <div className="app-container relative z-10">
-        <Navbar
-          wishlistCount={wishlist.length}
-          isLoggedIn={isLoggedIn}
-          handleLogout={handleLogout}
-          navigateToProfile={navigateToProfile}
-        />
+{/* 🔝 YOUR ACTUAL APP UI */}
+<div className="app-container relative z-10">
+    <Navbar
+      wishlistCount={wishlist.length}
+      isLoggedIn={isLoggedIn}
+      handleLogout={handleLogout}
+      navigateToProfile={navigateToProfile}
+    />
+    <main className="main-content">
 
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                addToWishlist={addToWishlist}
-                wishlist={wishlist}
-              />
-            }
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <HomePage
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            addToWishlist={addToWishlist}
+            wishlist={wishlist}
           />
+        }
+      />
 
-          <Route
-            path="/wishlist"
-            element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />}
-          />
+      <Route
+        path="/wishlist"
+        element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />}
+      />
 
-          <Route path="/about" element={<About />} />
+      <Route path="/about" element={<About />} />
 
-          <Route
-            path="/login"
-            element={<LoginPage setIsLoggedIn={setIsLoggedIn} loadUserWishlist={loadUserWishlist} />}
-          />
+      <Route
+        path="/login"
+        element={<LoginPage setIsLoggedIn={setIsLoggedIn} loadUserWishlist={loadUserWishlist} />}
+      />
 
-          <Route
-            path="/games"
-            element={<GamesPage addToWishlist={addToWishlist} wishlist={wishlist} />}
-          />
+      <Route
+        path="/games"
+        element={<GamesPage
+addToWishlist={addToWishlist}
+wishlist={wishlist}
+searchQuery={searchQuery}
+setSearchQuery={setSearchQuery}
 
-          <Route path="/signup" element={<SignupPage />} />
 
-          <Route path="/profile" element={<ProfilePage />} />
+/>}
+/>
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+      <Route path="/signup" element={<SignupPage />} />
 
-        <Footer />
-      </div>
-    </Router>
-  );
+      <Route path="/profile" element={<ProfilePage />} />
+
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    </main>
+
+    <Footer />
+
+  </div>
+</Router>
+
+
+);
 }
 
 export default App;

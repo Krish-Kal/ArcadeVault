@@ -6,7 +6,15 @@
   100% { background-position: 0% 50%; }
 }
 
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
+.main-content {
+    flex: 1;
+}
 /* === Sleek Neon Scrollbar === */
 ::-webkit-scrollbar {
   width: 8px;

@@ -1,5 +1,5 @@
-import React from 'react';
-import './Gamesearch.css'; // Import the specific CSS for Searchbox
+import React from "react";
+import "./Gamesearch.css";
 
 function Searchbox({ searchQuery, setSearchQuery }) {
   return (
@@ -7,10 +7,20 @@ function Searchbox({ searchQuery, setSearchQuery }) {
       <input
         type="text"
         className="searchbox-input"
-        placeholder="Search for a game..."
+        placeholder="🔍 Search games, genres..."
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
+
+      {searchQuery && (
+        <button
+          type="button"
+          className="search-clear"
+          onClick={() => setSearchQuery("")}
+        >
+          ✕
+        </button>
+      )}
     </div>
   );
 }

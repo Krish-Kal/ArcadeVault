@@ -124,8 +124,9 @@
   padding: 2rem;
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: 92vh;
   margin-top: 15px;
+  margin-bottom: -100px;
   text-align: center;
   transition: opacity 0.5s ease-in-out;
 }
@@ -485,6 +486,61 @@
   }
 
   .welcome-box {
-    margin-top: 0; /* remove extra gap */
+    margin-top: 0px; /* remove extra gap */
+  }
+}
+/* ===== Premium Glowing Genre Tags ===== */
+
+.genre-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-top: 3rem;
+}
+
+.genre-tags span {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #bffcff;
+  cursor: default;
+
+text-shadow:
+  0 0 3px rgba(0, 255, 255, 0.45),
+  0 0 8px rgba(0, 255, 255, 0.2);
+
+  transition: all 0.3s ease;
+}
+
+.genre-tags span:hover {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 8px #00ffff,
+    0 0 16px #00ffff,
+    0 0 32px #00aaff,
+    0 0 48px #7b2cff;
+
+  transform: translateY(-2px) scale(1.05);
+}
+@media (max-width: 768px) {
+  .genre-tags {
+    column-gap: 25px;
+    row-gap: 12px;
+  }
+
+  .genre-tags span {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+  .genre-tags {
+    column-gap: 25px;
+    row-gap: 12px;
+  }
+
+  .genre-tags span {
+    font-size: 0.9rem;
   }
 }

@@ -2,6 +2,7 @@
 .signup-page {
     position: relative;
     min-height: 100vh;
+    margin-top: 100px;
 
     overflow: hidden;
 
@@ -222,6 +223,7 @@
         justify-content: center;
 
         min-height: 100vh;
+        margin-top: -30px;
     }
 
     .signup-box {

@@ -18,6 +18,7 @@
 
     padding-top: 120px;
     box-sizing: border-box;
+    margin-top:100px;
 }
 
 /* ❌ removed aura overlay completely */
@@ -246,6 +247,7 @@
         align-items: center;         /* ✅ true vertical centering */
         justify-content: center;
         min-height: 100vh;
+        margin-top:-30px
     }
 
     .login-box {

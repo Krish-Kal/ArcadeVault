@@ -1,24 +1,28 @@
 /* === FOOTER (PREMIUM BALANCED UPGRADE) === */
 .footer {
-  background: linear-gradient(
-    135deg,
-    rgba(10, 18, 35, 0.85),   /* deep blue-black base */
-    rgba(15, 35, 70, 0.55)    /* soft electric blue tint */
-  );
+    background: linear-gradient(
+        135deg,
+        rgba(10,18,35,.85),
+        rgba(15,35,70,.55)
+    );
 
-  color: #fff;
-  text-align: center;
+    color:#fff;
+    text-align:center;
 
-  padding: 30px 0;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  box-sizing: border-box;
+    padding:30px 0;
 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+    width:100%;
 
-  border-top: 1px solid rgba(56, 189, 248, 0.18); /* subtle cyan-blue edge */
+    margin-top:auto;
+
+    position:relative;
+
+    box-sizing:border-box;
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    border-top:1px solid rgba(56,189,248,.18);
 }
 
 /* container */
@@ -28,7 +32,6 @@
   padding: 0 12px;
 }
 
-/* text (kept original feel, slightly refined) */
 .footer p {
   margin: 0;
   font-size: 13.5px;
@@ -37,7 +40,7 @@
   opacity: 0.85;
 }
 
-/* links (kept same behavior, slightly smoother UI) */
+
 .footer-links {
   margin-top: 16px;
 }
@@ -56,9 +59,7 @@
   transform: translateY(-2px);
 }
 
-/* ========================= */
-/* 🚨 SOCIAL ICONS - NOT TOUCHED */
-/* ========================= */
+
 .social-links {
   margin-top: 18px;
 }
@@ -77,11 +78,11 @@
 }
 
 /* ========================= */
-/* GO TO TOP (slightly refined only) */
+/* GO TO TOP  */
 /* ========================= */
 .go-to-top {
-  position: fixed;
-  bottom: 30px;
+  position: absolute;
+  bottom: 40px;
   right: 30px;
 
   background-color: rgba(10,10,10,0.3);
@@ -91,7 +92,7 @@
   border: 2px solid #04cef1;
 
   padding: 10px 16px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
 
@@ -153,7 +154,7 @@
     margin: 4px 6px;
   }
 
-  /* SOCIAL ICONS unchanged scaling logic */
+  /* SOCIAL ICONS  */
   .social-links a {
     font-size: 20px;
     margin: 0 6px;
@@ -166,3 +167,181 @@
     font-size: 11px;
   }
 }
+/* =========================================
+   ARCADE OS DOWNLOAD BUTTON
+   DESKTOP — KEEP AS IS
+   ========================================= */
+
+.arcade-os-download {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 20px;
+  border: 1px solid rgba(139, 92, 246, 0.55);
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.22),
+    rgba(59, 130, 246, 0.18)
+  );
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 18px rgba(124, 58, 237, 0.12),
+    inset 0 0 12px rgba(255, 255, 255, 0.025);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.arcade-os-download:hover {
+  transform: translateY(-50%) translateY(-2px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.38),
+    rgba(59, 130, 246, 0.28)
+  );
+
+  border-color: rgba(167, 139, 250, 0.85);
+
+  box-shadow:
+    0 0 24px rgba(124, 58, 237, 0.25),
+    0 0 45px rgba(59, 130, 246, 0.08);
+}
+
+.arcade-os-download:active {
+  transform: translateY(-50%);
+}
+
+/* Hide Arcade OS Download button on tablets and phones */
+@media (max-width: 1024px) {
+  .arcade-os-download {
+    display: none !important;
+  }
+}
+/* =========================================
+   GLASS BLUE GO-TO-TOP BUTTON
+   ========================================= */
+
+.go-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(96, 165, 250, 0.45);
+  border-radius: 15px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.20),
+    rgba(14, 165, 233, 0.10)
+  );
+
+  color: #60a5fa;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25),
+    0 0 18px rgba(59, 130, 246, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
+
+  z-index: 999;
+}
+
+.go-to-top:hover {
+  transform: translateY(-4px);
+
+  color: #93c5fd;
+
+  background: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.32),
+    rgba(14, 165, 233, 0.18)
+  );
+
+  border-color: rgba(96, 165, 250, 0.75);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.30),
+    0 0 24px rgba(59, 130, 246, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.go-to-top:active {
+  transform: translateY(-1px) scale(0.96);
+}
+
+.go-to-top:focus-visible {
+  outline: 2px solid rgba(96, 165, 250, 0.9);
+  outline-offset: 4px;
+}
+
+
+/* =========================================
+   SUBTLE ICON ANIMATION
+   ========================================= */
+
+.go-to-top svg {
+  transition: transform 0.25s ease;
+}
+
+.go-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .go-to-top {
+    right: 18px;
+    bottom: 18px;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+  }
+}
+
